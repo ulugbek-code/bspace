@@ -9,7 +9,7 @@
                 </div>
                 <div class="input-container">
                     <label>Period</label>
-                    <base-dropdown :options="months" :index="true" :validity="!isValid" @input="showIt($event)" defaultVal="Input Period"></base-dropdown>
+                    <base-dropdown :options="months" :index="true" :validity="!isValid" @input="showIt($event)" defaultVal="Period"></base-dropdown>
                 </div>
                 <div class="input-container">
                     <label>Description</label>

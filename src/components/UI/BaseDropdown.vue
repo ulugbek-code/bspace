@@ -266,6 +266,7 @@ export default {
   user-select: none;
 }
 .custom-select.withIndex{
+  width: 100%;
   line-height: 26px;
   background: #fff;
   border-radius: 25px;

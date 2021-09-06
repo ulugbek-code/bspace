@@ -204,9 +204,9 @@ div.invalid small{
     /* font-size: 30px; */
     /* margin:-60px 0 0 -60px; */
     display: inline-block;
-    -webkit-animation:spin 4s linear infinite;
-    -moz-animation:spin 4s linear infinite;
-    animation:spin 4s linear infinite;
+    -webkit-animation:spin 1s linear infinite;
+    -moz-animation:spin 1s linear infinite;
+    animation:spin 1s linear infinite;
     /* background: #4361EE; */
 }
 @-moz-keyframes spin { 100% { -moz-transform: rotate(-360deg); } }

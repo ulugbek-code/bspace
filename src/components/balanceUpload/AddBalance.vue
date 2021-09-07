@@ -34,11 +34,17 @@
       <div class="second-div">
         <div class="input-container">
           <label>Upload File</label>
-          <input type="file" ref="file" @change="handleFileUpload" />
-          <!-- <div class="dropbox">
-                        <input type="file" class="input-file">
-                            <fa class="icon" :icon="['fas', 'cloud-upload-alt']" /> 
-                    </div> -->
+
+          <div class="dropbox">
+            <input
+              class="input-file"
+              type="file"
+              ref="file"
+              @change="handleFileUpload"
+            />
+            <p>{{ balances.file.name }}</p>
+            <fa class="icon" :icon="['fas', 'cloud-upload-alt']" />
+          </div>
         </div>
         <div class="for-edit-file">
           <fa class="icons icon-edit" :icon="['fas', 'edit']" />
@@ -236,7 +242,7 @@ select {
   border-radius: 12.5px;
   width: 90px;
   height: 90px;
-  background: rgb(255, 255, 255);
+  /* background: rgb(255, 255, 255); */
   margin-top: 10px;
   padding: 10px 10px;
   position: relative;

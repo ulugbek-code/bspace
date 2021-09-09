@@ -12,50 +12,50 @@ export default {
   components: {
     TheNavigation
   },
-  data() {
-    return {
-      events: ['click', 'mousemove', 'mousedown', 'scroll', 'keypress'],
-      logoutTimer: null
-    };
-  },
+  // data() {
+  //   return {
+  //     events: ['click', 'mousemove', 'mousedown', 'scroll', 'keypress'],
+  //     // logoutTimer: null
+  //   };
+  // },
   computed: {
     isNavActive() {
       return this.$store.state.isActive;
     }
-  },
-  methods: {
-    setTimers() {
-      this.logoutTimer = setTimeout(this.logoutUser, 900000); //15*60*1000
-    },
-    logoutUser() {
-      console.log('23');
-      this.resetTimers();
-      // localStorage.clear()
-      // this.$store.commit('toggleActivity')
-      // this.$router.push('/signIn')
-    },
-    resetTimers() {
-      clearTimeout(this.logoutTimer);
-
-      this.setTimers();
-    }
-  },
-  mounted() {
-    // if(this.isNavActive){
-    this.events.forEach(event => {
-      window.addEventListener(event, this.resetTimers);
-    });
-
-    this.setTimers();
-    // }
-  },
-  unmounted() {
-    this.events.forEach(event => {
-      window.removeEventListener(event, this.resetTimers);
-    });
-
-    this.resetTimers();
   }
+  // methods: {
+  //   setTimers() {
+  //     this.logoutTimer = setTimeout(this.logoutUser, 3000); //15*60*1000
+  //   },
+  //   logoutUser() {
+  //     console.log('23');
+  //     this.resetTimers();
+  //     localStorage.clear();
+  //     this.$store.commit('toggleActivity');
+  //     this.$router.push('/signIn');
+  //   },
+  //   resetTimers() {
+  //     clearTimeout(this.logoutTimer);
+
+  //     this.setTimers();
+  //   }
+  // },
+  // mounted() {
+  //   // if(this.isNavActive){
+  //   this.events.forEach(event => {
+  //     window.addEventListener(event, this.resetTimers);
+  //   });
+
+  //   this.setTimers();
+  //   // }
+  // },
+  // unmounted() {
+  //   this.events.forEach(event => {
+  //     window.removeEventListener(event, this.resetTimers);
+  //   });
+
+  //   this.resetTimers();
+  // }
 };
 </script>
 

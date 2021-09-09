@@ -15,8 +15,7 @@
           !getLoader && (!getAccountsList || getAccountsList.length === 0)
         "
       >
-        No stored firms yet or <br />
-        Authorization problem
+        No stored accounts yet
       </div>
       <tr v-for="content in filteredContents" :key="content">
         <td>

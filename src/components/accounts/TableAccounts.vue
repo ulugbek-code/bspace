@@ -1,22 +1,22 @@
 <template>
   <div class="container">
-    <table>
+    <div v-if="getLoader" id="loader">
+      <img src="../../assets/loader.gif" alt="" />
+    </div>
+    <div v-else-if="!getLoader && getError">{{ getError }}</div>
+    <div
+      v-else-if="
+        !getLoader && (!getAccountsList || getAccountsList.length === 0)
+      "
+    >
+      No stored accounts yet
+    </div>
+    <table v-else>
       <tr>
         <th v-for="title in titles" :key="title">
           <h3>{{ title }}</h3>
         </th>
       </tr>
-      <div v-if="getLoader" id="loader">
-        <img src="../../assets/loader.gif" alt="" />
-      </div>
-      <div v-else-if="!getLoader && getError">{{ getError }}</div>
-      <div
-        v-else-if="
-          !getLoader && (!getAccountsList || getAccountsList.length === 0)
-        "
-      >
-        No stored accounts yet
-      </div>
       <tr v-for="content in filteredContents" :key="content">
         <td>
           <span

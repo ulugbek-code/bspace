@@ -24,7 +24,7 @@ export default {
       required: false
     }
   },
-  emits: ['close','closeDD']
+  emits: ['close', 'closeDD']
 };
 </script>
 
@@ -41,17 +41,20 @@ div {
 
 dialog {
   position: fixed;
-  top: 15vh;
+  top: 11vh;
   left: 50%;
-  transform: translate(-50%,-10%);
+  transform: translate(-50%, -10%);
   width: 520px;
+  /* max-height: 100vh;
+  overflow: auto; */
   z-index: 100;
   border-radius: 18px;
   border: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   padding: 0;
   margin: 0;
-  /* overflow: hidden; */
+
+  /* overflow: auto; */
 }
 
 header {
@@ -73,7 +76,7 @@ header span {
 }
 
 section {
-  padding: 1rem;
+  padding: 0.4rem;
 }
 
 ul {

@@ -3,7 +3,11 @@
     <h3>Create Balance</h3>
     <form @submit.prevent="addBalance">
       <div class="first-div">
-        <div class="input-container">
+        <div
+          :class="!isValid && balances.year === '' ? 'error' : ''"
+          @click="isValid = true"
+          class="input-container"
+        >
           <label>Year</label>
           <input
             v-model="balances.year"
@@ -16,12 +20,16 @@
           <base-dropdown
             :options="months"
             :index="true"
+            :isSubmitted="isSubmitted"
             :validity="!isValid"
             @input="showIt($event)"
             defaultVal="Period"
           ></base-dropdown>
         </div>
-        <div class="input-container">
+        <div
+          :class="!isValid && balances.desc === '' ? 'error' : ''"
+          class="input-container"
+        >
           <label>Description</label>
           <textarea
             v-model="balances.desc"
@@ -90,7 +98,8 @@ export default {
         desc: '',
         file: ''
       },
-      userInfo: {}
+      userInfo: {},
+      isSubmitted: false
     };
   },
   // computed: {
@@ -103,6 +112,7 @@ export default {
   methods: {
     showIt(val) {
       this.balances.period = val;
+      console.log(this.balances.period);
     },
     addBalance() {
       if (
@@ -131,15 +141,19 @@ export default {
           )
           .then(res => {
             this.response = res.data.errors;
-            console.log('successs', this.response[0]); //.split('\r\n').split(/\s*;\s*/)
+            console.log('successs', this.response); //.split('\r\n').split(/\s*;\s*/)
           })
-          .catch(() => console.log('error'));
+          .catch(() => console.log('error')); //console.log(res)
 
         this.balances.year = '';
+        this.balances.desc = '';
         this.balances.period = '';
-        this.balances.file = null;
+        this.balances.file = '';
+        this.$refs['file'].value = '';
+        this.isSubmitted = true;
+      } else {
+        this.isValid = false;
       }
-      this.isValid = false;
     },
     handleFileUpload() {
       this.balances.file = this.$refs.file.files[0];
@@ -147,6 +161,13 @@ export default {
   },
   mounted() {
     this.userInfo = JSON.parse(localStorage.getItem('userData'));
+  },
+  watch: {
+    isSubmitted() {
+      if (this.isSubmitted === true) {
+        setTimeout(() => (this.isSubmitted = false), 1000);
+      }
+    }
   }
 };
 </script>
@@ -282,5 +303,13 @@ select {
   outline: none;
   cursor: pointer;
   font-size: 11px;
+}
+.error input,
+.error textarea {
+  border: 1px solid red;
+}
+.error input::placeholder,
+.error textarea::placeholder {
+  color: red;
 }
 </style>

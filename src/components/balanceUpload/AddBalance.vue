@@ -50,13 +50,16 @@
               ref="file"
               @change="handleFileUpload"
             />
-            <p>{{ balances.file.name }}</p>
+            <span id="file-name">{{ balances.file.name }}</span>
             <fa class="icon" :icon="['fas', 'cloud-upload-alt']" />
           </div>
         </div>
         <div class="for-edit-file">
-          <fa class="icons icon-edit" :icon="['fas', 'edit']" />
-          <fa class="icons icon-trash" :icon="['fas', 'trash']" />
+          <fa
+            @click="removeFile"
+            class="icons icon-trash"
+            :icon="['fas', 'trash']"
+          />
         </div>
         <div id="response" v-if="response.length > 0">
           <!-- {{ response[0].split(/\s*;\s*/) }} -->
@@ -110,6 +113,10 @@ export default {
   //   }
   // },
   methods: {
+    removeFile() {
+      this.balances.file = '';
+      this.$refs['file'].value = '';
+    },
     showIt(val) {
       this.balances.period = val;
       console.log(this.balances.period);
@@ -148,8 +155,7 @@ export default {
         this.balances.year = '';
         this.balances.desc = '';
         this.balances.period = '';
-        this.balances.file = '';
-        this.$refs['file'].value = '';
+        this.removeFile();
         this.isSubmitted = true;
       } else {
         this.isValid = false;
@@ -173,6 +179,12 @@ export default {
 </script>
 
 <style scoped>
+#file-name {
+  position: absolute;
+  bottom: -30%;
+  left: 0%;
+  font-size: 14px;
+}
 #add-balance {
   width: 40%;
   background: rgba(221, 221, 221, 0.3);
@@ -285,6 +297,7 @@ select {
   left: 50%;
   transform: translate(-50%, -50%);
   color: rgb(189, 165, 165);
+  pointer-events: none;
 }
 .dropbox:hover {
   background: lightblue; /* when mouse over to the drop zone, change color */

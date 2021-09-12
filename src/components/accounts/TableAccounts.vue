@@ -297,7 +297,7 @@ tr:hover .icon-trash {
   width: 100vw;
   height: 100vh;
   background: #f1f2f3;
-  z-index: 100;
+  z-index: 10;
 }
 #loader img {
   position: relative;

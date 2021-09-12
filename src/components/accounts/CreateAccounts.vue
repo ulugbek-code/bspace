@@ -288,7 +288,6 @@
           placeholder="Search"
         />
       </div>
-      <!-- {{ getIfrsCategoriesList }} -->
     </div>
     <div class="accounts-btns">
       <div class="download">
@@ -445,12 +444,9 @@ export default {
           .catch(err => {
             console.log(err);
           });
-        // this.$store.dispatch('account/getAccounts', {
-        //   isSubAcc: true,
-        //   firmId: localStorage.getItem('firmId')
-        // });
-        setTimeout(() => location.reload(), 300);
+
         this.closeIFRSDialog();
+        location.reload();
       } else {
         this.ifrsValid = true;
       }

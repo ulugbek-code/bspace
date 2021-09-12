@@ -288,6 +288,7 @@
           placeholder="Search"
         />
       </div>
+      {{ getIfrsCategoriesList }}
     </div>
     <div class="accounts-btns">
       <div class="download">
@@ -362,6 +363,9 @@ export default {
     };
   },
   computed: {
+    getIfrsCategoriesList() {
+      return this.$store.getters['account/getIfrs'];
+    },
     getFirmId() {
       return localStorage.getItem('firmId');
     },
@@ -441,11 +445,11 @@ export default {
           .catch(err => {
             console.log(err);
           });
-        this.$store.dispatch('account/getAccounts', {
-          isSubAcc: true,
-          firmId: localStorage.getItem('firmId')
-        });
-
+        // this.$store.dispatch('account/getAccounts', {
+        //   isSubAcc: true,
+        //   firmId: localStorage.getItem('firmId')
+        // });
+        setTimeout(() => location.reload(), 300);
         this.closeIFRSDialog();
       } else {
         this.ifrsValid = true;

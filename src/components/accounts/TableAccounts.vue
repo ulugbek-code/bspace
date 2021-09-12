@@ -196,7 +196,7 @@ export default {
 
 <style scoped>
 .container {
-  overflow-y: scroll;
+  overflow-y: auto; /**changed from scroll */
   overflow-x: hidden;
   height: 88vh;
   /* display:block; */

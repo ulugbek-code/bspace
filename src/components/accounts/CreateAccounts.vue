@@ -288,7 +288,7 @@
           placeholder="Search"
         />
       </div>
-      {{ getIfrsCategoriesList }}
+      <!-- {{ getIfrsCategoriesList }} -->
     </div>
     <div class="accounts-btns">
       <div class="download">

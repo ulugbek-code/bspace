@@ -1,57 +1,67 @@
 <template>
-<div v-if="defaultVal && firm" :class="{invalid: validity && !selected}" class="custom-select firm" @blur="open = false">
-    <div class="selected" :class="{ open: open }"  @click="open = !open">
-      {{ selected ? selected : "Select the firm..." }}<span v-if="selected" @click.stop="removeSpan()">&#10005;</span>
+  <div
+    v-if="defaultVal && firm"
+    :class="{ invalid: validity && !selected }"
+    class="custom-select firm"
+    @blur="open = false"
+  >
+    <div class="selected" :class="{ open: open }" @click="open = !open">
+      {{ selected ? selected : 'Select the firm...'
+      }}<span v-if="selected" @click.stop="removeSpan()">&#10005;</span>
     </div>
     <div class="items" :class="{ selectHide: !open }">
-      <div
-        v-for="(option, i) of options"
-        :key="i"
-        @click="adding(option)">
+      <div v-for="(option, i) of options" :key="i" @click="adding(option)">
         {{ option.name }}
       </div>
     </div>
   </div>
   <!--  -->
-  <div v-else-if="update && firm" :class="{invalid: validity && !selected}" class="custom-select firm" @blur="open = false">
-    <div class="selected" :class="{ open: open }"  @click="open = !open">
-      {{ selected ? selected : update }}<span @click.stop="removeSpan()">&#10005;</span>
+  <div
+    v-else-if="update && firm"
+    :class="{ invalid: validity && !selected }"
+    class="custom-select firm"
+    @blur="open = false"
+  >
+    <div class="selected" :class="{ open: open }" @click="open = !open">
+      {{ selected ? selected : update
+      }}<span @click.stop="removeSpan()">&#10005;</span>
     </div>
     <div class="items" :class="{ selectHide: !open }">
-      <div
-        v-for="(option, i) of options"
-        :key="i"
-        @click="adding(option)">
+      <div v-for="(option, i) of options" :key="i" @click="adding(option)">
         {{ option.name }}
       </div>
     </div>
   </div>
-<!--  -->
-    <div v-else-if="defaultVal" :class="{invalid: validity && !selected}" class="custom-select" @blur="open = false">
-    <div class="selected" :class="{ open: open }"  @click="open = !open">
+  <!--  -->
+  <div
+    v-else-if="defaultVal"
+    :class="{ invalid: validity && !selected }"
+    class="custom-select"
+    @blur="open = false"
+  >
+    <div class="selected" :class="{ open: open }" @click="open = !open">
       {{ selected ? selected : defaultVal }}
     </div>
     <div class="items" :class="{ selectHide: !open }">
-      <div
-        v-for="(option, i) of options"
-        :key="i"
-        @click="adding(option)">
+      <div v-for="(option, i) of options" :key="i" @click="adding(option)">
         {{ option.name }}
       </div>
     </div>
   </div>
   <!--  -->
-  
+
   <!--  -->
-  <div v-else :class="{invalid: validity && !selected}" class="custom-select" @blur="open = false">
-    <div class="selected" :class="{ open: open }"  @click="open = !open">
-      {{ selected ? selected : "Select the firm..." }}
+  <div
+    v-else
+    :class="{ invalid: validity && !selected }"
+    class="custom-select"
+    @blur="open = false"
+  >
+    <div class="selected" :class="{ open: open }" @click="open = !open">
+      {{ selected ? selected : 'Select the firm...' }}
     </div>
     <div class="items" :class="{ selectHide: !open }">
-      <div
-        v-for="(option, i) of options"
-        :key="i"
-        @click="adding(option)">
+      <div v-for="(option, i) of options" :key="i" @click="adding(option)">
         {{ option.name }}
       </div>
     </div>
@@ -59,47 +69,44 @@
 </template>
 <script>
 export default {
-    props:[
-        'options','validity','defaultVal','firm','update'
-    ],
-    data(){
-        return{
-            selected: '',
-            open: false
-        }
-    },
-    methods:{
-        adding(option){
-          // console.log(option)
-        this.selected = option.name
-        this.$emit('sendId', option.id)
+  props: ['options', 'validity', 'defaultVal', 'firm', 'update'],
+  data() {
+    return {
+      selected: '',
+      open: false
+    };
+  },
+  methods: {
+    adding(option) {
+      // console.log(option)
+      this.selected = option.name;
+      this.$emit('sendId', option.id);
 
-        this.open = false;
-        },
-        removeSpan(){
-          this.selected = ''
-        }
+      this.open = false;
+    },
+    removeSpan() {
+      this.selected = '';
     }
-}
+  }
+};
 </script>
 
 <style scoped>
-
 .custom-select {
   position: relative;
   width: 100%;
   text-align: left;
   outline: none;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 40px;
-  margin: 9.6px
+  margin: 9.6px;
 }
 
 .custom-select .selected {
   background-color: transparent;
   border-radius: 25px;
   border: 1px solid rgba(67, 97, 238, 0.35);
-  color: rgba(69, 67, 67, 0.8);
+  color: rgba(115, 112, 112, 0.8);
   padding-left: 1em;
   cursor: pointer;
   user-select: none;
@@ -114,7 +121,7 @@ export default {
 
 .custom-select .selected:after {
   position: absolute;
-  content: "";
+  content: '';
   top: 18px;
   right: 1em;
   width: 0;
@@ -125,7 +132,7 @@ export default {
 .custom-select.firm .selected:after {
   top: 12px;
 }
-.selected span{
+.selected span {
   background: rgba(67, 97, 238, 0.35);
   border-radius: 50%;
   margin: 0 10px 0 2px;
@@ -155,24 +162,23 @@ export default {
 .custom-select .items div:hover {
   background-color: rgba(67, 97, 238, 0.35);
 }
-.custom-select.firm{
+.custom-select.firm {
   line-height: 24px;
   margin: 0;
 }
-.custom-select.firm .selected{
+.custom-select.firm .selected {
   border: 1px solid rgb(216, 214, 214);
 }
-.custom-select.firm .items{
+.custom-select.firm .items {
   background: rgb(243, 242, 242) !important;
 }
 
 .selectHide {
   display: none;
 }
-.invalid.custom-select .selected{
+.invalid.custom-select .selected {
   border-radius: 25px;
   color: rgba(255, 40, 40, 0.7);
   border: 1.5px solid rgb(255, 40, 40);
 }
-
 </style>

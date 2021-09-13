@@ -119,7 +119,6 @@ export default {
     },
     showIt(val) {
       this.balances.period = val;
-      console.log(this.balances.period);
     },
     addBalance() {
       if (

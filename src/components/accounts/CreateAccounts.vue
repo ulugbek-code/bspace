@@ -295,6 +295,7 @@
       </div>
       <button @click="addAcc">Add Account</button>
       <button @click="addifrs">Add IFRS</button>
+      <button @click="addMany">Add Many</button>
     </div>
   </div>
 </template>
@@ -698,9 +699,9 @@ export default {
 .accounts-btns button,
 .btn {
   font-family: 'Poppins', sans-serif;
-  height: 34px;
-  width: 110px;
-  padding: 5px 10px;
+  height: 30px;
+  width: 100px;
+  padding: 5px 8px;
   color: #fff;
   background: rgba(67, 97, 238, 1);
   border: none;
@@ -753,7 +754,7 @@ input::placeholder {
     color: rgba(68, 68, 68, 0.8);
 } */
 .accounts-btns div,
-.accounts-btns button:nth-child(2) {
+.accounts-btns button:not(:last-child) {
   margin-right: 1rem;
 }
 .invalid input {

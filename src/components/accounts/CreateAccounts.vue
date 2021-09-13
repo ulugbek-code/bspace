@@ -421,6 +421,22 @@ export default {
     addifrs() {
       this.isIFRS = true;
     },
+    addMany() {
+      axios
+        .post(
+          'https://bspacedev.azurewebsites.net/api/Accounts/AddMany',
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('mytoken')}`
+            }
+          }
+        )
+        .then(res => console.log(res))
+        .catch(err => {
+          console.log(err);
+        });
+    },
     addIFRS() {
       if (
         this.ifrsData.ifrsCode !== '' &&

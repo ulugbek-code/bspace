@@ -53,7 +53,7 @@
       >
         <label @click="closeDD">IFRS Category</label>
         <base-dropdown
-          :options="ifrs"
+          :options="ifrsCategories"
           add="true"
           :isTouched="isTouched"
           :validity="isValid"
@@ -166,7 +166,7 @@
       >
         <label @click="closeDD">IFRS Category</label>
         <base-dropdown
-          :options="ifrs"
+          :options="ifrsCategories"
           :isTouched="isTouched"
           :validity="isEditValid"
           withId="ifrs"
@@ -289,6 +289,7 @@
         />
       </div>
     </div>
+    <!-- <p v-for="p in ifrsCategories" :key="p">{{ p.name }}</p> -->
     <div class="accounts-btns">
       <div class="download">
         <fa class="search-icon" :icon="['fas', 'download']" />
@@ -305,6 +306,7 @@ import axios from 'axios';
 import BaseDialog from '../UI/BaseDialog.vue';
 import BaseDropdown from '../UI/BaseDropdown.vue';
 import MultiSelect from '../UI/MultiSelect.vue';
+// import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -314,7 +316,7 @@ export default {
   },
   props: [
     'categories',
-    'ifrs',
+    // 'ifrs',
     'types',
     'parentAcc',
     'editingData',
@@ -325,6 +327,7 @@ export default {
   emits: ['searching'],
   data() {
     return {
+      ifrsCategories: [],
       ifrsValid: false,
       isTouched: false,
       isSearchFocused: false,
@@ -363,17 +366,29 @@ export default {
     };
   },
   computed: {
-    getIfrsCategoriesList() {
-      return this.$store.getters['account/getIfrs'];
-    },
     getFirmId() {
       return localStorage.getItem('firmId');
     },
     getFinalParentId() {
       return this.parentAcc.filter(p => p.id === this.editData.parentAccountId);
+    },
+    getIfrsCategoriesList() {
+      return this.$store.getters['account/getIfrs'];
     }
+    // ...mapGetters('account', ['getIfrs'])
   },
   methods: {
+    async setup() {
+      await this.$store.dispatch('account/getIfrs');
+      this.ifrsCategories = this.getIfrsCategoriesList.map(i => {
+        // console.log('as');
+        return {
+          id: i.id,
+          name: i.name,
+          code: i.code
+        };
+      });
+    },
     toggleIFRSerror() {
       this.ifrsValid = false;
     },
@@ -443,7 +458,7 @@ export default {
         this.ifrsData.ifrsName !== '' &&
         this.ifrsData.ifrsTypes.length > 0
       ) {
-        console.log(this.ifrsData);
+        // console.log(this.ifrsData);
         axios
           .post(
             'https://bspacedev.azurewebsites.net/api/IfrsCategories/Add',
@@ -462,8 +477,11 @@ export default {
             console.log(err);
           });
 
+        setTimeout(this.setup, 500);
+
         this.closeIFRSDialog();
-        location.reload();
+        // this.getIfrsCategoriesList();
+        // location.reload();
       } else {
         this.ifrsValid = true;
       }
@@ -650,9 +668,12 @@ export default {
       }
     }
   },
-  mounted() {
-    // console.log(this.getFirmId)
-    // console.log(this.isValid)
+  created() {
+    this.setup();
+  },
+  getIfrsCategoriesList() {
+    console.log('ss');
+    this.setup();
   }
 };
 </script>

@@ -83,7 +83,7 @@ export default {
         'TYPES'
       ],
       categoriesName: [],
-      ifrsCategories: [],
+      // ifrsCategories: [],
       ifrsTypes: [],
       parentAccounts: [],
       colors: ['red', 'blue', 'green']
@@ -109,9 +109,9 @@ export default {
     getCategoriesList() {
       return this.$store.getters['account/getCategories'];
     },
-    getIfrsCategoriesList() {
-      return this.$store.getters['account/getIfrs'];
-    },
+    // getIfrsCategoriesList() {
+    //   return this.$store.getters['account/getIfrs'];
+    // },
     getifrsTypes() {
       return this.$store.getters['account/getifrsTypes'];
     },
@@ -169,7 +169,7 @@ export default {
     });
 
     await this.$store.dispatch('account/getCategories');
-    await this.$store.dispatch('account/getIfrs');
+    // await this.$store.dispatch('account/getIfrs');
     await this.$store.dispatch('account/getifrsTypes');
 
     this.categoriesName = this.getCategoriesList.map(category => {
@@ -178,19 +178,24 @@ export default {
         id: category.id
       };
     });
-    this.ifrsCategories = this.getIfrsCategoriesList.map(i => {
-      return {
-        id: i.id,
-        name: i.name,
-        code: i.code
-      };
-    });
+    // this.ifrsCategories = this.getIfrsCategoriesList.map(i => {
+    //   return {
+    //     id: i.id,
+    //     name: i.name,
+    //     code: i.code
+    //   };
+    // });
 
-    this.$emit('ifrs', this.ifrsCategories);
+    // this.$emit('ifrs', this.ifrsCategories);
     this.$emit('category', this.categoriesName);
     this.$emit('ifrsTypes', this.getifrsTypes);
     this.$emit('parentAccounts', this.getParentAccountsList);
   }
+  // watch: {
+  //   getIfrsCategoriesList(val) {
+  //     console.log(val);
+  //   }
+  // }
 };
 </script>
 

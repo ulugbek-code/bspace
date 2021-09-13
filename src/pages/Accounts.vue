@@ -3,7 +3,6 @@
     <create-accounts
       @searching="searching($event)"
       :categories="categories"
-      :ifrs="ifrs"
       :types="types"
       :parentAcc="parentAcc"
       :editingData="editingData"
@@ -11,15 +10,12 @@
     <table-accounts
       :search="search"
       @category="sendcategory($event)"
-      @ifrs="sendIfrs($event)"
       @ifrsTypes="sendTypes($event)"
       @parentAccounts="getParentAcc($event)"
       @editAccounts="getEditingData($event)"
     ></table-accounts>
-    <!-- <p>ifrs: {{ ifrs }}</p>
-    <hr /> -->
-    <!--<hr>
-    <p>{{parentAcc.map((i)=>i.id)}}</p> -->
+    <!--  :ifrs="ifrs" deleted prop from create-accounts-->
+    <!-- @ifrs="sendIfrs($event)" emit from table-accounts-->
   </div>
 </template>
 
@@ -35,7 +31,7 @@ export default {
     return {
       search: '',
       categories: [],
-      ifrs: [],
+      // ifrs: [],
       types: [],
       parentAcc: [],
       editingData: []
@@ -53,9 +49,9 @@ export default {
     sendcategory(val) {
       this.categories = val;
     },
-    sendIfrs(val) {
-      this.ifrs = val;
-    },
+    // sendIfrs(val) {
+    //   this.ifrs = val;
+    // },
     sendTypes(val) {
       this.types = val;
     },

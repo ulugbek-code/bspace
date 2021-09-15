@@ -69,7 +69,7 @@
 </template>
 <script>
 export default {
-  props: ['options', 'validity', 'defaultVal', 'firm', 'update'],
+  props: ['options', 'validity', 'defaultVal', 'firm', 'update', 'isSubmitted'],
   data() {
     return {
       selected: '',
@@ -86,6 +86,14 @@ export default {
     },
     removeSpan() {
       this.selected = '';
+    }
+  },
+  watch: {
+    isSubmitted() {
+      if (this.isSubmitted === true) {
+        // this.selected = 'Select the firm...';
+        this.selected = '';
+      }
     }
   }
 };

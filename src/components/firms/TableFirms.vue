@@ -145,7 +145,8 @@ export default {
       }
     },
     deleteItem(id) {
-      this.getLoader = true;
+      this.$store.commit('firm/toLoaderTrue');
+      // this.getLoader = true;
       if (confirm('do you want to delete?')) {
         axios
           .delete(
@@ -159,10 +160,12 @@ export default {
           )
           .then(() => {
             this.$store.dispatch('firm/getData');
-            this.getLoader = false;
+            this.$store.commit('firm/toLoaderFalse');
+            // this.getLoader = false;
           })
           .catch(error => {
-            this.getLoader = false;
+            this.$store.commit('firm/toLoaderFalse');
+            // this.getLoader = false;
             console.log(error.message);
           });
       }

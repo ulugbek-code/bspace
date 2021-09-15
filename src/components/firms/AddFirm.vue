@@ -3,7 +3,10 @@
     <h3>Add Firm</h3>
     <form @submit.prevent="addFirm">
       <div class="form-add">
-        <div :class="{ invalid: validity === 'error' && name.length === 0}" class="input-container">
+        <div
+          :class="{ invalid: validity === 'error' && name.length === 0 }"
+          class="input-container"
+        >
           <label>Name</label>
           <input
             @click="toggleValidity"
@@ -12,7 +15,10 @@
             placeholder="Input Name"
           />
         </div>
-        <div :class="{ invalid: validity === 'error' && year.length === 0}" class="input-container">
+        <div
+          :class="{ invalid: validity === 'error' && year.length === 0 }"
+          class="input-container"
+        >
           <label>Established Year</label>
           <input
             @click="toggleValidity"
@@ -21,7 +27,10 @@
             placeholder="Input Year"
           />
         </div>
-        <div :class="{ invalid: validity === 'error' && address.length === 0}" class="input-container">
+        <div
+          :class="{ invalid: validity === 'error' && address.length === 0 }"
+          class="input-container"
+        >
           <label>Address</label>
           <input
             @click="toggleValidity"
@@ -30,7 +39,10 @@
             placeholder="Input Address"
           />
         </div>
-        <div :class="{ invalid: validity === 'error' && bankName.length === 0}" class="input-container">
+        <div
+          :class="{ invalid: validity === 'error' && bankName.length === 0 }"
+          class="input-container"
+        >
           <label>Bank Name</label>
           <input
             @click="toggleValidity"
@@ -41,14 +53,27 @@
         </div>
         <div class="input-container">
           <label>Parent Firm</label>
-          <firms-drop-down @click="toggleValidity" :options="getFirms" @sendId="getFirmId($event)" firm="true" defaultVal="Positions...">
+          <firms-drop-down
+            @click="toggleValidity"
+            :options="getFirms"
+            @sendId="getFirmId($event)"
+            firm="true"
+            :isSubmitted="isSubmitted"
+            defaultVal="Positions..."
+          >
           </firms-drop-down>
         </div>
-        <div :class="{ invalid: validity === 'error' && phone.length === 0}" class="input-container">
+        <div
+          :class="{ invalid: validity === 'error' && phone.length === 0 }"
+          class="input-container"
+        >
           <label>Telephone</label>
           <input v-model="phone" type="tel" placeholder="Input Telephone" />
         </div>
-        <div :class="{ invalid: validity === 'error' && email.length === 0}" class="input-container">
+        <div
+          :class="{ invalid: validity === 'error' && email.length === 0 }"
+          class="input-container"
+        >
           <label>Email</label>
           <input
             @click="toggleValidity"
@@ -57,7 +82,10 @@
             placeholder="Input Email"
           />
         </div>
-        <div :class="{ invalid: validity === 'error' && bankAccount.length === 0}" class="input-container">
+        <div
+          :class="{ invalid: validity === 'error' && bankAccount.length === 0 }"
+          class="input-container"
+        >
           <label>Bank Account</label>
           <input
             v-model="bankAccount"
@@ -65,7 +93,10 @@
             placeholder="Input Bank Account"
           />
         </div>
-        <div :class="{ invalid: validity === 'error' && inn.length === 0}" class="input-container">
+        <div
+          :class="{ invalid: validity === 'error' && inn.length === 0 }"
+          class="input-container"
+        >
           <label>INN Number</label>
           <input
             @click="toggleValidity"
@@ -74,7 +105,10 @@
             placeholder="Input INN Number"
           />
         </div>
-        <div :class="{ invalid: validity === 'error' && director.length === 0}" class="input-container">
+        <div
+          :class="{ invalid: validity === 'error' && director.length === 0 }"
+          class="input-container"
+        >
           <label>Director</label>
           <input
             @click="toggleValidity"
@@ -100,7 +134,8 @@
           </button>
         </div>
         <div class="btn-add">
-          <button>Add</button>
+          <button @click.prevent="cancel">Cancel</button>
+          <button @click="addFirm">Add</button>
         </div>
       </div>
     </form>
@@ -116,7 +151,7 @@
 <script>
 import axios from 'axios';
 import UpdateFirm from './UpdateFirm.vue';
-import FirmsDropDown from '../UI/FirmsDropDown.vue'
+import FirmsDropDown from '../UI/FirmsDropDown.vue';
 
 export default {
   props: ['editedData', 'isEdit'],
@@ -126,6 +161,7 @@ export default {
   },
   data() {
     return {
+      isSubmitted: false,
       validity: 'pending',
       isValid: false,
       name: '',
@@ -141,20 +177,19 @@ export default {
       logo: ''
     };
   },
-  computed:{
-    getFirms(){
-      return this.$store.getters['firm/getFirmsData'].map((firm)=>{
-                return {
-                        name: firm.name,
-                        id: firm.id
-                    }
-                }
-            )
+  computed: {
+    getFirms() {
+      return this.$store.getters['firm/getFirmsData'].map(firm => {
+        return {
+          name: firm.name,
+          id: firm.id
+        };
+      });
     }
   },
   methods: {
-    getFirmId(val){
-      this.parentFirmId = val
+    getFirmId(val) {
+      this.parentFirmId = val;
     },
     toggleValidity() {
       this.validity = 'success';
@@ -206,23 +241,44 @@ export default {
           });
         this.$store.dispatch('firm/getData');
 
-        this.validity = 'success';
-        (this.name = ''),
-          (this.year = ''),
-          (this.phone = ''),
-          (this.email = ''),
-          (this.address = ''),
-          (this.bankAccount = ''),
-          (this.bankName = ''),
-          (this.firmId = '');
-        (this.inn = ''), (this.logo = null), (this.director = '');
+        // this.validity = 'success';
+        // (this.name = ''),
+        //   (this.year = ''),
+        //   (this.phone = ''),
+        //   (this.email = ''),
+        //   (this.address = ''),
+        //   (this.bankAccount = ''),
+        //   (this.bankName = ''),
+        //   (this.firmId = '');
+        // (this.inn = ''), (this.logo = null), (this.director = '');
+        this.isSubmitted = true;
+        this.cancel();
       } else {
         this.validity = 'error';
       }
+    },
+    cancel() {
+      (this.name = ''),
+        (this.year = ''),
+        (this.phone = ''),
+        (this.email = ''),
+        (this.address = ''),
+        (this.bankAccount = ''),
+        (this.bankName = ''),
+        (this.firmId = '');
+      (this.inn = ''), (this.logo = null), (this.director = '');
+      this.toggleValidity();
     }
   },
-  async created(){
-        await this.$store.dispatch("firm/getData",true)
+  async created() {
+    await this.$store.dispatch('firm/getData', true);
+  },
+  watch: {
+    isSubmitted() {
+      if (this.isSubmitted === true) {
+        setTimeout(() => (this.isSubmitted = false), 1000);
+      }
+    }
   }
 };
 </script>
@@ -291,8 +347,8 @@ export default {
 .btn-add button {
   font-family: 'Poppins', sans-serif;
   height: 26px;
-  width: 110px;
-  padding: 5px 10px;
+  width: 100px;
+  /* padding: 5px 10px; */
   color: #fff;
   background: rgba(67, 97, 238, 1);
   border: none;
@@ -306,7 +362,9 @@ export default {
   background: #fff;
   color: rgba(67, 97, 238, 1) !important;
 }
-
+.btn-add button:nth-child(2) {
+  margin-left: 10px;
+}
 #my-file:hover,
 button:hover {
   color: rgba(255, 255, 255, 0.8);

@@ -58,7 +58,7 @@
             :options="getFirms"
             @sendId="getFirmId($event)"
             firm="true"
-            :isSubmitted="isSubmitted"
+            :isSub="isSub"
             defaultVal="Positions..."
           >
           </firms-drop-down>
@@ -68,7 +68,12 @@
           class="input-container"
         >
           <label>Telephone</label>
-          <input v-model="phone" type="tel" placeholder="Input Telephone" />
+          <input
+            @click="toggleValidity"
+            v-model="phone"
+            type="tel"
+            placeholder="Input Telephone"
+          />
         </div>
         <div
           :class="{ invalid: validity === 'error' && email.length === 0 }"
@@ -125,17 +130,19 @@
             type="file"
             @change="previewFiles"
             ref="logo"
-            style="display: none"
+            class="file-input"
           />
-          <button id="my-file" @click.prevent="$refs.logo.click()">
+          {{ logo.name }}
+          <button @click.prevent="" id="my-file">
             Upload File
             <fa class="icons" :icon="['fas', 'upload']" />
             <!-- this.$refs.logo.value -->
           </button>
         </div>
         <div class="btn-add">
+          <span v-if="isGoing">Loading...</span>
           <button @click.prevent="cancel">Cancel</button>
-          <button @click="addFirm">Add</button>
+          <button>Add</button>
         </div>
       </div>
     </form>
@@ -161,7 +168,8 @@ export default {
   },
   data() {
     return {
-      isSubmitted: false,
+      isGoing: false,
+      isSub: false,
       validity: 'pending',
       isValid: false,
       name: '',
@@ -194,8 +202,8 @@ export default {
     toggleValidity() {
       this.validity = 'success';
     },
-    previewFiles(event) {
-      this.logo = event.target.files[0].name;
+    previewFiles() {
+      this.logo = this.$refs.logo.files[0];
     },
     upp(val) {
       this.$emit('upping', val);
@@ -212,6 +220,7 @@ export default {
         this.inn.length !== 0 &&
         this.director.length !== 0
       ) {
+        this.isGoing = true;
         await axios
           .post(
             'https://bspacedev.azurewebsites.net/api/Firms/Add',
@@ -251,7 +260,8 @@ export default {
         //   (this.bankName = ''),
         //   (this.firmId = '');
         // (this.inn = ''), (this.logo = null), (this.director = '');
-        this.isSubmitted = true;
+        // this.isSubmitted = true;
+        this.isGoing = false;
         this.cancel();
       } else {
         this.validity = 'error';
@@ -266,20 +276,29 @@ export default {
         (this.bankAccount = ''),
         (this.bankName = ''),
         (this.firmId = '');
-      (this.inn = ''), (this.logo = null), (this.director = '');
+      (this.inn = ''),
+        (this.logo = null),
+        (this.director = ''),
+        (this.parentFirmId = '');
+      this.isSub = true;
+      this.logo = '';
+      this.$refs['logo'].value = '';
       this.toggleValidity();
     }
   },
   async created() {
     await this.$store.dispatch('firm/getData', true);
-  },
-  watch: {
-    isSubmitted() {
-      if (this.isSubmitted === true) {
-        setTimeout(() => (this.isSubmitted = false), 1000);
-      }
-    }
   }
+  // watch: {
+  //   isSubmitted() {
+  //     if (this.isSubmitted === true) {
+  //       // setTimeout(() => {
+  //         this.isSubmitted = false;
+  //         console.log('hello');
+  //       // }, 500);
+  //     }
+  //   }
+  // }
 };
 </script>
 
@@ -354,7 +373,7 @@ export default {
   border: none;
   border-radius: 25px;
   outline: none;
-  cursor: pointer;
+  cursor: pointer !important;
   font-size: 11px;
 }
 .btn-add button:active,
@@ -380,5 +399,13 @@ button:hover {
 }
 .invalid input::placeholder {
   color: rgba(255, 40, 40, 0.7);
+}
+.file-input {
+  opacity: 0;
+  /* height: 200px; */
+  width: 110px;
+  position: absolute;
+  left: -5%;
+  top: 45%;
 }
 </style>

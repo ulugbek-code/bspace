@@ -15,7 +15,7 @@
             placeholder="Input Year"
           />
         </div>
-        <div class="input-container">
+        <div class="input-container" @click="isValid = true">
           <label>Period</label>
           <base-dropdown
             :options="months"
@@ -29,6 +29,7 @@
         <div
           :class="!isValid && balances.desc === '' ? 'error' : ''"
           class="input-container"
+          @click="isValid = true"
         >
           <label>Description</label>
           <textarea

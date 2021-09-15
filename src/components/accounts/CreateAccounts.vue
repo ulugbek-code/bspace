@@ -673,7 +673,7 @@ export default {
     this.setup();
   },
   getIfrsCategoriesList() {
-    console.log('ss');
+    // console.log('ss');
     this.setup();
   }
 };

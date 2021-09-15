@@ -69,7 +69,7 @@
 </template>
 <script>
 export default {
-  props: ['options', 'validity', 'defaultVal', 'firm', 'update', 'isSubmitted'],
+  props: ['options', 'validity', 'defaultVal', 'firm', 'update', 'isSub'],
   data() {
     return {
       selected: '',
@@ -89,8 +89,8 @@ export default {
     }
   },
   watch: {
-    isSubmitted() {
-      if (this.isSubmitted === true) {
+    isSub() {
+      if (this.isSub === true) {
         // this.selected = 'Select the firm...';
         this.selected = '';
       }

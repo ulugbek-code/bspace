@@ -1,10 +1,6 @@
 <template>
   <div :class="[isNavOpened ? 'nav' : '']" class="box">
     <create-balance @error="sendErr($event)"></create-balance>
-
-    <!-- <div v-for="note in notes" :key="note">
-      {{ note }}
-    </div> -->
     <table-balance :errorList="errorList"></table-balance>
   </div>
 </template>
@@ -27,10 +23,6 @@ export default {
     isNavOpened() {
       return this.$store.getters.isNav;
     }
-    // notes() {
-    //   return this.errorList.replace(':', ';').split(';');
-    //   ///[^\d](.*\d*)$/
-    // }
   },
   methods: {
     sendErr(val) {

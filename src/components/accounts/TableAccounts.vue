@@ -47,19 +47,17 @@
             >
           </template>
         </td>
-        <div id="flex-div">
-          <div id="edit-trash">
-            <fa
-              @click="editItem(content.id)"
-              class="icons icon-edit"
-              :icon="['fas', 'edit']"
-            />
-            <fa
-              @click="deleteItem(content.id)"
-              class="icons icon-trash"
-              :icon="['fas', 'trash']"
-            />
-          </div>
+        <div id="edit-trash">
+          <fa
+            @click="editItem(content.id)"
+            class="icons icon-edit"
+            :icon="['fas', 'edit']"
+          />
+          <fa
+            @click="deleteItem(content.id)"
+            class="icons icon-trash"
+            :icon="['fas', 'trash']"
+          />
         </div>
       </tr>
     </table>
@@ -247,7 +245,7 @@ td {
 }
 td:not(:nth-child(1)) {
   padding: 10px 8px;
-  font-size: 14px;
+  font-size: 13.5px;
 }
 td:nth-child(1) {
   padding-left: 5px;
@@ -270,13 +268,12 @@ tr:hover .icon-trash {
   background: rgba(67, 97, 238, 0.75);
   border-bottom-right-radius: 15px;
 }
-#flex-div #edit-trash {
+#edit-trash {
   display: flex;
   flex-direction: column;
   align-content: center;
-  position: absolute;
-  right: 1%;
-  bottom: 0%;
+  position: relative;
+  right: 26%;
 }
 .icons {
   color: rgba(170, 170, 170, 1);

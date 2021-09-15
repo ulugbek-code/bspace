@@ -133,12 +133,6 @@ export default {
   padding: 11px 36px;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.15);
 }
-/* .error-div {
-  color: rgb(235, 226, 226);
-  background: rgb(240, 116, 103);
-  padding: 11px 36px;
-  border-bottom: 0.8px solid rgba(255, 255, 255, 0.15);
-} */
 .error-div:first-child {
   text-align: center;
 }

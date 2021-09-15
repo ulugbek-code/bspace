@@ -320,16 +320,16 @@ tr:hover .icon-trash {
   display: flex;
   flex-direction: column;
   align-content: center;
-  position: absolute;
-  right: 0.3%;
+  position: relative;
+  right: -8%;
   bottom: 0%;
 }
 .icons {
   color: rgba(170, 170, 170, 1);
   font-size: 28px;
-  height: 33px;
-  width: 100%;
-  padding: 8px;
+  height: 35px;
+  width: 80%;
+  padding: 9px;
 }
 #code {
   padding: 4px 8px;

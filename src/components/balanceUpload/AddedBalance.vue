@@ -67,8 +67,8 @@ export default {
         return val;
       }
     },
-    getAllBalances(firmId) {
-      axios
+    async getAllBalances(firmId) {
+      await axios
         .get(
           'https://bspacedev.azurewebsites.net/api/BalanceFiles/GetAll/' +
             firmId,
@@ -81,6 +81,7 @@ export default {
         .then(res => {
           if (res.data.isValid) {
             this.balances = res.data.data;
+            console.log(res);
           } else {
             this.errors = res.data.errors;
           }

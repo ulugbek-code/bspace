@@ -77,6 +77,7 @@ import BaseDropdown from '../UI/BaseDropdown.vue';
 export default {
   components: { BaseDropdown },
   props: ['options', 'validity', 'index', 'defaultVal'],
+  emits: ['errors'],
   data() {
     return {
       response: [],
@@ -147,7 +148,14 @@ export default {
           )
           .then(res => {
             this.response = res.data.errors;
-            console.log('successs', this.response); //.split('\r\n').split(/\s*;\s*/)
+            console.log('successs', this.response[0]); //.split('\r\n').split(/\s*;\s*/)
+            this.$emit(
+              'errors',
+              this.response[0]
+                .replace(' :', ';')
+                .replace(/\r\n/g, '')
+                .split(';')
+            );
           })
           .catch(() => console.log('error')); //console.log(res)
 

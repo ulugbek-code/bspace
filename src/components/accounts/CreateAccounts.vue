@@ -379,6 +379,7 @@ export default {
   },
   methods: {
     async setup() {
+      // setup for ifrs getting all ifrs
       await this.$store.dispatch('account/getIfrs');
       this.ifrsCategories = this.getIfrsCategoriesList.map(i => {
         // console.log('as');
@@ -398,12 +399,12 @@ export default {
     changeTouched(val) {
       this.isTouched = val;
     },
-    removeSpan(val) {
-      if (this.editData) {
-        console.log(val);
-        console.log(this.editData.accountCategories.splice(val, 1));
-      }
-    },
+    // removeSpan(val) {
+    //   if (this.editData) {
+    //     console.log(val);
+    //     console.log(this.editData.accountCategories.splice(val, 1));
+    //   }
+    // },
     toggleError() {
       this.isValid = true;
     },

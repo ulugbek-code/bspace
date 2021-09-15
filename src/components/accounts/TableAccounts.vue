@@ -93,10 +93,10 @@ export default {
     filteredContents() {
       return this.getAccountsList.filter(content => {
         return (
-          content.name.match(this.search) ||
-          content.code.match(this.search) ||
-          content.ifrsCategories[0].code.match(this.search) ||
-          content.ifrsCategories[0].name.match(this.search)
+          content.name.match(this.search) || content.code.match(this.search)
+          // ||
+          // content.ifrsCategories[0].code.match(this.search) ||
+          // content.ifrsCategories[0].name.match(this.search)
         );
       });
     },

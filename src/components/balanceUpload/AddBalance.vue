@@ -83,7 +83,7 @@ export default {
   emits: ['errors'],
   data() {
     return {
-      fileType: 'pdf',
+      fileType: '',
       response: [],
       isValid: true,
       months: [

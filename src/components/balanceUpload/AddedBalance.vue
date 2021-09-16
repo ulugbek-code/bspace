@@ -18,11 +18,14 @@
             {{ balance.period }}
           </td>
           <td>
-            {{ substringedDesc(balance.desc) }}
-            <small class="tooltiptext">{{ balance.desc }}</small>
+            <!-- {{ substringedDesc(balance.desc) }}
+            <small class="tooltiptext">{{ balance.desc }}</small> -->hello
           </td>
-          <td :class="[balance.status === 'Accepted' ? 'greeny' : 'redish']">
+          <!-- <td :class="[balance.status === 'Accepted' ? 'greeny' : 'redish']">
             <p>{{ balance.status }}</p>
+          </td> -->
+          <td>
+            status
           </td>
           <td @click.stop="testTrash" id="trash">
             <fa :icon="['fas', 'trash']" />
@@ -30,7 +33,7 @@
         </tr>
       </table>
 
-      <div v-if="errors.length > 0">There is no balances</div>
+      <div v-else>There is no balances</div>
     </div>
   </div>
 </template>
@@ -81,9 +84,10 @@ export default {
         .then(res => {
           if (res.data.isValid) {
             this.balances = res.data.data;
-            console.log(res);
+            console.log(res.data.data);
           } else {
             this.errors = res.data.errors;
+            console.log('error');
           }
         })
         .catch(err => console.log(err));
@@ -112,7 +116,6 @@ table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  background: blue;
 }
 table tr:nth-child(1) {
   position: sticky;

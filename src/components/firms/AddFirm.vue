@@ -288,6 +288,16 @@ export default {
   },
   async created() {
     await this.$store.dispatch('firm/getData', true);
+  },
+  watch: {
+    getFirms() {
+      return this.$store.getters['firm/getFirmsData'].map(firm => {
+        return {
+          name: firm.name,
+          id: firm.id
+        };
+      });
+    }
   }
   // watch: {
   //   isSubmitted() {

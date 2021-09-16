@@ -44,14 +44,16 @@
         <div class="input-container">
           <label>Upload File</label>
 
-          <div class="dropbox">
+          <div :class="fileType" class="dropbox">
             <input
               class="input-file"
               type="file"
               ref="file"
               @change="handleFileUpload"
             />
-            <span id="file-name">{{ balances.file.name }}</span>
+            <span v-if="balances.file" id="file-name">{{
+              balances.file.name
+            }}</span>
             <fa class="icon" :icon="['fas', 'cloud-upload-alt']" />
           </div>
         </div>
@@ -81,6 +83,7 @@ export default {
   emits: ['errors'],
   data() {
     return {
+      fileType: 'pdf',
       response: [],
       isValid: true,
       months: [
@@ -118,6 +121,7 @@ export default {
     removeFile() {
       this.balances.file = '';
       this.$refs['file'].value = '';
+      this.fileType = '';
     },
     showIt(val) {
       this.balances.period = val;
@@ -171,6 +175,9 @@ export default {
     },
     handleFileUpload() {
       this.balances.file = this.$refs.file.files[0];
+      this.fileType = this.balances.file.name
+        .substr(this.balances.file.name.lastIndexOf('.') + 1)
+        .toLowerCase();
     }
   },
   mounted() {
@@ -279,15 +286,27 @@ select {
 /*-----------  */
 .dropbox {
   border: 2px dashed grey; /* the dash box */
-  /* outline-offset: -10px; */
   border-radius: 12.5px;
   width: 90px;
   height: 90px;
-  /* background: rgb(255, 255, 255); */
   margin-top: 10px;
   padding: 10px 10px;
   position: relative;
   cursor: pointer;
+}
+.dropbox.jpg,
+.dropbox.jpeg,
+.dropbox.png {
+  background: center / contain no-repeat url('../../assets/img.png');
+}
+.dropbox.docx {
+  background: no-repeat url('../../assets/word.png') center / 80%;
+}
+.dropbox.pdf {
+  background: center / contain no-repeat url('../../assets/pdf.png');
+}
+.dropbox.xls {
+  background: center / contain no-repeat url('../../assets/excel.png');
 }
 
 .input-file {
@@ -298,6 +317,7 @@ select {
   left: 0%;
   top: 0%;
   cursor: pointer;
+  z-index: 1;
 }
 .icon {
   position: absolute;
@@ -307,8 +327,13 @@ select {
   color: rgb(189, 165, 165);
   pointer-events: none;
 }
-.dropbox:hover {
-  background: lightblue; /* when mouse over to the drop zone, change color */
+.dropbox.xls .icon,
+.dropbox.docx .icon,
+.dropbox.png .icon,
+.dropbox.jpg .icon,
+.dropbox.jpeg .icon,
+.dropbox.pdf .icon {
+  color: transparent;
 }
 .btn {
   position: absolute;

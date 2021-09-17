@@ -42,7 +42,7 @@
           <!-- <td>
             status
           </td> -->
-          <td @click.stop="testTrash" id="trash">
+          <td @click.stop="removeBalance(balance.id)" id="trash">
             <fa :icon="['fas', 'trash']" />
           </td>
         </tr>
@@ -99,8 +99,24 @@ export default {
           this.$emit('sendBalanceId', res.data.data.id);
         });
     },
-    testTrash() {
-      console.log('hello trash');
+    removeBalance(id) {
+      if (confirm('do you want to delete?')) {
+        axios
+          .delete(
+            'https://bspacedev.azurewebsites.net/api/BalanceFiles/Delete/' + id,
+            {
+              headers: {
+                Accept: 'text/plain',
+                Authorization: `Bearer ${localStorage.getItem('mytoken')}`
+              }
+            }
+          )
+          .then(() => {
+            this.$store.dispatch('balance/getAllBalances');
+            console.log('deleted');
+          })
+          .catch(err => console.log(err));
+      }
     },
     substringedDesc(val) {
       if (val.length > 45) {

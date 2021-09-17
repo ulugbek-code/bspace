@@ -1,7 +1,16 @@
 <template>
   <div id="added-balance">
     <h3>Balance List</h3>
-    <div class="table-container">
+    <div v-if="loading" id="loader">
+      <img src="../../assets/loader.gif" alt="" />
+    </div>
+    <div v-else-if="!loading && errors">
+      error
+    </div>
+    <div v-else-if="!loading && (!balances || balances.length === 0)">
+      No stored data yet
+    </div>
+    <div v-else class="table-container">
       <table v-if="balances.length > 0">
         <tr>
           <th v-for="title in titles" :key="title">
@@ -39,22 +48,33 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
   data() {
     return {
-      errors: [],
-      titles: ['Year', 'Period', 'Description', 'Status'],
-      balances: [
-        // {
-        //   year: 1199,
-        //   period: 'March',
-        //   desc: 'lalda adakj da sda adsd dsad',
-        //   status: 'In Progress'
-        // }
-      ]
+      // errors: [],
+      titles: ['Year', 'Period', 'Description', 'Status']
+      // balances: [
+      //   // {
+      //   //   year: 1199,
+      //   //   period: 'March',
+      //   //   desc: 'lalda adakj da sda adsd dsad',
+      //   //   status: 'In Progress'
+      //   // }
+      // ]
     };
+  },
+  computed: {
+    balances() {
+      return this.$store.getters['balance/getBalanceList'];
+    },
+    errors() {
+      return this.$store.getters['balance/getError'];
+    },
+    loading() {
+      return this.$store.getters['balance/getLoading'];
+    }
   },
   methods: {
     testTr() {
@@ -69,32 +89,10 @@ export default {
       } else {
         return val;
       }
-    },
-    async getAllBalances(firmId) {
-      await axios
-        .get(
-          'https://bspacedev.azurewebsites.net/api/BalanceFiles/GetAll/' +
-            firmId,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('mytoken')}`
-            }
-          }
-        )
-        .then(res => {
-          if (res.data.isValid) {
-            this.balances = res.data.data;
-            console.log(this.balances);
-          } else {
-            this.errors = res.data.errors;
-            console.log('error');
-          }
-        })
-        .catch(err => console.log(err));
     }
   },
   created() {
-    this.getAllBalances(localStorage.getItem('firmId'));
+    this.$store.dispatch('balance/getAllBalances');
   }
 };
 </script>
@@ -203,5 +201,20 @@ td:nth-child(3):hover .tooltiptext {
 }
 #trash:hover {
   color: rgba(204, 24, 24, 0.75);
+}
+#loader {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #f1f2f3;
+  z-index: 10;
+}
+#loader img {
+  position: relative;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
 }
 </style>

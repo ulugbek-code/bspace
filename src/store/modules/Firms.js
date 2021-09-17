@@ -13,7 +13,7 @@ export default {
   },
   mutations: {
     getTableData(state, payload) {
-      state.isLoading = true;
+      // state.isLoading = true;         //dry principle
       state.lists = payload.data.data;
       // console.log(state.lists)
     },

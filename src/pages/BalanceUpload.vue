@@ -1,7 +1,10 @@
 <template>
   <div :class="[isNavOpened ? 'nav' : '']" class="box">
-    <create-balance @error="sendErr($event)"></create-balance>
-    <table-balance :errorList="errorList"></table-balance>
+    <create-balance
+      @error="sendErr($event)"
+      @sendId="sendId($event)"
+    ></create-balance>
+    <table-balance :balanceId="id" :errorList="errorList"></table-balance>
   </div>
 </template>
 
@@ -16,7 +19,8 @@ export default {
   },
   data() {
     return {
-      errorList: null
+      errorList: null,
+      id: ''
     };
   },
   computed: {
@@ -28,6 +32,9 @@ export default {
     sendErr(val) {
       this.errorList = val;
       //   console.log(this.errorList);
+    },
+    sendId(id) {
+      this.id = id;
     }
   }
 };

@@ -26,80 +26,43 @@
           <th>Дебет</th>
           <th>Кредит</th>
         </tr>
-        <tr v-for="balance in balances" :key="balance">
+        <!-- <template v-if="balances.length > 0"> -->
+        <tr v-for="balance in balances" :key="balance.id">
           <td colspan="2">
-            <span>{{ balance.code }}</span>
+            <!-- <span>{{ balance.code }}</span> -->
             {{ substringedAddress(balance.name) }}
             <span class="tooltiptext">{{ balance.name }}</span>
           </td>
-          <td>{{ numberWithCommas(balance.d1) }}</td>
-          <td>{{ numberWithCommas(balance.k1) }}</td>
-          <td>{{ numberWithCommas(balance.d2) }}</td>
-          <td>{{ numberWithCommas(balance.k2) }}</td>
-          <td>{{ numberWithCommas(balance.d3) }}</td>
-          <td>{{ numberWithCommas(balance.k3) }}</td>
+          <td>{{ numberWithCommas(balance.openingStockDebit) }}</td>
+          <td>{{ numberWithCommas(balance.openingStockCredit) }}</td>
+          <td>{{ numberWithCommas(balance.periodDebit) }}</td>
+          <td>{{ numberWithCommas(balance.periodCredit) }}</td>
+          <td>{{ numberWithCommas(balance.closingStockDebit) }}</td>
+          <td>{{ numberWithCommas(balance.closingStockCredit) }}</td>
         </tr>
+        <!-- </template> -->
       </table>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-  props: ['errorList'],
+  props: ['errorList', 'balanceId'],
   data() {
     return {
       balances: [
-        {
-          code: 12.01,
-          name: 'Счета учета основных средств',
-          d1: 123113,
-          k1: 2132113131313,
-          d2: 2132323223213333,
-          k2: 131231333313,
-          d3: 1312123133,
-          k3: 131313333333333333
-        },
-        {
-          code: 1.01,
-          name: 'Счета учета основных средств',
-          d1: 123113,
-          k1: 2132113131313,
-          d2: 2132323213333,
-          k2: 131231333313,
-          d3: 1312123133,
-          k3: 131313333333333333
-        },
-        {
-          code: 1.01,
-          name: 'Счета учета заготовления и приобретения материалов',
-          d1: 123113,
-          k1: 21321131313131313,
-          d2: 2132323223213333,
-          k2: 13133313,
-          d3: 1312123133,
-          k3: 783603600085
-        },
-        {
-          code: 12.01,
-          name: 'Счета учета основных средств',
-          d1: 123113,
-          k1: 2132113131313,
-          d2: 2132323223213333,
-          k2: 131231333313,
-          d3: 1312123133,
-          k3: 131313333333333333
-        },
-        {
-          code: 12.01,
-          name: 'Счета учета основных средств',
-          d1: 123113,
-          k1: 2132113131313,
-          d2: 2132323223213333,
-          k2: 131231333313,
-          d3: 1312123133,
-          k3: 131313333333333333
-        }
+        // {
+        //   code: 12.01,
+        //   name: 'Счета учета основных средств',
+        //   d1: 123113,
+        //   k1: 2132113131313,
+        //   d2: 2132323223213333,
+        //   k2: 131231333313,
+        //   d3: 1312123133,
+        //   k3: 131313333333333333
+        // }
       ]
     };
   },
@@ -113,6 +76,20 @@ export default {
     },
     numberWithCommas(num) {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+  },
+  watch: {
+    balanceId(val) {
+      axios
+        .get('https://bspacedev.azurewebsites.net/api/Balances/GetAll/' + val, {
+          headers: {
+            Accept: 'text/plain',
+            Authorization: `Bearer ${localStorage.getItem('mytoken')}`
+          }
+        })
+        .then(res => {
+          this.balances = res.data.data;
+        });
     }
   }
 };
@@ -177,6 +154,7 @@ th {
 td {
   font-size: 12px;
   padding: 16px 12px;
+  position: relative;
 }
 .first-row th:not(:nth-child(1)) {
   text-align: center;
@@ -189,13 +167,6 @@ td:not(:nth-child(1)) {
   width: 13%;
   text-align: right;
 }
-tr td span:nth-child(1) {
-  display: inline-block;
-  font-size: 13.5px;
-  margin-left: -2px;
-  width: 32px;
-  /* background: sandybrown; */
-}
 tr:hover:not(:nth-child(1)):hover:not(:nth-child(2)) {
   border-radius: 15px;
   box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1);
@@ -207,7 +178,7 @@ tr:active:not(:nth-child(1)):active:not(:nth-child(2)) {
 .tooltiptext {
   visibility: hidden;
   background-color: rgb(36, 39, 56);
-  color: #fff;
+  color: rgb(230, 224, 224);
   text-align: center;
   border-radius: 6px;
   padding: 3px;

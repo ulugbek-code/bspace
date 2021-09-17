@@ -1,7 +1,7 @@
 <template>
   <div class="balance-create-box">
     <add-balance @errors="sendError($event)"></add-balance>
-    <added-balance></added-balance>
+    <added-balance @sendBalanceId="sendBalanceId($event)"></added-balance>
   </div>
 </template>
 
@@ -14,16 +14,21 @@ export default {
     AddBalance,
     AddedBalance
   },
-  emits: ['error'],
+  emits: ['error', 'sendId'],
   data() {
     return {
-      errorList: []
+      errorList: [],
+      balanceId: ''
     };
   },
   methods: {
     sendError(val) {
       this.errorList = val;
       this.$emit('error', this.errorList);
+    },
+    sendBalanceId(id) {
+      this.balanceId = id;
+      this.$emit('sendId', this.balanceId);
     }
   }
 };

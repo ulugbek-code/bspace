@@ -19,7 +19,11 @@
             </h4>
           </th>
         </tr>
-        <tr @click="testTr" v-for="balance in balances" :key="balance">
+        <tr
+          @click="getBalanceId(balance.id)"
+          v-for="balance in balances"
+          :key="balance"
+        >
           <td>
             {{ balance.year }}
           </td>
@@ -27,8 +31,10 @@
             {{ balance.period }}
           </td>
           <td>
-            <!-- {{ substringedDesc(balance.desc) }}
-            <small class="tooltiptext">{{ balance.desc }}</small> -->hello
+            <!-- {{ substringedDesc(balance.description) }} -->{{
+              balances.description ? 'true' : 'null'
+            }}
+            <!-- <small class="tooltiptext">{{ balance.description }}</small> -->
           </td>
           <td :class="[balance.isConfirmed ? 'greeny' : 'redish']">
             <p>{{ balance.isConfirmed ? 'Accepted' : 'In Progress' }}</p>
@@ -41,16 +47,15 @@
           </td>
         </tr>
       </table>
-
-      <div v-else-if="errors.length > 0">There is no balances</div>
     </div>
   </div>
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 
 export default {
+  emits: ['sendBalanceId'],
   data() {
     return {
       // errors: [],
@@ -77,8 +82,22 @@ export default {
     }
   },
   methods: {
-    testTr() {
-      console.log('hello row');
+    getBalanceId(id) {
+      axios
+        .get(
+          'https://bspacedev.azurewebsites.net/api/BalanceFiles/GetById?id=' +
+            id,
+          {
+            headers: {
+              Accept: 'text/plain',
+              Authorization: `Bearer ${localStorage.getItem('mytoken')}`
+            }
+          }
+        )
+        .then(res => {
+          // console.log(res.data.data.id);
+          this.$emit('sendBalanceId', res.data.data.id);
+        });
     },
     testTrash() {
       console.log('hello trash');

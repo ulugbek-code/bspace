@@ -152,17 +152,21 @@ export default {
             }
           )
           .then(res => {
-            this.response = res.data.errors;
-            console.log('successs', this.response[0]); //.split('\r\n').split(/\s*;\s*/)
-            this.$emit(
-              'errors',
-              this.response[0]
-                .replace(' :', ';')
-                .replace(/\r\n/g, '')
-                .split(';')
-            );
+            if (!res.data.isValid) {
+              this.response = res.data.errors;
+              //console.log('successs', this.response[0]); //.split('\r\n').split(/\s*;\s*/)
+              this.$emit(
+                'errors',
+                this.response[0]
+                  .replace(' :', ';')
+                  .replace(/\r\n/g, '')
+                  .split(';')
+              );
+            }
           })
           .catch(() => console.log('error')); //console.log(res)
+
+        this.$store.dispatch('balance/getAllBalances');
 
         this.balances.year = '';
         this.balances.desc = '';
@@ -296,7 +300,8 @@ select {
 }
 .dropbox.jpg,
 .dropbox.jpeg,
-.dropbox.png {
+.dropbox.png,
+.dropbox.svg {
   background: center / contain no-repeat url('../../assets/img.png');
 }
 .dropbox.docx {
@@ -305,7 +310,8 @@ select {
 .dropbox.pdf {
   background: center / contain no-repeat url('../../assets/pdf.png');
 }
-.dropbox.xls {
+.dropbox.xls,
+.dropbox.xlsx {
   background: center / contain no-repeat url('../../assets/excel.png');
 }
 
@@ -328,10 +334,12 @@ select {
   pointer-events: none;
 }
 .dropbox.xls .icon,
+.dropbox.xlsx .icon,
 .dropbox.docx .icon,
 .dropbox.png .icon,
 .dropbox.jpg .icon,
 .dropbox.jpeg .icon,
+.dropbox.svg .icon,
 .dropbox.pdf .icon {
   color: transparent;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="errorList && !balanceId" id="balance-error">
+  <div v-if="errorList" id="balance-error">
     <!-- if statement changed from v-if:errorList -->
     <div v-for="error in errorList" :key="error" class="error-div">
       {{ error }}

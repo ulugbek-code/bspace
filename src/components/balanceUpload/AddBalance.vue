@@ -136,10 +136,10 @@ export default {
 
         formData.append('FirmId', localStorage.getItem('firmId'));
         formData.append('UserId', this.userInfo.id);
-        formData.append('Period', this.balances.period);
-        formData.append('Year', +this.balances.year);
+        formData.append('Period', this.balances.period.toString());
+        formData.append('Year', Number(this.balances.year));
         formData.append('File', this.balances.file);
-
+        formData.append('Description', this.balances.desc);
         axios
           .post(
             'https://bspacedev.azurewebsites.net/api/BalanceFiles/Add',
@@ -162,6 +162,8 @@ export default {
                   .replace(/\r\n/g, '')
                   .split(';')
               );
+            } else {
+              console.log('success');
             }
           })
           .catch(() => console.log('error')); //console.log(res)

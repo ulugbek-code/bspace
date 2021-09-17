@@ -21,19 +21,19 @@
             <!-- {{ substringedDesc(balance.desc) }}
             <small class="tooltiptext">{{ balance.desc }}</small> -->hello
           </td>
-          <!-- <td :class="[balance.status === 'Accepted' ? 'greeny' : 'redish']">
-            <p>{{ balance.status }}</p>
-          </td> -->
-          <td>
-            status
+          <td :class="[balance.isConfirmed ? 'greeny' : 'redish']">
+            <p>{{ balance.isConfirmed ? 'Accepted' : 'In Progress' }}</p>
           </td>
+          <!-- <td>
+            status
+          </td> -->
           <td @click.stop="testTrash" id="trash">
             <fa :icon="['fas', 'trash']" />
           </td>
         </tr>
       </table>
 
-      <div v-else>There is no balances</div>
+      <div v-else-if="errors.length > 0">There is no balances</div>
     </div>
   </div>
 </template>
@@ -84,7 +84,7 @@ export default {
         .then(res => {
           if (res.data.isValid) {
             this.balances = res.data.data;
-            console.log(res.data.data);
+            console.log(this.balances);
           } else {
             this.errors = res.data.errors;
             console.log('error');

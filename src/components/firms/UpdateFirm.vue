@@ -172,7 +172,8 @@ export default {
           console.log(err);
         });
 
-      this.$emit('updating', false);
+      // this.$emit('updating', false);
+      this.cancelUpdate();
     },
     cancelUpdate() {
       this.$emit('updating', false);

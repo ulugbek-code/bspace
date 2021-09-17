@@ -1,5 +1,8 @@
 <template>
-  <div v-if="errorList" id="balance-error">
+  <div v-if="!errorList && !balanceWithId.id" id="no-balance">
+    <img src="../../assets/noBalance.svg" alt="" />
+  </div>
+  <div v-else-if="errorList && !showBalance" id="balance-error">
     <!-- if statement changed from v-if:errorList -->
     <div v-for="error in errorList" :key="error" class="error-div">
       {{ error }}
@@ -7,8 +10,13 @@
   </div>
   <div v-else id="container-table-balance">
     <div class="header">
-      <h2>Сальдо за Период <span>2021</span> <span>July</span></h2>
-      <button class="btn">Confirm</button>
+      <h2>
+        Сальдо за Период <span>{{ balanceWithId.year }}</span>
+        <span>{{ balanceWithId.period }}</span>
+      </h2>
+      <button @click="confirmBalance(balanceWithId.id)" class="btn">
+        Confirm
+      </button>
     </div>
     <div class="table-wrapper">
       <table>
@@ -50,21 +58,11 @@
 <script>
 import axios from 'axios';
 export default {
-  props: ['errorList', 'balanceId'],
+  props: ['errorList', 'balanceWithId'],
   data() {
     return {
-      balances: [
-        // {
-        //   code: 12.01,
-        //   name: 'Счета учета основных средств',
-        //   d1: 123113,
-        //   k1: 2132113131313,
-        //   d2: 2132323223213333,
-        //   k2: 131231333313,
-        //   d3: 1312123133,
-        //   k3: 131313333333333333
-        // }
-      ]
+      balances: [],
+      showBalance: false
     };
   },
   methods: {
@@ -77,26 +75,65 @@ export default {
     },
     numberWithCommas(num) {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    },
+    confirmBalance(id) {
+      axios
+        .put(
+          'https://bspacedev.azurewebsites.net/api/BalanceFiles/Confirm?id=' +
+            id,
+          {
+            headers: {
+              Accept: 'text/plain',
+              Authorization: `Bearer ${localStorage.getItem('mytoken')}`
+            }
+          }
+        )
+        .then(() => this.$store.dispatch('balance/getAllBalances'))
+        .catch(err => console.log(err));
     }
   },
   watch: {
-    balanceId(val) {
+    balanceWithId(val) {
+      this.showBalance = true;
       axios
-        .get('https://bspacedev.azurewebsites.net/api/Balances/GetAll/' + val, {
-          headers: {
-            Accept: 'text/plain',
-            Authorization: `Bearer ${localStorage.getItem('mytoken')}`
+        .get(
+          'https://bspacedev.azurewebsites.net/api/Balances/GetAll/' + val.id,
+          {
+            headers: {
+              Accept: 'text/plain',
+              Authorization: `Bearer ${localStorage.getItem('mytoken')}`
+            }
           }
-        })
+        )
         .then(res => {
           this.balances = res.data.data;
         });
+    },
+    errorList() {
+      this.showBalance = false;
     }
   }
 };
 </script>
 
 <style scoped>
+#no-balance {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 66vh;
+  /* background: black; */
+  z-index: 100;
+}
+#no-balance img {
+  width: 40%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 #container-table-balance,
 #balance-error {
   width: 100%;

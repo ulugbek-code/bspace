@@ -4,7 +4,7 @@
       @error="sendErr($event)"
       @sendId="sendId($event)"
     ></create-balance>
-    <table-balance :balanceId="id" :errorList="errorList"></table-balance>
+    <table-balance :balanceWithId="id" :errorList="errorList"></table-balance>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       errorList: null,
-      id: ''
+      id: {}
     };
   },
   computed: {

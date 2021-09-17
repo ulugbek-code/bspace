@@ -138,8 +138,8 @@ export default {
         formData.append('UserId', this.userInfo.id);
         formData.append('Period', this.balances.period.toString());
         formData.append('Year', Number(this.balances.year));
-        formData.append('File', this.balances.file);
         formData.append('Description', this.balances.desc);
+        formData.append('File', this.balances.file);
         axios
           .post(
             'https://bspacedev.azurewebsites.net/api/BalanceFiles/Add',

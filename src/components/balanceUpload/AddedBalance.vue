@@ -96,7 +96,7 @@ export default {
         )
         .then(res => {
           // console.log(res.data.data.id);
-          this.$emit('sendBalanceId', res.data.data.id);
+          this.$emit('sendBalanceId', res.data.data);
         });
     },
     removeBalance(id) {

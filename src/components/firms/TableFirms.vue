@@ -160,6 +160,7 @@ export default {
           )
           .then(() => {
             this.$store.dispatch('firm/getData');
+            // setTimeout(this.$store.dispatch('firm/getData', true), 200);
             this.$store.commit('firm/toLoaderFalse');
             // this.getLoader = false;
           })

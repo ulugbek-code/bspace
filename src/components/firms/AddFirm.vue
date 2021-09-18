@@ -132,8 +132,8 @@
             ref="logo"
             class="file-input"
           />
-          {{ logo.name }}
-          <button @click.prevent="" id="my-file">
+          <small>{{ logo }}</small>
+          <button id="my-file">
             Upload File
             <fa class="icons" :icon="['fas', 'upload']" />
             <!-- this.$refs.logo.value -->
@@ -208,7 +208,7 @@ export default {
       this.validity = 'success';
     },
     previewFiles() {
-      this.logo = this.$refs.logo.files[0];
+      this.logo = this.$refs.logo.files[0].name;
     },
     upp(val) {
       this.$emit('upping', val);
@@ -253,7 +253,7 @@ export default {
           .catch(err => {
             console.log(err);
           });
-        setTimeout(this.setupFirmId, 1000);
+        setTimeout(this.setupFirmId, 500); // from 1000 to 500
         await this.$store.dispatch('firm/getData');
         //this.$store.dispatch('firm/getData');
 
@@ -350,6 +350,12 @@ export default {
   justify-content: space-between;
   margin-bottom: 10px;
 }
+.sub-container small {
+  width: 100%;
+  position: absolute;
+  top: 54%;
+  left: 48%;
+}
 .input-container label,
 .input-container-2 label {
   font-size: 13px;
@@ -391,7 +397,6 @@ export default {
   border: none;
   border-radius: 25px;
   outline: none;
-  cursor: pointer !important;
   font-size: 11px;
 }
 .btn-add button:active,
@@ -402,8 +407,8 @@ export default {
 .btn-add button:nth-child(2) {
   margin-left: 10px;
 }
-#my-file:hover,
-button:hover {
+.btn-add button:hover {
+  cursor: pointer;
   color: rgba(255, 255, 255, 0.8);
 }
 #my-file .icons {

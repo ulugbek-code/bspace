@@ -12,7 +12,7 @@ export default {
   mutations: {
     getBalance(state, payload) {
       state.balances = payload.data.data;
-      console.log(state.balances);
+      // console.log(state.balances);
       //   if (payload.data.isValid) {
       //     state.balances = payload.data.data;
       //     console.log(state.balances);

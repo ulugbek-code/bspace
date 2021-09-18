@@ -1,6 +1,7 @@
 <template>
   <div v-if="!errorList && !balanceWithId.id" id="no-balance">
     <img src="../../assets/noBalance.svg" alt="" />
+    <h3>No Balance choosen yet</h3>
   </div>
   <div v-else-if="errorList && !showBalance" id="balance-error">
     <!-- if statement changed from v-if:errorList -->
@@ -118,23 +119,6 @@ export default {
 </script>
 
 <style scoped>
-#no-balance {
-  position: relative;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 66vh;
-  /* background: black; */
-  z-index: 100;
-}
-#no-balance img {
-  width: 40%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
 #container-table-balance,
 #balance-error {
   width: 100%;
@@ -229,5 +213,25 @@ tr:active:not(:nth-child(1)):active:not(:nth-child(2)) {
 }
 td:nth-child(1):hover .tooltiptext {
   visibility: visible;
+}
+#no-balance {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 66vh;
+  /* background: black; */
+  z-index: 100;
+}
+#no-balance img,
+#no-balance h3 {
+  width: 36%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#no-balance h3 {
+  left: 52%;
 }
 </style>

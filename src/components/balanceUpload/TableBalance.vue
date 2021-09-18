@@ -81,6 +81,7 @@ export default {
         .put(
           'https://bspacedev.azurewebsites.net/api/BalanceFiles/Confirm?id=' +
             id,
+          {},
           {
             headers: {
               Accept: 'text/plain',

@@ -168,6 +168,7 @@ export default {
   },
   data() {
     return {
+      getFirms: [],
       isGoing: false,
       isSub: false,
       validity: 'pending',
@@ -186,16 +187,20 @@ export default {
     };
   },
   computed: {
-    getFirms() {
-      return this.$store.getters['firm/getFirmsData'].map(firm => {
+    getParentFirmId() {
+      return this.$store.getters['firm/getFirmsData'];
+    }
+  },
+  methods: {
+    async setupFirmId() {
+      await this.$store.dispatch('firm/getData', true);
+      this.getFirms = this.getParentFirmId.map(firm => {
         return {
           name: firm.name,
           id: firm.id
         };
       });
-    }
-  },
-  methods: {
+    },
     getFirmId(val) {
       this.parentFirmId = val;
     },
@@ -248,7 +253,9 @@ export default {
           .catch(err => {
             console.log(err);
           });
-        this.$store.dispatch('firm/getData');
+        setTimeout(this.setupFirmId, 1000);
+        await this.$store.dispatch('firm/getData');
+        //this.$store.dispatch('firm/getData');
 
         // this.validity = 'success';
         // (this.name = ''),
@@ -286,8 +293,9 @@ export default {
       this.toggleValidity();
     }
   },
-  async created() {
-    await this.$store.dispatch('firm/getData', true);
+  created() {
+    this.setupFirmId();
+    // await this.$store.dispatch('firm/getData', true);
   },
   watch: {
     getFirms() {

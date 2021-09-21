@@ -21,7 +21,9 @@ import {
   faChalkboardTeacher,
   faPrint,
   faCalendarAlt,
-  faBookmark
+  faBookmark,
+  faLevelUpAlt,
+  faLevelDownAlt
 } from '@fortawesome/free-solid-svg-icons';
 // import {fab} from '@fortawesome/free-brands-svg-icons'
 
@@ -46,7 +48,9 @@ library.add(
   faChalkboardTeacher,
   faPrint,
   faCalendarAlt,
-  faBookmark
+  faBookmark,
+  faLevelUpAlt,
+  faLevelDownAlt
 );
 
 export default FontAwesomeIcon;

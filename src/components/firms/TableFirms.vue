@@ -15,11 +15,7 @@
     <div v-if="getLoader" id="loader">
       <img src="../../assets/loader.gif" alt="" />
     </div>
-    <div v-else-if="!getLoader && getError">{{ getError }}</div>
-    <div v-else-if="!getLoader && (!contents || contents.length === 0)">
-      No stored firms yet
-    </div>
-    <table v-else>
+    <table v-else-if="contents.length > 0">
       <tr>
         <th v-for="title in titles" :key="title">
           <h3>{{ title }}</h3>
@@ -78,6 +74,10 @@
         </div>
       </tr>
     </table>
+    <div v-else-if="!getLoader && getError">{{ getError }}</div>
+    <div v-else-if="!getLoader && (!contents || contents.length === 0)">
+      No stored firms yet
+    </div>
   </div>
 </template>
 

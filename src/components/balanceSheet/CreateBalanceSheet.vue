@@ -26,17 +26,40 @@
     <div class="second-row">
       <div class="input-container">
         <fa class="icons" :icon="['fas', 'search']" />
-        <input type="text" />
+        <input type="text" placeholder="Search" />
       </div>
       <div class="input-container">
-        <fa class="icons" :icon="['fas', 'calendar']" />
-        <input type="text" />
+        <fa class="icons" :icon="['fas', 'calendar-alt']" />
+        <base-dropdown
+          :options="['january', 'february']"
+          defaultVal="Period"
+        ></base-dropdown>
+        <!-- :index="true"
+          :isSubmitted="isSubmitted"
+          :validity="!isValid"
+          @input="showIt($event)" -->
       </div>
       <div class="input-container">
-        <input type="text" />
+        <fa class="icons" :icon="['fas', 'calendar-alt']" />
+        <base-dropdown
+          :options="['january', 'february']"
+          defaultVal="Period"
+        ></base-dropdown>
+        <!-- :index="true"
+          :isSubmitted="isSubmitted"
+          :validity="!isValid"
+          @input="showIt($event)" -->
       </div>
       <div class="input-container">
-        <input type="text" />
+        <fa class="icons" :icon="['fas', 'calendar-alt']" />
+        <base-dropdown
+          :options="['january', 'february']"
+          defaultVal="Period"
+        ></base-dropdown>
+        <!-- :index="true"
+          :isSubmitted="isSubmitted"
+          :validity="!isValid"
+          @input="showIt($event)" -->
       </div>
       <base-button @clicked="helloWorld">Apply Filters</base-button>
     </div>
@@ -44,7 +67,12 @@
 </template>
 
 <script>
+import BaseDropdown from '../UI/BaseDropdown.vue';
+
 export default {
+  components: {
+    BaseDropdown
+  },
   methods: {
     helloWorld() {
       console.log('hello');
@@ -101,12 +129,15 @@ hr {
 }
 .second-row {
   display: flex;
+  align-items: center;
+  background: aquamarine;
 }
 .second-row .input-container {
   position: relative;
+  margin-right: 3rem;
+  width: 12vw;
 }
 .second-row input {
-  margin-right: 3rem;
   padding-left: 16px;
 }
 .second-row .icons {

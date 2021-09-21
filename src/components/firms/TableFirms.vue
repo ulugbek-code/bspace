@@ -74,6 +74,7 @@
         </div>
       </tr>
     </table>
+
     <div v-else-if="!getLoader && getError">{{ getError }}</div>
     <div v-else-if="!getLoader && (!contents || contents.length === 0)">
       No stored firms yet

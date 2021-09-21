@@ -15,7 +15,11 @@
         Сальдо за Период <span>{{ balanceWithId.year }}</span>
         <span>{{ balanceWithId.period }}</span>
       </h2>
-      <button @click="confirmBalance(balanceWithId.id)" class="btn">
+      <button
+        v-if="!balanceWithId.isConfirmed"
+        @click="confirmBalance(balanceWithId.id)"
+        class="btn"
+      >
         Confirm
       </button>
     </div>

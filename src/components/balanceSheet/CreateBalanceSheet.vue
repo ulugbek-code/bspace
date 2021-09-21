@@ -31,7 +31,8 @@
       <div class="input-container">
         <fa class="icons" :icon="['fas', 'calendar-alt']" />
         <base-dropdown
-          :options="['january', 'february']"
+          :options="years"
+          :index="true"
           defaultVal="Period"
         ></base-dropdown>
         <!-- :index="true"
@@ -42,7 +43,8 @@
       <div class="input-container">
         <fa class="icons" :icon="['fas', 'calendar-alt']" />
         <base-dropdown
-          :options="['january', 'february']"
+          :options="months"
+          :index="true"
           defaultVal="Period"
         ></base-dropdown>
         <!-- :index="true"
@@ -51,10 +53,11 @@
           @input="showIt($event)" -->
       </div>
       <div class="input-container">
-        <fa class="icons" :icon="['fas', 'calendar-alt']" />
+        <fa class="icons" :icon="['fas', 'bookmark']" />
         <base-dropdown
-          :options="['january', 'february']"
-          defaultVal="Period"
+          :options="months"
+          :index="true"
+          defaultVal="Saved Filters"
         ></base-dropdown>
         <!-- :index="true"
           :isSubmitted="isSubmitted"
@@ -72,6 +75,27 @@ import BaseDropdown from '../UI/BaseDropdown.vue';
 export default {
   components: {
     BaseDropdown
+  },
+  data() {
+    return {
+      years: [...Array(new Date().getFullYear() - 1998).keys()].map(
+        e => e + 1999
+      ),
+      months: [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+      ]
+    };
   },
   methods: {
     helloWorld() {
@@ -130,7 +154,6 @@ hr {
 .second-row {
   display: flex;
   align-items: center;
-  background: aquamarine;
 }
 .second-row .input-container {
   position: relative;
@@ -138,10 +161,20 @@ hr {
   width: 12vw;
 }
 .second-row input {
-  padding-left: 16px;
+  border-radius: 25px;
+  border: 1px solid rgba(108, 109, 113, 0.35);
+  color: rgba(69, 67, 67, 0.9);
+  padding-left: 22px;
+  line-height: 25px;
+  outline: none;
+  border-radius: 25px;
 }
 .second-row .icons {
+  font-size: 15px;
   position: absolute;
   top: 20%;
+  left: 3%;
+  z-index: 10;
+  color: rgb(215, 226, 226);
 }
 </style>

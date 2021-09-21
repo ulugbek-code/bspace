@@ -314,6 +314,7 @@ export default {
   border-radius: 6px 6px 0px 0px;
 }
 .custom-select.withIndex .selected {
+  padding-left: 1.4em;
   color: rgb(126, 126, 126);
   border: 1px solid rgba(221, 221, 221, 1);
 }

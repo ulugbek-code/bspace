@@ -17,6 +17,7 @@
         </div>
         <div class="input-container" @click="isValid = true">
           <label>Period</label>
+          <fa class="icons" :icon="['fas', 'calendar-alt']" />
           <base-dropdown
             :options="months"
             :index="true"
@@ -226,6 +227,14 @@ form {
   justify-content: space-between;
   margin: 5px;
 }
+.input-container .icons {
+  font-size: 15px;
+  position: absolute;
+  top: 30%;
+  left: 4%;
+  z-index: 10;
+  color: rgb(211, 213, 213);
+}
 .second-div {
   display: flex;
   position: relative;
@@ -261,6 +270,7 @@ form {
 .input-container {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .first-div label {
   padding-left: 10px;

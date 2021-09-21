@@ -20,7 +20,8 @@ import {
   faChartLine,
   faChalkboardTeacher,
   faPrint,
-  faCalendarAlt
+  faCalendarAlt,
+  faBookmark
 } from '@fortawesome/free-solid-svg-icons';
 // import {fab} from '@fortawesome/free-brands-svg-icons'
 
@@ -44,7 +45,8 @@ library.add(
   faChartLine,
   faChalkboardTeacher,
   faPrint,
-  faCalendarAlt
+  faCalendarAlt,
+  faBookmark
 );
 
 export default FontAwesomeIcon;

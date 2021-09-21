@@ -64,15 +64,15 @@ export default {
 <style scoped>
 .box-chart {
   flex: 1;
-  height: 84vh;
-  overflow: hidden;
+  height: 83vh;
+  overflow-x: hidden;
   border-left: 1px solid rgba(221, 221, 221, 1);
   border-top: 1px solid rgba(221, 221, 221, 1);
 }
 .canvas {
   width: 90%;
-  margin: 6px auto;
-  padding: 8px 0;
+  margin: 3px auto;
+  /* padding: 2px 0; */
   border-radius: 25px;
 }
 .assets-box {
@@ -85,7 +85,7 @@ h3 {
 .assets-container {
   display: flex;
   flex-direction: column;
-  padding: 6px;
+  padding: 4px;
 }
 .a-header {
   color: rgba(155, 155, 155, 1);

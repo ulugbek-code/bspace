@@ -107,7 +107,7 @@ export default {
 
 <style scoped>
 hr {
-  margin: 8px 0;
+  margin: 8px 0 14px 0;
   border: 0;
   height: 1px;
   background: rgba(221, 221, 221, 1);

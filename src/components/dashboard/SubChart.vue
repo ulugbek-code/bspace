@@ -1,6 +1,6 @@
 <template>
-  <div class="box-chart">
-    <div class="canvas">
+  <div id="sub-chart-container">
+    <div class="canvas-chart">
       <apexchart type="line" :options="options" :series="series"></apexchart>
     </div>
     <div class="assets">
@@ -36,15 +36,17 @@
 </template>
 
 <script>
-// import VueApexCharts from 'vue-apexcharts';
-
 export default {
-  // components: { BarChartForm },
   data() {
     return {
       options: {
         chart: {
-          id: 'vuechart-example'
+          // zoom: {
+          //   enabled: false
+          // },
+          toolbar: {
+            show: false
+          }
         },
         xaxis: {
           categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
@@ -70,30 +72,31 @@ hr {
   height: 1px;
   background: rgba(221, 221, 221, 1);
 }
-.box-chart {
-  flex: 1;
-  height: 83vh;
-  overflow-x: hidden;
-  border-left: 1px solid rgba(221, 221, 221, 1);
-  border-top: 1px solid rgba(221, 221, 221, 1);
+#sub-chart-container {
+  box-sizing: border-box;
+  width: 34%;
+  background: rgba(241, 245, 251, 1);
+  padding: 1.2rem;
+  border-radius: 50px;
 }
-.canvas {
-  width: 90%;
-  margin: 3px auto;
-  /* padding: 2px 0; */
-  border-radius: 25px;
+.canvas-chart {
+  background: #fff;
+  border-radius: 30px;
+  margin-bottom: 8px;
 }
 .assets-box {
   display: flex;
   justify-content: center;
 }
 h3 {
-  padding-left: 24px;
+  /* margin-top: 1rem; */
+  padding-left: 16px;
 }
 .assets-container {
   display: flex;
   flex-direction: column;
   padding: 4px;
+  font-size: 12px;
 }
 .a-header {
   color: rgba(155, 155, 155, 1);
@@ -102,6 +105,6 @@ h3 {
   color: rgba(116, 101, 190, 1);
 }
 .assets-container p {
-  font-size: 15px;
+  font-size: 14px;
 }
 </style>

@@ -23,7 +23,9 @@ import {
   faCalendarAlt,
   faBookmark,
   faLevelUpAlt,
-  faLevelDownAlt
+  faLevelDownAlt,
+  faBell,
+  faCog
 } from '@fortawesome/free-solid-svg-icons';
 // import {fab} from '@fortawesome/free-brands-svg-icons'
 
@@ -50,7 +52,9 @@ library.add(
   faCalendarAlt,
   faBookmark,
   faLevelUpAlt,
-  faLevelDownAlt
+  faLevelDownAlt,
+  faBell,
+  faCog
 );
 
 export default FontAwesomeIcon;

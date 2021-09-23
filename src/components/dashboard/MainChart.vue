@@ -1,0 +1,115 @@
+<template>
+  <div id="main-chart-container">
+    <div class="canvas">
+      <apexchart type="area" :options="options" :series="seriesA"></apexchart>
+    </div>
+    <div class="widgets">
+      <router-link class="box" to="/balanceSheet">
+        <img src="../../assets/balancesheet.svg" alt="" />
+        Balance Sheet</router-link
+      >
+      <router-link class="box" to="/profitLoss">
+        <img src="../../assets/businessplan.svg" alt="" />
+        Profit & Loss
+      </router-link>
+      <router-link class="box" to="/changesEquity">
+        <img src="../../assets/layers.svg" alt="" />
+        Changes on Equity</router-link
+      >
+      <router-link class="box" to="/cashFlow">
+        <img src="../../assets/cash.svg" alt="" />
+        Cash Flow</router-link
+      >
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      options: {
+        chart: {
+          toolbar: {
+            show: false
+          },
+          fontFamily: 'Poppins, sans-serif'
+        },
+        legend: {
+          position: 'top'
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        xaxis: {
+          type: 'datetime',
+          categories: [
+            '2018-09-19T00:00:00.000Z',
+            '2018-09-19T01:30:00.000Z',
+            '2018-09-19T02:30:00.000Z',
+            '2018-09-19T03:30:00.000Z',
+            '2018-09-19T04:30:00.000Z',
+            '2018-09-19T05:30:00.000Z',
+            '2018-09-19T06:30:00.000Z'
+          ]
+        },
+        tooltip: {
+          x: {
+            format: 'dd/MM/yy HH:mm'
+          }
+        }
+      },
+      seriesA: [
+        {
+          name: 'series1',
+          data: [31, 40, 28, 51, 42, 109, 100]
+        },
+        {
+          name: 'series2',
+          data: [11, 32, 45, 32, 34, 52, 41]
+        }
+      ]
+    };
+  }
+};
+</script>
+
+<style scoped>
+#main-chart-container {
+  width: 63%;
+  margin-right: 1rem;
+  background: rgba(241, 245, 251, 1);
+  overflow: hidden;
+  border-radius: 50px;
+}
+.canvas {
+  width: 95%;
+  margin: 3px auto;
+  padding: 20px;
+  /* background: brown; */
+}
+.widgets {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1.2rem;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 110px;
+  height: 110px;
+  border-radius: 30px;
+  background: #fff;
+}
+a {
+  text-decoration: none;
+  color: #2c3e50;
+  font-size: 13px;
+}
+</style>

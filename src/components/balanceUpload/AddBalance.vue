@@ -17,7 +17,7 @@
         </div>
         <div class="input-container" @click="isValid = true">
           <label>Period</label>
-          <fa class="icons" :icon="['fas', 'calendar-alt']" />
+          <fa class="icon-calendar" :icon="['fas', 'calendar-alt']" />
           <base-dropdown
             :options="months"
             :index="true"
@@ -260,6 +260,14 @@ form {
   margin-top: 14px;
   color: rgba(170, 170, 170, 1);
   cursor: pointer;
+}
+.icon-calendar {
+  color: rgba(170, 170, 170, 1);
+  font-size: 13px;
+  position: absolute;
+  left: 4%;
+  bottom: 16%;
+  z-index: 10;
 }
 .icon-edit:hover {
   color: rgba(67, 97, 238, 0.75);

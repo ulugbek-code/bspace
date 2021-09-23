@@ -35,6 +35,10 @@ export default {
           },
           fontFamily: 'Poppins, sans-serif'
         },
+        colors: ['rgb(92, 96, 255)', 'rgb(255, 106, 52)'],
+        fill: {
+          colors: ['#7e7', 'rgb(255, 106, 52)']
+        },
         legend: {
           position: 'top'
         },

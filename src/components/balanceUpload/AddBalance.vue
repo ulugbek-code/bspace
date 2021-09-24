@@ -169,7 +169,7 @@ export default {
           })
           .catch(() => console.log('error')); //console.log(res)
 
-        this.$store.dispatch('balance/getAllBalances');
+        setTimeout(this.$store.dispatch('balance/getAllBalances'), 400);
 
         this.balances.year = '';
         this.balances.desc = '';

@@ -106,8 +106,8 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 110px;
-  height: 110px;
+  width: 150px;
+  height: 150px;
   border-radius: 30px;
   background: #fff;
 }

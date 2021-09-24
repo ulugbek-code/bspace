@@ -86,11 +86,10 @@ hr {
 }
 .assets-box {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 h3 {
-  /* margin-top: 1rem; */
-  padding-left: 16px;
+  padding-left: 4px;
 }
 .assets-container {
   display: flex;
@@ -100,11 +99,10 @@ h3 {
 }
 .a-header {
   color: rgba(155, 155, 155, 1);
+  font-size: 12px;
 }
 .a-body {
   color: rgba(116, 101, 190, 1);
-}
-.assets-container p {
-  font-size: 14px;
+  font-size: 15px;
 }
 </style>

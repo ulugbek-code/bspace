@@ -150,7 +150,10 @@
   <!--  -->
   <div
     v-else
-    :class="{ invalid: !validity && defaultVal.length === 0 }"
+    :class="{
+      invalid: !validity && defaultVal.length === 0,
+      withIndex: filtration
+    }"
     class="custom-select"
     @blur="open = false"
   >
@@ -204,6 +207,9 @@ export default {
     },
     isSubmitted: {
       type: Boolean
+    },
+    filtration: {
+      required: false
     }
   },
   emits: ['multiSelected', 'sendId', 'input', 'changeDD'],

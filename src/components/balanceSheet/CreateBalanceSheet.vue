@@ -31,9 +31,10 @@
       <div class="input-container">
         <fa class="icons" :icon="['fas', 'calendar-alt']" />
         <base-dropdown
-          :options="years"
-          :index="true"
-          defaultVal="Period"
+          :options="getYears"
+          filtration="true"
+          defaultVal="Years"
+          @input="gettingYear($event)"
         ></base-dropdown>
         <!-- :index="true"
           :isSubmitted="isSubmitted"
@@ -41,28 +42,23 @@
           @input="showIt($event)" -->
       </div>
       <div class="input-container">
-        <fa class="icons" :icon="['fas', 'calendar-alt']" />
-        <base-dropdown
-          :options="months"
-          :index="true"
-          defaultVal="Period"
-        ></base-dropdown>
-        <!-- :index="true"
-          :isSubmitted="isSubmitted"
-          :validity="!isValid"
-          @input="showIt($event)" -->
+        <template v-if="filteredPeriods">
+          <fa class="icons" :icon="['fas', 'calendar-alt']" />
+          <base-dropdown
+            :options="filteredPeriods[0]"
+            filtration="true"
+            defaultVal="Period"
+            @input="getPeriod($event)"
+          ></base-dropdown>
+        </template>
       </div>
       <div class="input-container">
         <fa class="icons" :icon="['fas', 'bookmark']" />
         <base-dropdown
-          :options="months"
+          :options="['a', 'b']"
           :index="true"
           defaultVal="Saved Filters"
         ></base-dropdown>
-        <!-- :index="true"
-          :isSubmitted="isSubmitted"
-          :validity="!isValid"
-          @input="showIt($event)" -->
       </div>
       <base-button @clicked="helloWorld">Apply Filters</base-button>
     </div>
@@ -70,6 +66,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import BaseDropdown from '../UI/BaseDropdown.vue';
 
 export default {
@@ -78,28 +75,70 @@ export default {
   },
   data() {
     return {
-      years: [...Array(new Date().getFullYear() - 1998).keys()].map(
-        e => e + 1999
-      ),
-      months: [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December'
-      ]
+      choosenYear: null,
+      choosenPeriod: null,
+      filters: [],
+      filteredPeriods: null
+      // years: [...Array(new Date().getFullYear() - 1998).keys()].map(
+      //   e => e + 1999
+      // ),
+      // months: [
+      //   'January',
+      //   'February',
+      //   'March',
+      //   'April',
+      //   'May',
+      //   'June',
+      //   'July',
+      //   'August',
+      //   'September',
+      //   'October',
+      //   'November',
+      //   'December'
+      // ]
     };
   },
+  computed: {
+    getYears() {
+      return this.filters.map(y => y.year).sort();
+    }
+  },
   methods: {
+    getPeriod(val) {
+      this.choosenPeriod = val;
+    },
+    gettingYear(val) {
+      this.choosenYear = val;
+    },
+    gettingPeriod(year) {
+      this.filteredPeriods = this.filters
+        .filter(y => y.year == year)
+        .map(p => p.periods);
+    },
     helloWorld() {
-      console.log('hello');
+      console.log(this.choosenYear, this.choosenPeriod);
+    },
+    getAllFilters() {
+      axios
+        .get(
+          'https://bspacedev.azurewebsites.net/api/Filters/GetAllPeriodFilters/' +
+            localStorage.getItem('firmId'),
+          {
+            headers: {
+              Accept: 'text/plain',
+              Authorization: `Bearer ${localStorage.getItem('mytoken')}`
+            }
+          }
+        )
+        .then(res => (this.filters = res.data.data));
+    }
+  },
+  created() {
+    this.getAllFilters();
+  },
+  watch: {
+    choosenYear(val) {
+      this.gettingPeriod(val);
     }
   }
 };
@@ -170,9 +209,9 @@ hr {
   border-radius: 25px;
 }
 .second-row .icons {
-  font-size: 15px;
+  font-size: 13px;
   position: absolute;
-  top: 20%;
+  top: 26%;
   left: 3%;
   z-index: 10;
   color: rgb(215, 226, 226);

@@ -103,6 +103,6 @@ h3 {
 }
 .a-body {
   color: rgba(116, 101, 190, 1);
-  font-size: 15px;
+  font-size: 16px;
 }
 </style>

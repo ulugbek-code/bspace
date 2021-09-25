@@ -83,7 +83,8 @@ export default {
 
 <style scoped>
 #main-chart-container {
-  width: 63%;
+  width: 65%;
+  height: 50%;
   margin-right: 1rem;
   background: rgba(241, 245, 251, 1);
   overflow: hidden;
@@ -110,6 +111,10 @@ export default {
   height: 150px;
   border-radius: 30px;
   background: #fff;
+  transition: 0.4s all ease;
+}
+.box:hover {
+  background: #bdd1e6;
 }
 a {
   text-decoration: none;

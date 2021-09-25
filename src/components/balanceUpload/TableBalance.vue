@@ -54,6 +54,46 @@
           <td>{{ numberWithCommas(balance.closingStockDebit) }}</td>
           <td>{{ numberWithCommas(balance.closingStockCredit) }}</td>
         </tr>
+        <tr v-for="balance in balances" :key="balance.id">
+          <td colspan="2">
+            <!-- <span>{{ balance.code }}</span> -->
+            {{ substringedAddress(balance.name) }}
+            <span class="tooltiptext">{{ balance.name }}</span>
+          </td>
+          <td>{{ numberWithCommas(balance.openingStockDebit) }}</td>
+          <td>{{ numberWithCommas(balance.openingStockCredit) }}</td>
+          <td>{{ numberWithCommas(balance.periodDebit) }}</td>
+          <td>{{ numberWithCommas(balance.periodCredit) }}</td>
+          <td>{{ numberWithCommas(balance.closingStockDebit) }}</td>
+          <td>{{ numberWithCommas(balance.closingStockCredit) }}</td>
+        </tr>
+        <tr v-for="balance in balances" :key="balance.id">
+          <td colspan="2">
+            <!-- <span>{{ balance.code }}</span> -->
+            {{ substringedAddress(balance.name) }}
+            <span class="tooltiptext">{{ balance.name }}</span>
+          </td>
+          <td>{{ numberWithCommas(balance.openingStockDebit) }}</td>
+          <td>{{ numberWithCommas(balance.openingStockCredit) }}</td>
+          <td>{{ numberWithCommas(balance.periodDebit) }}</td>
+          <td>{{ numberWithCommas(balance.periodCredit) }}</td>
+          <td>{{ numberWithCommas(balance.closingStockDebit) }}</td>
+          <td>{{ numberWithCommas(balance.closingStockCredit) }}</td>
+        </tr>
+        <tr v-for="balance in balances" :key="balance.id">
+          <td colspan="2">
+            <!-- <span>{{ balance.code }}</span> -->
+            {{ substringedAddress(balance.name) }}
+            <span class="tooltiptext">{{ balance.name }}</span>
+          </td>
+          <td>{{ numberWithCommas(balance.openingStockDebit) }}</td>
+          <td>{{ numberWithCommas(balance.openingStockCredit) }}</td>
+          <td>{{ numberWithCommas(balance.periodDebit) }}</td>
+          <td>{{ numberWithCommas(balance.periodCredit) }}</td>
+          <td>{{ numberWithCommas(balance.closingStockDebit) }}</td>
+          <td>{{ numberWithCommas(balance.closingStockCredit) }}</td>
+        </tr>
+
         <!-- </template> -->
       </table>
     </div>
@@ -175,13 +215,30 @@ table {
 }
 th {
   font-size: 1rem;
-  color: rgba(170, 170, 170, 1);
+  color: rgb(36, 39, 56);
   padding: 3px 6px;
+  text-align: center;
+  border-right: 1px solid rgb(36, 39, 56);
+}
+th:nth-child(1) {
+  border-left: 1px solid rgb(36, 39, 56);
+}
+tr:nth-child(2) {
+  border-bottom: 1px solid rgb(36, 39, 56);
 }
 td {
   font-size: 12px;
   padding: 16px 12px;
   position: relative;
+  border-left: 1px solid rgb(36, 39, 56);
+}
+tr {
+  border-left: 2px solid #fff;
+  border-right: 2px solid #fff;
+}
+.first-row {
+  position: sticky;
+  top: 0;
 }
 .first-row th:not(:nth-child(1)) {
   text-align: center;

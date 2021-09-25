@@ -74,7 +74,7 @@ hr {
 }
 #sub-chart-container {
   box-sizing: border-box;
-  width: 34%;
+  width: 32%;
   background: rgba(241, 245, 251, 1);
   padding: 1.2rem;
   border-radius: 50px;

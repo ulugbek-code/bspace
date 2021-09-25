@@ -28,7 +28,9 @@
             {{ balance.year }}
           </td>
           <td>
-            {{ balance.period }}
+            {{ getPeriodName(balance.period) }}
+            <!-- {{ typeof +balance.period }} -->
+            <!-- {{ getPeriodName(+balance.period) }} -->
           </td>
           <td>
             <!-- {{ substringedDesc(balance.description) }} -->{{
@@ -59,7 +61,21 @@ export default {
   data() {
     return {
       // errors: [],
-      titles: ['Year', 'Period', 'Description', 'Status']
+      titles: ['Year', 'Period', 'Description', 'Status'],
+      periodMonths: [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+      ]
       // balances: [
       //   // {
       //   //   year: 1199,
@@ -82,6 +98,9 @@ export default {
     }
   },
   methods: {
+    getPeriodName(index) {
+      return this.periodMonths[index];
+    },
     getBalanceId(id) {
       axios
         .get(

@@ -51,6 +51,7 @@
             @input="getPeriod($event)"
           ></base-dropdown>
         </template>
+        <small v-else>Choose year to see periods</small>
       </div>
       <div class="input-container">
         <fa class="icons" :icon="['fas', 'bookmark']" />
@@ -117,6 +118,8 @@ export default {
     },
     helloWorld() {
       console.log(this.choosenYear, this.choosenPeriod);
+      this.choosenYear = null;
+      this.choosenPeriod = null;
     },
     getAllFilters() {
       axios

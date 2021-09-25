@@ -84,11 +84,13 @@ hr {
   border-radius: 25px;
 }
 .assets-box {
+  width: 90%;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 h3 {
-  padding-left: 24px;
+  padding-left: 6%;
 }
 .assets-container {
   display: flex;
@@ -97,11 +99,10 @@ h3 {
 }
 .a-header {
   color: rgba(155, 155, 155, 1);
+  font-size: 13px;
 }
 .a-body {
   color: rgba(116, 101, 190, 1);
-}
-.assets-container p {
   font-size: 15px;
 }
 </style>

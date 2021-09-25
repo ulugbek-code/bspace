@@ -27,8 +27,8 @@
           <p class="a-body">$ 97,590k</p>
         </div>
       </div>
+      <hr />
     </div>
-    <hr />
     <div class="canvas">
       <apexchart type="donut" :options="options" :series="seriesA"></apexchart>
     </div>
@@ -44,7 +44,10 @@ export default {
     return {
       options: {
         chart: {
-          id: 'vuechart-example'
+          toolbar: {
+            show: false
+          },
+          fontFamily: 'Poppins, sans-serif'
         },
         xaxis: {
           categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
@@ -72,13 +75,17 @@ hr {
 }
 .box-chart {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   height: 83vh;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   border-left: 1px solid rgba(221, 221, 221, 1);
   border-top: 1px solid rgba(221, 221, 221, 1);
+  /* background: rgb(220, 220, 228); */
 }
 .canvas {
-  width: 90%;
+  width: 85%;
   margin: 3px auto;
   /* padding: 2px 0; */
   border-radius: 25px;

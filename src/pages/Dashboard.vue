@@ -2,7 +2,7 @@
   <div :class="[isNavOpened ? 'nav' : '']" class="box">
     <div id="header-dashboard">
       <div class="header-box">
-        <h2>Welcome Back, {{ name }}</h2>
+        <h2>Welcome Back, {{ user.firstName }}</h2>
         <p>Dashboard</p>
       </div>
       <div class="filtering-box">
@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      name: 'Isabella'
+      user: {}
     };
   },
   computed: {
@@ -47,6 +47,7 @@ export default {
     if (!localStorage.getItem('mytoken')) {
       this.$router.push('signIn');
     }
+    this.user = JSON.parse(localStorage.getItem('userData'));
   }
 };
 </script>

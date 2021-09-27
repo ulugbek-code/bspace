@@ -1,6 +1,6 @@
 <template>
   <div class="box-table">
-    <table>
+    <table v-if="repo.length > 0">
       <tr>
         <th>
           Наименование показателя<br />
@@ -31,7 +31,7 @@
         <td>{{ r.code }}</td>
         <td>{{ r.note ? r.note : 'No note' }}</td>
         <td>
-          {{ r.internationalOpeningAmount }}
+          {{ numberWithCommas(r.internationalOpeningAmount) }}
           <fa
             :class="
               r.internationalOpeningAmount < r.internationalClosingAmount
@@ -49,9 +49,13 @@
             ]"
           />
         </td>
-        <td>{{ r.internationalClosingAmount }}</td>
+        <td>{{ numberWithCommas(r.internationalClosingAmount) }}</td>
       </tr>
     </table>
+
+    <div v-else class="no-report">
+      <img src="../../assets/noReport.svg" alt="" />
+    </div>
   </div>
 </template>
 
@@ -59,17 +63,12 @@
 export default {
   props: ['repo'],
   data() {
-    return {
-      tableSheets: [
-        {
-          first: 'Долгосрочные биологические активы',
-          second: 100,
-          third: 'A120',
-          fourth: 631,
-          fifth: 599
-        }
-      ]
-    };
+    return {};
+  },
+  methods: {
+    numberWithCommas(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
   }
 };
 </script>
@@ -123,10 +122,28 @@ td {
   font-size: 14px;
   padding: 16px 12px;
 }
+td:nth-child(1) {
+  max-width: 280px;
+}
 .greenish {
   color: rgba(76, 175, 80, 1);
 }
 .redish {
   color: rgba(204, 24, 24, 1);
+}
+.no-report {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 60vh;
+  z-index: 100;
+}
+.no-report img {
+  width: 70%;
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, -50%);
 }
 </style>

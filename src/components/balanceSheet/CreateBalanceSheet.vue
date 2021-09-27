@@ -58,6 +58,9 @@
         ></base-dropdown>
       </div>
       <base-button @clicked="getReport(bId)">Apply Filters</base-button>
+      <div v-if="isGoing" class="little-loader">
+        <img src="../../assets/loader.gif" alt="" />
+      </div>
     </div>
   </div>
 </template>
@@ -73,6 +76,7 @@ export default {
   },
   data() {
     return {
+      isGoing: false,
       bId: '664de905-75ca-404b-a2c6-049d78ee822f',
       choosenYear: null,
       choosenPeriod: null,
@@ -118,6 +122,7 @@ export default {
       console.log(this.choosenYear, this.choosenPeriod);
 
       if (this.choosenYear !== null && this.choosenPeriod !== null) {
+        this.isGoing = true;
         axios
           .get('https://bspacedev.azurewebsites.net/api/Reports/GetAll/' + id, {
             headers: {
@@ -125,10 +130,13 @@ export default {
               Authorization: `Bearer ${localStorage.getItem('mytoken')}`
             }
           })
-          .then(res => this.$emit('sendReport', res.data.data))
+          .then(res => {
+            this.$emit('sendReport', res.data.data);
+            this.isGoing = false;
+          })
           .catch(err => console.log(err));
       } else {
-        alert('as');
+        alert('no data choosen');
       }
       this.choosenYear = null;
       this.choosenPeriod = null;
@@ -209,6 +217,7 @@ hr {
 .second-row {
   display: flex;
   align-items: center;
+  position: relative;
 }
 .second-row .input-container {
   position: relative;
@@ -231,5 +240,10 @@ hr {
   left: 3%;
   z-index: 10;
   color: rgb(215, 226, 226);
+}
+.little-loader img {
+  position: absolute;
+  bottom: -40%;
+  width: 50px;
 }
 </style>

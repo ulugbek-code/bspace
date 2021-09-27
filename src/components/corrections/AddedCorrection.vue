@@ -10,7 +10,11 @@
             </h4>
           </th>
         </tr>
-        <tr @click="testTr" v-for="balance in balances" :key="balance">
+        <tr
+          @click="getCorrection(balance.id)"
+          v-for="balance in acceptedBalances"
+          :key="balance"
+        >
           <td>
             {{ balance.year }}
           </td>
@@ -18,15 +22,12 @@
             {{ balance.period }}
           </td>
           <td>
-            {{ substringedDesc(balance.desc) }}
-            <small class="tooltiptext">{{ balance.desc }}</small>
+            {{ substringedDesc(balance.description) }}
+            <small class="tooltiptext">{{ balance.description }}</small>
           </td>
-          <td :class="[balance.status === 'Accepted' ? 'greeny' : 'redish']">
-            <p>{{ balance.status }}</p>
+          <td class="greeny">
+            <p>Accepted</p>
           </td>
-          <!-- <td @click.stop="testTrash" id="trash">
-                        <fa :icon="['fas', 'trash']" />
-                    </td> -->
         </tr>
       </table>
     </div>
@@ -34,7 +35,9 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
+  emits: ['sendCorrection'],
   data() {
     return {
       titles: ['Year', 'Period', 'Description', 'Status'],
@@ -44,65 +47,31 @@ export default {
           period: 'March',
           desc: 'lalda adakj da sda adsd dsad',
           status: 'Accepted'
-        },
-        {
-          year: 1199,
-          period: 'March',
-          desc: 'lalda adakj da sda adsd dsad',
-          status: 'Accepted'
-        },
-        {
-          year: 1199,
-          period: 'March',
-          desc: 'lalda adakj da sda adsd dsad adadad dadada  addadd',
-          status: 'Accepted'
-        },
-        {
-          year: 1199,
-          period: 'March',
-          desc: 'lalda adakj da sda adsd dsadasdd sdad',
-          status: 'Accepted'
-        },
-        {
-          year: 1199,
-          period: 'March',
-          desc: 'lalda adakj da sda adsd dsad',
-          status: 'Accepted'
-        },
-        {
-          year: 1199,
-          period: 'March',
-          desc: 'lalda adakj da sda adsd dsad',
-          status: 'Accepted'
-        },
-        {
-          year: 1199,
-          period: 'March',
-          desc: 'lalda adakj da sda adsd dsad',
-          status: 'Accepted'
-        },
-        {
-          year: 1199,
-          period: 'March',
-          desc: 'lalda adakj da sda adsd dsad',
-          status: 'Accepted'
-        },
-        {
-          year: 1199,
-          period: 'March',
-          desc: 'lalda adakj da sda adsd dsad',
-          status: 'Accepted'
         }
       ]
     };
   },
+  computed: {
+    acceptedBalances() {
+      return this.$store.getters['balance/getBalanceList'].filter(
+        a => a.isConfirmed === true
+      );
+    }
+  },
   methods: {
-    testTr() {
-      console.log('hello row');
+    getCorrection(id) {
+      axios
+        .get(
+          'https://bspacedev.azurewebsites.net/api/IfrsBalances/GetAll/' + id,
+          {
+            headers: {
+              Accept: 'text/plain',
+              Authorization: `Bearer ${localStorage.getItem('mytoken')}`
+            }
+          }
+        )
+        .then(res => this.$emit('sendCorrection', res.data.data));
     },
-    // testTrash(){
-    //     console.log('hello trash')
-    // },
     substringedDesc(val) {
       if (val.length > 45) {
         return val.substring(0, 45) + '...';
@@ -110,6 +79,9 @@ export default {
         return val;
       }
     }
+  },
+  created() {
+    this.$store.dispatch('balance/getAllBalances');
   }
 };
 </script>
@@ -198,25 +170,9 @@ td:nth-child(3):hover .tooltiptext {
 }
 .greeny p {
   text-align: center;
-  padding: 3px;
+  padding: 3px 0;
   border-radius: 25px;
   background: rgba(155, 222, 157, 0.3);
   color: rgba(76, 175, 80, 1);
 }
-.redish p {
-  text-align: center;
-  padding: 3px;
-  border-radius: 25px;
-  background: rgba(255, 178, 125, 0.3);
-  color: rgba(237, 125, 43, 1);
-}
-/* #trash{
-    font-size: 16px;
-    color: rgba(170, 170, 170, 1);
-    padding: 4px;
-    cursor:pointer;
-}
-#trash:hover{
-    color: rgba(204, 24, 24, 0.75);
-} */
 </style>

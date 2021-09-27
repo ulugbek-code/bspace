@@ -75,15 +75,8 @@ export default {
         'October',
         'November',
         'December'
-      ]
-      // balances: [
-      //   // {
-      //   //   year: 1199,
-      //   //   period: 'March',
-      //   //   desc: 'lalda adakj da sda adsd dsad',
-      //   //   status: 'In Progress'
-      //   // }
-      // ]
+      ],
+      balance: {}
     };
   },
   computed: {
@@ -114,8 +107,10 @@ export default {
           }
         )
         .then(res => {
-          // console.log(res.data.data.id);
-          this.$emit('sendBalanceId', res.data.data);
+          // console.log(res.data.data);
+          this.balance = res.data.data;
+          this.balance.period = this.periodMonths[this.balance.period];
+          this.$emit('sendBalanceId', this.balance);
         });
     },
     removeBalance(id) {

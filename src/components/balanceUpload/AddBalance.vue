@@ -340,14 +340,14 @@ select {
   background: center / contain no-repeat url('../../assets/img.png');
 }
 .dropbox.docx {
-  background: no-repeat url('../../assets/word.png') center / 80%;
+  background: no-repeat url('../../assets/word.svg') center / 80%;
 }
 .dropbox.pdf {
   background: center / contain no-repeat url('../../assets/pdf.png');
 }
 .dropbox.xls,
 .dropbox.xlsx {
-  background: center / contain no-repeat url('../../assets/excel.png');
+  background: center / contain no-repeat url('../../assets/excel.svg');
 }
 
 .input-file {

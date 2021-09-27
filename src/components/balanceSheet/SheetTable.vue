@@ -26,22 +26,30 @@
       <tr>
         <td><h3>Активы</h3></td>
       </tr>
-      <tr v-for="sheet in tableSheets" :key="sheet">
-        <td>{{ sheet.first }}</td>
-        <td>{{ sheet.second }}</td>
-        <td>{{ sheet.third }}</td>
+      <tr v-for="r in repo" :key="r">
+        <td>{{ r.name }}</td>
+        <td>{{ r.code }}</td>
+        <td>{{ r.note ? r.note : 'No note' }}</td>
         <td>
-          {{ sheet.fourth }}
+          {{ r.internationalOpeningAmount }}
           <fa
-            :class="sheet.fourth < sheet.fifth ? 'greenish' : 'redish'"
+            :class="
+              r.internationalOpeningAmount < r.internationalClosingAmount
+                ? 'greenish'
+                : 'redish'
+            "
             class="icons"
             :icon="[
               'fas',
-              `level-${sheet.fourth < sheet.fifth ? 'up' : 'down'}-alt`
+              `level-${
+                r.internationalOpeningAmount < r.internationalClosingAmount
+                  ? 'up'
+                  : 'down'
+              }-alt`
             ]"
           />
         </td>
-        <td>{{ sheet.fifth }}</td>
+        <td>{{ r.internationalClosingAmount }}</td>
       </tr>
     </table>
   </div>
@@ -49,6 +57,7 @@
 
 <script>
 export default {
+  props: ['repo'],
   data() {
     return {
       tableSheets: [
@@ -58,55 +67,6 @@ export default {
           third: 'A120',
           fourth: 631,
           fifth: 599
-        },
-        {
-          first: 'Основные Ср-ва',
-          second: 350,
-          third: 'AA420',
-          fourth: 631,
-          fifth: 599
-        },
-        {
-          first: 'Нематериальные Активы',
-          second: 100,
-          third: 'A820',
-          fourth: 691,
-          fifth: 199
-        },
-        {
-          first: 'инвестиции, учитываемые методом долевого участия',
-          second: 100,
-          third: 'A120',
-          fourth: 631,
-          fifth: 999
-        },
-        {
-          first: 'прочие долгосрочные инвестиции',
-          second: 520,
-          third: 'A524',
-          fourth: 211,
-          fifth: 345
-        },
-        {
-          first: 'Отложенные налоговые активы',
-          second: 320,
-          third: 'A540',
-          fourth: 620,
-          fifth: 539
-        },
-        {
-          first: 'долгосрочная дебиторская задолженность',
-          second: 100,
-          third: 'A120',
-          fourth: 631,
-          fifth: 999
-        },
-        {
-          first: 'долгосрочная займы выданные',
-          second: 500,
-          third: 'A123',
-          fourth: 531,
-          fifth: 439
         }
       ]
     };
@@ -117,10 +77,11 @@ export default {
 <style scoped>
 .box-table {
   flex: 2;
+  height: 83vh;
   width: 100%;
   border-top: 1px solid rgba(221, 221, 221, 1);
-  /* background: rgba(221, 221, 221, 0.3); */
-  /* background: blue; */
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 table {
   width: 94%;
@@ -132,9 +93,22 @@ tr:not(:nth-child(1)) {
   border-bottom: 1px solid rgba(170, 170, 170, 0.2);
 }
 th {
+  background: #fff;
+  position: sticky;
+  top: 0%;
+  z-index: 1;
   color: rgba(170, 170, 170, 1);
-  /* margin: 0 10px; */
   padding: 3px 6px;
+}
+th::after {
+  content: '';
+  height: 1.5px;
+  width: 100%;
+  position: absolute;
+  bottom: -2%;
+  left: 0;
+  background: rgba(170, 170, 170, 0.7);
+  /* have to change cause little space is appers when scrolling */
 }
 th span {
   font-size: 12px;

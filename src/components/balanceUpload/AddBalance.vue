@@ -40,6 +40,9 @@
           ></textarea>
         </div>
         <button class="btn">Create</button>
+        <div v-if="isGoing" class="little-loader">
+          <img src="../../assets/loader.gif" alt="" />
+        </div>
       </div>
       <div class="second-div">
         <div class="input-container">
@@ -64,10 +67,6 @@
             class="icons icon-trash"
             :icon="['fas', 'trash']"
           />
-        </div>
-        <div id="response" v-if="response.length > 0">
-          <!-- {{ response[0].split(/\s*;\s*/) }} -->
-          <!-- {{ newResponse }} -->
         </div>
       </div>
     </form>
@@ -108,7 +107,8 @@ export default {
         file: ''
       },
       userInfo: {},
-      isSubmitted: false
+      isSubmitted: false,
+      isGoing: false
     };
   },
   // computed: {
@@ -133,6 +133,7 @@ export default {
         this.balances.period !== '' &&
         this.balances.desc !== ''
       ) {
+        this.isGoing = true;
         let formData = new FormData();
 
         formData.append('FirmId', localStorage.getItem('firmId'));
@@ -164,12 +165,13 @@ export default {
                   .split(';')
               );
             } else {
-              console.log('success');
+              // console.log('success');
+              // setTimeout(this.$store.dispatch('balance/getAllBalances'), 400);
+              this.$store.dispatch('balance/getAllBalances');
             }
+            this.isGoing = false;
           })
           .catch(() => console.log('error')); //console.log(res)
-
-        setTimeout(this.$store.dispatch('balance/getAllBalances'), 400);
 
         this.balances.year = '';
         this.balances.desc = '';
@@ -202,10 +204,22 @@ export default {
 
 <style scoped>
 #file-name {
+  width: max-content;
   position: absolute;
   bottom: -30%;
   left: 0%;
-  font-size: 14px;
+  font-size: 12px;
+}
+.little-loader {
+  background: rgb(79, 88, 70);
+  position: absolute;
+  bottom: 0%;
+  left: 28%;
+}
+.little-loader img {
+  width: 20%;
+  position: absolute;
+  bottom: 0;
 }
 #add-balance {
   width: 40%;
@@ -279,6 +293,7 @@ form {
   display: flex;
   flex-direction: column;
   position: relative;
+  justify-content: inherit;
 }
 .first-div label {
   padding-left: 10px;

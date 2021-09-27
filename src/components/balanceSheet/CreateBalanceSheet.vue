@@ -3,13 +3,11 @@
     <div class="first-row">
       <h2>Balance Sheet</h2>
       <div class="first-btn-group">
-        <base-button @clicked="helloWorld"
-          ><fa :icon="['fas', 'coins']" /> Profit & Loss</base-button
-        >
-        <base-button @clicked="helloWorld"
+        <base-button><fa :icon="['fas', 'coins']" /> Profit & Loss</base-button>
+        <base-button
           ><fa :icon="['fas', 'chart-line']" /> Changes in Equity</base-button
         >
-        <base-button @clicked="helloWorld"
+        <base-button
           ><fa :icon="['fas', 'chalkboard-teacher']" /> Cash Flow</base-button
         >
       </div>
@@ -17,9 +15,7 @@
         <div class="download">
           <fa class="download-icon" :icon="['fas', 'download']" />
         </div>
-        <base-button @clicked="helloWorld"
-          ><fa :icon="['fas', 'print']" /> Print</base-button
-        >
+        <base-button><fa :icon="['fas', 'print']" /> Print</base-button>
       </div>
     </div>
     <hr />
@@ -61,7 +57,7 @@
           defaultVal="Saved Filters"
         ></base-dropdown>
       </div>
-      <base-button @clicked="helloWorld">Apply Filters</base-button>
+      <base-button @clicked="getReport(bId)">Apply Filters</base-button>
     </div>
   </div>
 </template>
@@ -71,11 +67,13 @@ import axios from 'axios';
 import BaseDropdown from '../UI/BaseDropdown.vue';
 
 export default {
+  emits: ['sendReport'],
   components: {
     BaseDropdown
   },
   data() {
     return {
+      bId: '664de905-75ca-404b-a2c6-049d78ee822f',
       choosenYear: null,
       choosenPeriod: null,
       filters: [],
@@ -116,8 +114,22 @@ export default {
         .filter(y => y.year == year)
         .map(p => p.periods);
     },
-    helloWorld() {
+    getReport(id) {
       console.log(this.choosenYear, this.choosenPeriod);
+
+      if (this.choosenYear !== null && this.choosenPeriod !== null) {
+        axios
+          .get('https://bspacedev.azurewebsites.net/api/Reports/GetAll/' + id, {
+            headers: {
+              Accept: 'text/plain',
+              Authorization: `Bearer ${localStorage.getItem('mytoken')}`
+            }
+          })
+          .then(res => this.$emit('sendReport', res.data.data))
+          .catch(err => console.log(err));
+      } else {
+        alert('as');
+      }
       this.choosenYear = null;
       this.choosenPeriod = null;
     },
@@ -133,7 +145,8 @@ export default {
             }
           }
         )
-        .then(res => (this.filters = res.data.data));
+        .then(res => (this.filters = res.data.data))
+        .catch(err => console.log(err));
     }
   },
   created() {

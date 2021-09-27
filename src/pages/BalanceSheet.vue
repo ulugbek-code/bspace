@@ -1,7 +1,9 @@
 <template>
   <div :class="[isNavOpened ? 'nav' : '']" class="box">
-    <create-balance-sheet></create-balance-sheet>
-    <table-balance-sheet></table-balance-sheet>
+    <create-balance-sheet
+      @sendReport="gettingReport($event)"
+    ></create-balance-sheet>
+    <table-balance-sheet :repo="repo"></table-balance-sheet>
   </div>
 </template>
 
@@ -14,9 +16,19 @@ export default {
     CreateBalanceSheet,
     TableBalanceSheet
   },
+  data() {
+    return {
+      repo: []
+    };
+  },
   computed: {
     isNavOpened() {
       return this.$store.getters.isNav;
+    }
+  },
+  methods: {
+    gettingReport(val) {
+      this.repo = val;
     }
   }
 };

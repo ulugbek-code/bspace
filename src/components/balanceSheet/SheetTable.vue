@@ -137,7 +137,7 @@ td:nth-child(1) {
   top: 0;
   width: 100%;
   height: 60vh;
-  z-index: 100;
+  z-index: 1;
 }
 .no-report img {
   width: 70%;

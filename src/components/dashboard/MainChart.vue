@@ -84,7 +84,9 @@ export default {
 <style scoped>
 #main-chart-container {
   width: 65%;
-  /* height: 50%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   margin-right: 1rem;
   background: rgba(241, 245, 251, 1);
   overflow: hidden;
@@ -106,7 +108,7 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 140px;
+  width: 150px;
   height: 140px;
   border-radius: 30px;
   background: #fff;

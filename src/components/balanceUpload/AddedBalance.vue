@@ -20,9 +20,10 @@
           </th>
         </tr>
         <tr
-          @click="getBalanceId(balance.id)"
+          @click="getBalanceId(balance.id), makingActive()"
           v-for="balance in balances"
           :key="balance"
+          :class="isActive ? 'active' : ''"
         >
           <td>
             {{ balance.year }}
@@ -60,7 +61,7 @@ export default {
   emits: ['sendBalanceId'],
   data() {
     return {
-      // errors: [],
+      isActive: false,
       titles: ['Year', 'Period', 'Description', 'Status'],
       periodMonths: [
         'January',
@@ -91,6 +92,9 @@ export default {
     }
   },
   methods: {
+    makingActive() {
+      this.isActive = !this.isActive;
+    },
     getPeriodName(index) {
       return this.periodMonths[index];
     },
@@ -265,5 +269,8 @@ td:nth-child(3):hover .tooltiptext {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -40%);
+}
+.active {
+  background: yellow;
 }
 </style>

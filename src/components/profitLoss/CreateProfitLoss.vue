@@ -3,29 +3,31 @@
     <div class="first-row">
       <h2>Profit & Loss</h2>
       <div class="first-btn-group">
-        <base-button class="btns"
-          ><fa :icon="['fas', 'coins']" /><router-link to="/profitLoss"
-            >Profit & Loss</router-link
-          ></base-button
+        <router-link to="/balanceSheet"
+          ><base-button
+            ><fa :icon="['fas', 'coins']" class="icn" />Balance
+            Sheet</base-button
+          ></router-link
         >
-        <base-button class="btns"
-          ><fa :icon="['fas', 'chart-line']" /><router-link to="/changesEquity"
-            >Changes in Equity</router-link
-          ></base-button
+        <router-link to="/changesEquity">
+          <base-button
+            ><fa :icon="['fas', 'chart-line']" class="icn" />Changes in
+            Equity</base-button
+          ></router-link
         >
-        <base-button class="btns"
-          ><fa :icon="['fas', 'chalkboard-teacher']" /><router-link
-            to="/cashFlow"
-            >Cash Flow</router-link
-          ></base-button
+        <router-link to="/cashFlow"
+          ><base-button
+            ><fa :icon="['fas', 'chalkboard-teacher']" class="icn" />Cash
+            Flow</base-button
+          ></router-link
         >
       </div>
       <div class="second-btn-group">
         <div class="download">
           <fa class="download-icon" :icon="['fas', 'download']" />
         </div>
-        <base-button class="btns"
-          ><fa :icon="['fas', 'print']" /> Print</base-button
+        <base-button
+          ><fa :icon="['fas', 'print']" class="icn" /> Print</base-button
         >
       </div>
     </div>
@@ -165,13 +167,12 @@ hr {
   bottom: -40%;
   width: 50px;
 }
-.btns:hover a {
-  color: rgba(67, 97, 238, 1);
-}
 a {
   color: #fff;
   transition: 0.4s all ease;
   text-decoration: none;
-  margin-left: 3px;
+}
+.icn {
+  margin-right: 2px;
 }
 </style>

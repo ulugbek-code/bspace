@@ -3,12 +3,20 @@
     <div class="first-row">
       <h2>Balance Sheet</h2>
       <div class="first-btn-group">
-        <base-button><fa :icon="['fas', 'coins']" /> Profit & Loss</base-button>
-        <base-button
-          ><fa :icon="['fas', 'chart-line']" /> Changes in Equity</base-button
+        <router-link to="/profitLoss"
+          ><base-button
+            ><fa :icon="['fas', 'coins']" /> Profit & Loss</base-button
+          ></router-link
         >
-        <base-button
-          ><fa :icon="['fas', 'chalkboard-teacher']" /> Cash Flow</base-button
+        <router-link to="/changesEquity"
+          ><base-button
+            ><fa :icon="['fas', 'chart-line']" /> Changes in Equity</base-button
+          ></router-link
+        >
+        <router-link to="/cashFlow"
+          ><base-button
+            ><fa :icon="['fas', 'chalkboard-teacher']" /> Cash Flow</base-button
+          ></router-link
         >
       </div>
       <div class="second-btn-group">

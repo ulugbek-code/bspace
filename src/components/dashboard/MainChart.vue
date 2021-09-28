@@ -84,22 +84,21 @@ export default {
 <style scoped>
 #main-chart-container {
   width: 65%;
-  height: 50%;
+  /* height: 50%; */
   margin-right: 1rem;
   background: rgba(241, 245, 251, 1);
   overflow: hidden;
   border-radius: 50px;
 }
 .canvas {
-  width: 95%;
+  width: 88%;
   margin: 3px auto;
-  padding: 20px;
-  /* background: brown; */
+  padding: 14px 0;
 }
 .widgets {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
 }
 .box {
   display: flex;
@@ -107,8 +106,8 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 150px;
-  height: 150px;
+  width: 140px;
+  height: 140px;
   border-radius: 30px;
   background: #fff;
   transition: 0.4s all ease;

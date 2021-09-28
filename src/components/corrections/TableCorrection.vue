@@ -36,16 +36,16 @@
           <th>IFRS <fa class="arrows" :icon="['fas', 'arrows-alt-v']" /></th>
         </tr>
         <tr v-for="c in corr" :key="c.id">
-          <td>{{ c.code }}</td>
-          <td>{{ c.name }}</td>
+          <td>{{ c.code ? c.code : 'No Data Yet' }}</td>
+          <td>{{ c.name ? c.name : 'No Data Yet' }}</td>
           <td>{{ numberWithCommas(c.correctionOpeningAmount) }}</td>
           <td>{{ numberWithCommas(c.initialOpeningAmount) }}</td>
           <td>{{ numberWithCommas(c.initialPeriodAmount) }}</td>
           <td>{{ numberWithCommas(c.correctionPeriodAmount) }}</td>
           <td>{{ numberWithCommas(c.correctionClosingAmount) }}</td>
           <td>{{ numberWithCommas(c.initialClosingAmount) }}</td>
-          <td>{{ c.endCode }}</td>
-          <td>{{ c.endIFRS }}</td>
+          <td>{{ c.endCode ? c.endCode : 'No Data Yet' }}</td>
+          <td>{{ c.endIFRS ? c.endIFRS : 'No Data Yet' }}</td>
         </tr>
       </table>
 

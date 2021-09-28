@@ -1,21 +1,32 @@
 <template>
   <div id="createBalanceSheet">
     <div class="first-row">
-      <h2>Balance Sheet</h2>
+      <h2>Profit & Loss</h2>
       <div class="first-btn-group">
-        <base-button><fa :icon="['fas', 'coins']" /> Profit & Loss</base-button>
-        <base-button
-          ><fa :icon="['fas', 'chart-line']" /> Changes in Equity</base-button
+        <base-button class="btns"
+          ><fa :icon="['fas', 'coins']" /><router-link to="/profitLoss"
+            >Profit & Loss</router-link
+          ></base-button
         >
-        <base-button
-          ><fa :icon="['fas', 'chalkboard-teacher']" /> Cash Flow</base-button
+        <base-button class="btns"
+          ><fa :icon="['fas', 'chart-line']" /><router-link to="/changesEquity"
+            >Changes in Equity</router-link
+          ></base-button
+        >
+        <base-button class="btns"
+          ><fa :icon="['fas', 'chalkboard-teacher']" /><router-link
+            to="/cashFlow"
+            >Cash Flow</router-link
+          ></base-button
         >
       </div>
       <div class="second-btn-group">
         <div class="download">
           <fa class="download-icon" :icon="['fas', 'download']" />
         </div>
-        <base-button><fa :icon="['fas', 'print']" /> Print</base-button>
+        <base-button class="btns"
+          ><fa :icon="['fas', 'print']" /> Print</base-button
+        >
       </div>
     </div>
     <hr />
@@ -27,27 +38,18 @@
       <div class="input-container">
         <fa class="icons" :icon="['fas', 'calendar-alt']" />
         <base-dropdown
-          :options="getYears"
           filtration="true"
           defaultVal="Years"
           @input="gettingYear($event)"
         ></base-dropdown>
-        <!-- :index="true"
-          :isSubmitted="isSubmitted"
-          :validity="!isValid"
-          @input="showIt($event)" -->
       </div>
       <div class="input-container">
-        <template v-if="filteredPeriods">
-          <fa class="icons" :icon="['fas', 'calendar-alt']" />
-          <base-dropdown
-            :options="filteredPeriods[0]"
-            filtration="true"
-            defaultVal="Period"
-            @input="getPeriod($event)"
-          ></base-dropdown>
-        </template>
-        <small v-else>Choose year to see periods</small>
+        <fa class="icons" :icon="['fas', 'calendar-alt']" />
+        <base-dropdown
+          filtration="true"
+          defaultVal="Period"
+          @input="getPeriod($event)"
+        ></base-dropdown>
       </div>
       <div class="input-container">
         <fa class="icons" :icon="['fas', 'bookmark']" />
@@ -66,11 +68,9 @@
 </template>
 
 <script>
-import axios from 'axios';
 import BaseDropdown from '../UI/BaseDropdown.vue';
 
 export default {
-  emits: ['sendReport'],
   components: {
     BaseDropdown
   },
@@ -83,70 +83,6 @@ export default {
       filters: [],
       filteredPeriods: null
     };
-  },
-  computed: {
-    getYears() {
-      return this.filters.map(y => y.year).sort();
-    }
-  },
-  methods: {
-    getPeriod(val) {
-      this.choosenPeriod = val;
-    },
-    gettingYear(val) {
-      this.choosenYear = val;
-    },
-    gettingPeriod(year) {
-      this.filteredPeriods = this.filters
-        .filter(y => y.year == year)
-        .map(p => p.periods);
-    },
-    getReport(id) {
-      console.log(this.choosenYear, this.choosenPeriod);
-
-      if (this.choosenYear !== null && this.choosenPeriod !== null) {
-        this.isGoing = true;
-        axios
-          .get('https://bspacedev.azurewebsites.net/api/Reports/GetAll/' + id, {
-            headers: {
-              Accept: 'text/plain',
-              Authorization: `Bearer ${localStorage.getItem('mytoken')}`
-            }
-          })
-          .then(res => {
-            this.$emit('sendReport', res.data.data);
-            this.isGoing = false;
-          })
-          .catch(err => console.log(err));
-      } else {
-        alert('no data choosen');
-      }
-      this.choosenYear = null;
-      this.choosenPeriod = null;
-    },
-    getAllFilters() {
-      axios
-        .get(
-          'https://bspacedev.azurewebsites.net/api/Filters/GetAllPeriodFilters/' +
-            localStorage.getItem('firmId'),
-          {
-            headers: {
-              Accept: 'text/plain',
-              Authorization: `Bearer ${localStorage.getItem('mytoken')}`
-            }
-          }
-        )
-        .then(res => (this.filters = res.data.data))
-        .catch(err => console.log(err));
-    }
-  },
-  created() {
-    this.getAllFilters();
-  },
-  watch: {
-    choosenYear(val) {
-      this.gettingPeriod(val);
-    }
   }
 };
 </script>
@@ -228,5 +164,14 @@ hr {
   position: absolute;
   bottom: -40%;
   width: 50px;
+}
+.btns:hover a {
+  color: rgba(67, 97, 238, 1);
+}
+a {
+  color: #fff;
+  transition: 0.4s all ease;
+  text-decoration: none;
+  margin-left: 3px;
 }
 </style>

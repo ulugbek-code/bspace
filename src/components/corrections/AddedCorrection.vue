@@ -11,9 +11,10 @@
           </th>
         </tr>
         <tr
-          @click="getCorrection(balance.id)"
-          v-for="balance in acceptedBalances"
-          :key="balance"
+          @click="getCorrection(balance.id), makeActive(i)"
+          v-for="(balance, i) in acceptedBalances"
+          :key="i"
+          :class="{ current: i == current }"
         >
           <td>
             {{ balance.year }}
@@ -40,6 +41,7 @@ export default {
   emits: ['sendCorrection'],
   data() {
     return {
+      current: null,
       titles: ['Year', 'Period', 'Description', 'Status'],
       balances: [
         {
@@ -59,6 +61,9 @@ export default {
     }
   },
   methods: {
+    makeActive(i) {
+      this.current = i;
+    },
     getCorrection(id) {
       axios
         .get(
@@ -132,6 +137,9 @@ th h4 {
 th:nth-child(3) .arrows {
   display: none;
 }
+tr:not(:nth-child(1)) {
+  border-bottom: 0.5px solid rgba(126, 123, 123, 0.1);
+}
 tr:hover:not(:nth-child(1)) {
   border-radius: 15px;
   box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1);
@@ -174,5 +182,8 @@ td:nth-child(3):hover .tooltiptext {
   border-radius: 25px;
   background: rgba(155, 222, 157, 0.3);
   color: rgba(76, 175, 80, 1);
+}
+.current {
+  background: #fff;
 }
 </style>

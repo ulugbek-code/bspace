@@ -5,7 +5,7 @@
       <img src="../../assets/loader.gif" alt="" />
     </div>
     <div v-else-if="!loading && errors">
-      error
+      NO CONNECTION
     </div>
     <div v-else-if="!loading && (!balances || balances.length === 0)">
       No stored data yet
@@ -20,10 +20,10 @@
           </th>
         </tr>
         <tr
-          @click="getBalanceId(balance.id), makingActive()"
-          v-for="balance in balances"
-          :key="balance"
-          :class="isActive ? 'active' : ''"
+          v-for="(balance, i) in balances"
+          :key="i"
+          :class="{ current: i == current }"
+          @click="getBalanceId(balance.id), makingActive(i)"
         >
           <td>
             {{ balance.year }}
@@ -61,7 +61,7 @@ export default {
   emits: ['sendBalanceId'],
   data() {
     return {
-      isActive: false,
+      current: null,
       titles: ['Year', 'Period', 'Description', 'Status'],
       periodMonths: [
         'January',
@@ -92,8 +92,8 @@ export default {
     }
   },
   methods: {
-    makingActive() {
-      this.isActive = !this.isActive;
+    makingActive(i) {
+      this.current = i;
     },
     getPeriodName(index) {
       return this.periodMonths[index];
@@ -151,6 +151,9 @@ export default {
 </script>
 
 <style scoped>
+.current {
+  background: rgb(255, 255, 255);
+}
 #added-balance {
   width: 60%;
   background: rgba(221, 221, 221, 0.4);
@@ -196,12 +199,18 @@ th h4 {
 th:nth-child(3) .arrows {
   display: none;
 }
+tr:not(:nth-child(1)) {
+  border-bottom: 0.7px solid rgba(142, 137, 137, 0.1);
+  transition: 0.1s;
+}
 tr:hover:not(:nth-child(1)) {
   border-radius: 15px;
   box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1);
   background: #fff;
   cursor: pointer;
+  transition: all 0s, background 0.1s;
 }
+
 td {
   position: relative;
   padding: 8px 12px;

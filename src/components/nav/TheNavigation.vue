@@ -22,82 +22,191 @@
     <div class="nav-li">
       <router-link @click="toggle" class="nav-link" to="/dashboard">
         <div @click="offseting" class="items">
-          <fa
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
             class="icons"
-            :icon="['fas', 'tachometer-alt']"
-            @mouseenter="toggleHamburger"
-          />
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#aaa"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <circle cx="12" cy="12" r="9" />
+            <circle cx="12" cy="12" r="1" />
+            <line x1="13.41" y1="10.59" x2="16" y2="8" />
+            <path d="M7 12a5 5 0 0 1 5 -5" />
+          </svg>
           <p>Dashboard</p>
         </div>
       </router-link>
       <router-link @click="toggle" class="nav-link" to="/financial">
         <div @click="offseting" class="items">
-          <fa
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
             class="icons"
-            :icon="['fas', 'chart-bar']"
-            @mouseenter="toggleHamburger"
-          />
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#aaa"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="3" y="12" width="6" height="8" rx="1" />
+            <rect x="9" y="8" width="6" height="12" rx="1" />
+            <rect x="15" y="4" width="6" height="16" rx="1" />
+            <line x1="4" y1="20" x2="18" y2="20" />
+          </svg>
           <p>Financial Stats</p>
         </div>
       </router-link>
       <router-link @click="toggle" class="nav-link" to="/consolidation">
         <div @click="offseting" class="items">
-          <fa
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
             class="icons"
-            :icon="['fas', 'project-diagram']"
-            @mouseenter="toggleHamburger"
-          />
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#aaa"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <rect x="10" y="4" width="4" height="4" rx="1" />
+            <rect x="3" y="17" width="4" height="4" rx="1" />
+            <rect x="17" y="17" width="4" height="4" rx="1" />
+            <line x1="6.5" y1="17.1" x2="11.5" y2="8" />
+            <line x1="17.5" y1="17.1" x2="12.5" y2="8" />
+            <line x1="7" y1="19" x2="17" y2="19" />
+          </svg>
           <p>Consolidation</p>
         </div>
       </router-link>
       <router-link @click="toggle" class="nav-link" to="/accounts">
         <div @click="offseting" class="items">
-          <fa
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
             class="icons"
-            :icon="['fas', 'user']"
-            @mouseenter="toggleHamburger"
-          />
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#aaa"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+          </svg>
           <p>Accounts</p>
         </div>
       </router-link>
       <router-link @click="toggle" class="nav-link" to="/firms">
         <div @click="offseting" class="items">
-          <fa
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
             class="icons"
-            :icon="['fas', 'building']"
-            @mouseenter="toggleHamburger"
-          />
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#aaa"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M4.5 9h5m-2.5 0v6" />
+            <path d="M13 15v-6l3 4l3 -4v6" />
+          </svg>
           <p>Firms</p>
         </div>
       </router-link>
       <router-link @click="toggle" class="nav-link" to="/balance">
         <div @click="offseting" class="items">
-          <fa
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
             class="icons"
-            :icon="['fas', 'upload']"
-            @mouseenter="toggleHamburger"
-          />
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#aaa"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+            <path
+              d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"
+            />
+            <line x1="12" y1="11" x2="12" y2="17" />
+            <polyline points="9 14 12 11 15 14" />
+          </svg>
           <p>Balance Upload</p>
         </div>
       </router-link>
       <router-link @click="toggle" class="nav-link" to="/corrections">
         <div @click="offseting" class="items">
-          <fa
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
             class="icons"
-            :icon="['fas', 'edit']"
-            @mouseenter="toggleHamburger"
-          />
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#aaa"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M3 19c3.333 -2 5 -4 5 -6c0 -3 -1 -3 -2 -3s-2.032 1.085 -2 3c.034 2.048 1.658 2.877 2.5 4c1.5 2 2.5 2.5 3.5 1c.667 -1 1.167 -1.833 1.5 -2.5c1 2.333 2.333 3.5 4 3.5h2.5"
+            />
+            <path
+              d="M20 17v-12c0 -1.121 -.879 -2 -2 -2s-2 .879 -2 2v12l2 2l2 -2z"
+            />
+            <path d="M16 7h4" />
+          </svg>
           <p>Corrections</p>
         </div>
       </router-link>
       <div :style="{ top: offset + 'px' }" id="marker"></div>
     </div>
     <div @click="logOut" class="log-out items">
-      <fa
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
         class="icons"
-        :icon="['fas', 'sign-out-alt']"
-        @mouseenter="toggleHamburger"
-      />
+        width="20"
+        height="20"
+        viewBox="0 0 24 20"
+        stroke-width="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path
+          d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"
+        />
+        <path d="M7 12h14l-3 -3m0 6l3 -3" />
+      </svg>
       <p>Log Out</p>
     </div>
   </nav>
@@ -274,10 +383,13 @@ nav h1 {
 }
 .icons {
   position: relative;
-  color: rgba(170, 170, 170, 0.5);
+  color: rgba(170, 170, 170, 0.7);
   font-size: 18px;
   width: 20px;
   margin-right: 1.5rem;
+}
+.svg-icons {
+  stroke: chocolate;
 }
 .items {
   display: flex;
@@ -296,7 +408,7 @@ nav h1 {
   animation: coming 0.6s ease;
 }
 .log-out .icons {
-  color: rgba(255, 185, 62, 1);
+  stroke: rgba(255, 185, 62, 1);
 }
 a {
   text-decoration: none;
@@ -311,8 +423,10 @@ a:hover,
 a:active,
 a.router-link-active,
 .items:hover > .icons,
+.log-out:hover,
 a.router-link-active .icons {
   color: #fff;
+  stroke: #fff;
 }
 @keyframes coming {
   0% {

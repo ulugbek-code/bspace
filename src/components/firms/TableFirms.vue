@@ -76,7 +76,7 @@
     </table>
 
     <div v-else-if="!getLoader && getError">{{ getError }}</div>
-    <div v-else-if="!getLoader && (!contents || contents.length === 0)">
+    <div v-else-if="!getLoader && !contents">
       No stored firms yet
     </div>
   </div>
@@ -314,27 +314,25 @@ tr:active:not(:nth-child(1)) {
 tr:hover .icon-edit {
   color: rgba(255, 255, 255, 1);
   background: rgba(204, 24, 24, 0.75);
-  border-top-right-radius: 15px;
+  border-top-right-radius: 16px;
 }
 tr:hover .icon-trash {
   color: rgba(255, 255, 255, 1);
   background: rgba(67, 97, 238, 0.75);
-  border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 16px;
 }
 #edit-trash {
   display: flex;
   flex-direction: column;
   align-content: center;
   position: relative;
-  right: -8%;
-  bottom: 0%;
 }
 .icons {
+  align-self: center;
   color: rgba(170, 170, 170, 1);
-  font-size: 28px;
-  height: 35px;
-  width: 80%;
-  padding: 9px;
+  font-size: 35px;
+  width: 35px;
+  padding: 10px;
 }
 #code {
   padding: 4px 8px;
@@ -355,5 +353,15 @@ tr:hover .icon-trash {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+@media (min-width: 1700px) and (max-width: 2000px) {
+  .icons {
+    margin-right: 6px;
+  }
+}
+@media screen and (min-width: 1700px) {
+  .icons {
+    align-self: flex-end;
+  }
 }
 </style>

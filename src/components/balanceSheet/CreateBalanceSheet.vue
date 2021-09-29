@@ -40,10 +40,6 @@
           defaultVal="Years"
           @input="gettingYear($event)"
         ></base-dropdown>
-        <!-- :index="true"
-          :isSubmitted="isSubmitted"
-          :validity="!isValid"
-          @input="showIt($event)" -->
       </div>
       <div class="input-container">
         <template v-if="filteredPeriods">
@@ -55,7 +51,13 @@
             @input="getPeriod($event)"
           ></base-dropdown>
         </template>
-        <small v-else>Choose year to see periods</small>
+        <div v-else>
+          <base-dropdown
+            notAllow="true"
+            filtration="true"
+            defaultVal="Period"
+          ></base-dropdown>
+        </div>
       </div>
       <div class="input-container">
         <fa class="icons" :icon="['fas', 'bookmark']" />
@@ -129,8 +131,6 @@ export default {
       } else {
         alert('no data choosen');
       }
-      this.choosenYear = null;
-      this.choosenPeriod = null;
     },
     getAllFilters() {
       axios

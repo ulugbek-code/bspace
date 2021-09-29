@@ -152,7 +152,8 @@
     v-else
     :class="{
       invalid: !validity && defaultVal.length === 0,
-      withIndex: filtration
+      withIndex: filtration,
+      notAllow: notAllow
     }"
     class="custom-select"
     @blur="open = false"
@@ -189,7 +190,6 @@ export default {
       required: false
     },
     options: {
-      type: Array,
       required: false
     },
     types: {
@@ -209,6 +209,9 @@ export default {
       type: Boolean
     },
     filtration: {
+      required: false
+    },
+    notAllow: {
       required: false
     }
   },
@@ -390,5 +393,16 @@ export default {
   border-radius: 25px;
   color: rgba(255, 40, 40, 0.7);
   border: 1.5px solid rgb(255, 40, 40);
+}
+.notAllow .selected {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.notAllow .items {
+  display: none;
+}
+.notAllow .selected.open {
+  border: 1px solid rgba(221, 221, 221, 1);
+  border-radius: 25px;
 }
 </style>

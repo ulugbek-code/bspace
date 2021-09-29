@@ -4,11 +4,8 @@
       <img src="../../assets/loader.gif" alt="" />
     </div>
     <div v-else-if="!getLoader && getError">{{ getError }}</div>
-    <div
-      v-else-if="
-        !getLoader && (!getAccountsList || getAccountsList.length === 0)
-      "
-    >
+    <div v-else-if="!getLoader && !getAccountsList">
+      <!-- || getAccountsList.length === 0 -->
       No stored accounts yet
     </div>
     <table v-else>
@@ -273,13 +270,12 @@ tr:hover .icon-trash {
   flex-direction: column;
   align-content: center;
   position: relative;
-  right: 26%;
 }
 .icons {
   color: rgba(170, 170, 170, 1);
   font-size: 34px;
-  width: 130%;
-  padding: 8px;
+  width: 35px;
+  padding: 10px;
 }
 .red-bg {
   color: rgba(181, 69, 60, 1);

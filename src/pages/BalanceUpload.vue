@@ -43,6 +43,7 @@ export default {
 <style scoped>
 .box {
   margin-left: 270px;
+  transition: all 0.6s ease;
 }
 .box.nav {
   margin-left: 110px;

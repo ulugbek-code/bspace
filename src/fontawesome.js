@@ -16,7 +16,8 @@ import {
   faLevelUpAlt,
   faLevelDownAlt,
   faBell,
-  faCog
+  faCog,
+  faBookmark
 } from '@fortawesome/free-solid-svg-icons';
 // import {fab} from '@fortawesome/free-brands-svg-icons'
 
@@ -36,7 +37,8 @@ library.add(
   faLevelUpAlt,
   faLevelDownAlt,
   faBell,
-  faCog
+  faCog,
+  faBookmark
 );
 
 export default FontAwesomeIcon;

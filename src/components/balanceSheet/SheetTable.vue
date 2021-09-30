@@ -15,11 +15,11 @@
           <span class="badge">30</span>
         </th>
         <th>
-          На 01.01.2020<br />
+          На начало январь 2021<br />
           <span class="badge">40</span>
         </th>
         <th>
-          На 31.12.2020<br />
+          На конец январь 2021<br />
           <span class="badge">50</span>
         </th>
       </tr>

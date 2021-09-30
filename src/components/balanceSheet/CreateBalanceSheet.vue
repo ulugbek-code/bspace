@@ -101,12 +101,12 @@
       <div class="input-container">
         <template v-if="filteredPeriods">
           <fa class="icons" :icon="['fas', 'calendar-alt']" />
-          <base-dropdown
-            :options="filteredPeriods[0]"
+          <firms-drop-down
+            :options="filteredPeriods"
             filtration="true"
             defaultVal="Period"
-            @input="getPeriod($event)"
-          ></base-dropdown>
+            @sendId="getPeriod($event)"
+          ></firms-drop-down>
         </template>
         <div v-else>
           <base-dropdown
@@ -124,7 +124,7 @@
           defaultVal="Saved Filters"
         ></base-dropdown>
       </div>
-      <base-button @clicked="getReport(bId)">Apply Filters</base-button>
+      <base-button @clicked="getReport()">Apply Filters</base-button>
       <div v-if="isGoing" class="little-loader">
         <img src="../../assets/loader.gif" alt="" />
       </div>
@@ -135,16 +135,17 @@
 <script>
 import axios from 'axios';
 import BaseDropdown from '../UI/BaseDropdown.vue';
+import FirmsDropDown from '../UI/FirmsDropDown.vue';
 
 export default {
   emits: ['sendReport'],
   components: {
-    BaseDropdown
+    BaseDropdown,
+    FirmsDropDown
   },
   data() {
     return {
       isGoing: false,
-      bId: '664de905-75ca-404b-a2c6-049d78ee822f',
       choosenYear: null,
       choosenPeriod: null,
       filters: [],
@@ -166,22 +167,34 @@ export default {
     gettingPeriod(year) {
       this.filteredPeriods = this.filters
         .filter(y => y.year == year)
-        .map(p => p.periods);
+        .map(f => {
+          return {
+            name: f.period,
+            id: f.balanceFileId
+          };
+        });
     },
-    getReport(id) {
+    getReport() {
       console.log(this.choosenYear, this.choosenPeriod);
 
       if (this.choosenYear !== null && this.choosenPeriod !== null) {
         this.isGoing = true;
         axios
-          .get('https://bspacedev.azurewebsites.net/api/Reports/GetAll/' + id, {
-            headers: {
-              Accept: 'text/plain',
-              Authorization: `Bearer ${localStorage.getItem('mytoken')}`
+          .get(
+            'https://bspacedev.azurewebsites.net/api/Reports/GetAllBalanceSheets/' +
+              this.choosenPeriod,
+            {
+              headers: {
+                Accept: 'text/plain',
+                Authorization: `Bearer ${localStorage.getItem('mytoken')}`
+              }
             }
-          })
+          )
           .then(res => {
             this.$emit('sendReport', res.data.data);
+            console.log(
+              this.filters.filter(f => f.balanceFileId == this.choosenPeriod)
+            );
             this.isGoing = false;
           })
           .catch(err => console.log(err));

@@ -5,22 +5,24 @@
     </div>
     <h3>Log in to your account</h3>
     <form @submit.prevent="signIn" class="form">
-      <div :class="{ invalid: isUserInvalid }">
+      <div :class="{ invalid: isUserInvalid }" class="input-container">
         <input
           @click="toggleError"
           v-model.trim="userName"
           type="text"
-          placeholder="UserName"
+          required
         />
+        <span>Username</span>
         <small v-if="isUserInvalid">Field login is required.</small>
       </div>
-      <div :class="{ invalid: isPasswordInvalid }">
+      <div :class="{ invalid: isPasswordInvalid }" class="input-container">
         <input
           @click="toggleError"
           v-model.trim="password"
           type="password"
-          placeholder="Password"
+          required
         />
+        <span>Password</span>
         <small v-if="isPasswordInvalid">Field password is required.</small>
       </div>
       <div v-if="error" class="warning">
@@ -99,6 +101,9 @@ export default {
         this.validity = true;
       }
     }
+  },
+  created() {
+    console.log(this.userName);
   }
 };
 </script>
@@ -197,7 +202,7 @@ div.invalid input {
   border: 1px solid red;
   margin-bottom: 30px;
 }
-div.invalid input::placeholder,
+div.invalid span,
 div.invalid small {
   color: red;
 }
@@ -205,6 +210,22 @@ div.invalid small {
   position: absolute;
   bottom: 0;
   left: 25%;
+}
+.input-container span {
+  color: rgba(68, 68, 68, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-left: 28px;
+  padding-top: 20px;
+  font-size: 14px;
+  transition: 0.6s ease-in-out;
+  pointer-events: none;
+}
+.form input:focus ~ span,
+.form input:valid ~ span {
+  transform: translate(-20%, -70%);
+  font-size: 12px;
 }
 #load {
   position: absolute;

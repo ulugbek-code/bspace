@@ -172,10 +172,10 @@ table {
   margin: 0 auto;
   border-collapse: collapse;
   text-align: left;
+  color: rgba(68, 68, 68, 1);
 }
 th {
   font-size: 1rem;
-  color: rgb(36, 39, 56);
   padding: 3px 6px;
   text-align: center;
   border-right: 1px solid rgb(211, 214, 231);

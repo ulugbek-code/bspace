@@ -247,6 +247,7 @@ table {
   margin-left: 20px;
   border-collapse: collapse;
   width: 99%;
+  color: rgba(68, 68, 68, 1);
 }
 table tr:nth-child(1) {
   position: sticky;

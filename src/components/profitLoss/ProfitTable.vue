@@ -4,15 +4,15 @@
       <tr>
         <th>
           Наименование показатей<br />
-          <span>10</span>
+          <span class="badge">10</span>
         </th>
         <th>
           Код строки<br />
-          <span>50</span>
+          <span class="badge">50</span>
         </th>
         <th>
           За отчетный период<br />
-          <span>20</span>
+          <span class="badge">20</span>
         </th>
       </tr>
       <tr>
@@ -20,7 +20,9 @@
       </tr>
       <tr v-for="r in repo" :key="r">
         <td>{{ r.name }}</td>
-        <td>{{ r.code }}</td>
+        <td>
+          <span class="badge">{{ r.code }}</span>
+        </td>
         <td>{{ numberWithCommas(r.period) }}</td>
       </tr>
     </table>
@@ -116,9 +118,10 @@ table {
   margin: 0 auto;
   border-collapse: collapse;
   text-align: left;
+  color: rgba(68, 68, 68, 1);
 }
 tr:not(:nth-child(1)) {
-  border-bottom: 1px solid rgba(170, 170, 170, 0.2);
+  border-bottom: 0.5px solid rgba(170, 170, 170, 0.2);
 }
 th {
   background: #fff;
@@ -138,13 +141,16 @@ th::after {
   background: rgba(170, 170, 170, 0.7);
   /* have to change cause little space is appers when scrolling */
 }
-th span {
+.badge {
   font-size: 12px;
   font-weight: 400;
   padding: 2px 8px;
-  color: rgba(67, 97, 238, 1);
+  color: rgba(68, 68, 68, 1);
   background: rgba(67, 97, 238, 0.3);
   border-radius: 12px;
+}
+th .badge {
+  color: rgba(67, 97, 238, 1);
 }
 td {
   background: #fff;

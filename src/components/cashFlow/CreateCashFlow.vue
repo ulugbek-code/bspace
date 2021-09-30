@@ -1,11 +1,11 @@
 <template>
   <div id="createBalanceSheet">
     <div class="first-row">
-      <h2>Profit & Loss</h2>
+      <h2>Cash Flow</h2>
       <div class="first-btn-group">
         <router-link to="/balanceSheet"
-          ><base-button
-            ><svg
+          ><base-button>
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               width="14"
               height="14"
@@ -23,8 +23,33 @@
               <rect x="8" y="3" width="6" height="4" rx="2" />
               <circle cx="18" cy="18" r="4" />
               <path d="M8 11h4" />
-              <path d="M8 15h3" /></svg
-            >Balance Sheet</base-button
+              <path d="M8 15h3" />
+            </svg>
+            Balance Sheet
+          </base-button></router-link
+        >
+        <router-link to="/profitLoss"
+          ><base-button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 20"
+              stroke-width="1.5"
+              stroke="#fff"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <ellipse cx="16" cy="6" rx="5" ry="3" />
+              <path d="M11 6v4c0 1.657 2.239 3 5 3s5 -1.343 5 -3v-4" />
+              <path d="M11 10v4c0 1.657 2.239 3 5 3s5 -1.343 5 -3v-4" />
+              <path d="M11 14v4c0 1.657 2.239 3 5 3s5 -1.343 5 -3v-4" />
+              <path d="M7 9h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" />
+              <path d="M5 15v1m0 -8v1" />
+            </svg>
+            Profit & Loss</base-button
           ></router-link
         >
         <router-link to="/changesEquity">
@@ -50,29 +75,6 @@
               <polyline points="16 14 16 16 14 16" />
             </svg>
             Changes in Equity</base-button
-          ></router-link
-        >
-        <router-link to="/cashFlow"
-          ><base-button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 18"
-              stroke-width="1.5"
-              stroke="#fff"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <rect x="7" y="9" width="14" height="10" rx="2" />
-              <circle cx="14" cy="14" r="2" />
-              <path
-                d="M17 9v-2a2 2 0 0 0 -2 -2h-10a2 2 0 0 0 -2 2v6a2 2 0 0 0 2 2h2"
-              />
-            </svg>
-            Cash Flow</base-button
           ></router-link
         >
       </div>
@@ -151,7 +153,7 @@ hr {
   background: rgba(221, 221, 221, 1);
 }
 #createBalanceSheet {
-  width: 95%;
+  width: 94%;
   margin: 1rem auto;
 }
 .first-row {

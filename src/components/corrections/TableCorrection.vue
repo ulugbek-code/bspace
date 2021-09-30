@@ -96,6 +96,7 @@ table {
   margin: 0 auto;
   border-collapse: collapse;
   text-align: left;
+  color: rgba(68, 68, 68, 1);
 }
 
 tr:not(:nth-child(1)) {

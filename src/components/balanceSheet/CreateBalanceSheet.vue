@@ -4,18 +4,75 @@
       <h2>Balance Sheet</h2>
       <div class="first-btn-group">
         <router-link to="/profitLoss"
-          ><base-button
-            ><fa :icon="['fas', 'coins']" /> Profit & Loss</base-button
+          ><base-button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 20"
+              stroke-width="1.5"
+              stroke="#fff"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <ellipse cx="16" cy="6" rx="5" ry="3" />
+              <path d="M11 6v4c0 1.657 2.239 3 5 3s5 -1.343 5 -3v-4" />
+              <path d="M11 10v4c0 1.657 2.239 3 5 3s5 -1.343 5 -3v-4" />
+              <path d="M11 14v4c0 1.657 2.239 3 5 3s5 -1.343 5 -3v-4" />
+              <path d="M7 9h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" />
+              <path d="M5 15v1m0 -8v1" />
+            </svg>
+            Profit & Loss</base-button
           ></router-link
         >
         <router-link to="/changesEquity"
-          ><base-button
-            ><fa :icon="['fas', 'chart-line']" /> Changes in Equity</base-button
+          ><base-button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 18"
+              stroke-width="1.5"
+              stroke="#fff"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M16 16v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-8a2 2 0 0 1 2 -2h2v-2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-2"
+              />
+              <polyline points="10 8 8 8 8 10" />
+              <polyline points="8 14 8 16 10 16" />
+              <polyline points="14 8 16 8 16 10" />
+              <polyline points="16 14 16 16 14 16" />
+            </svg>
+            Changes in Equity</base-button
           ></router-link
         >
         <router-link to="/cashFlow"
-          ><base-button
-            ><fa :icon="['fas', 'chalkboard-teacher']" /> Cash Flow</base-button
+          ><base-button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 18"
+              stroke-width="1.5"
+              stroke="#fff"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <rect x="7" y="9" width="14" height="10" rx="2" />
+              <circle cx="14" cy="14" r="2" />
+              <path
+                d="M17 9v-2a2 2 0 0 0 -2 -2h-10a2 2 0 0 0 -2 2v6a2 2 0 0 0 2 2h2"
+              />
+            </svg>
+            Cash Flow</base-button
           ></router-link
         >
       </div>
@@ -236,5 +293,8 @@ hr {
   position: absolute;
   bottom: -40%;
   width: 50px;
+}
+a:hover svg {
+  stroke: rgba(67, 97, 238, 1);
 }
 </style>

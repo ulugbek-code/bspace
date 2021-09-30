@@ -3,7 +3,7 @@
     <table v-if="repo.length > 0">
       <tr>
         <th>
-          Наименование показателя<br />
+          Наименование показатей<br />
           <span class="badge">10</span>
         </th>
         <th>
@@ -11,47 +11,29 @@
           <span class="badge">20</span>
         </th>
         <th>
-          Примечание<br />
+          Приход<br />
           <span class="badge">30</span>
         </th>
         <th>
-          На 01.01.2020<br />
+          Расход<br />
           <span class="badge">40</span>
-        </th>
-        <th>
-          На 31.12.2020<br />
-          <span class="badge">50</span>
         </th>
       </tr>
       <tr>
-        <td><h3>Активы</h3></td>
+        <td><h3>Денежные потоки от операционной деятельности</h3></td>
+      </tr>
+      <tr>
+        <td><h3>1.1 Поступление денежных средств</h3></td>
       </tr>
       <tr v-for="r in repo" :key="r">
-        <td>{{ r.name }}</td>
+        <td>{{ r.first }}</td>
         <td>
-          <span class="badge">{{ r.code ? r.code : 0 }}</span>
+          <span class="badge">{{ r.second }}</span>
         </td>
-        <td>{{ r.note ? r.note : 'No note' }}</td>
         <td>
-          {{ numberWithCommas(r.internationalOpeningAmount) }}
-          <fa
-            :class="
-              r.internationalOpeningAmount < r.internationalClosingAmount
-                ? 'greenish'
-                : 'redish'
-            "
-            class="icons"
-            :icon="[
-              'fas',
-              `level-${
-                r.internationalOpeningAmount < r.internationalClosingAmount
-                  ? 'up'
-                  : 'down'
-              }-alt`
-            ]"
-          />
+          {{ numberWithCommas(r.third) }}
         </td>
-        <td>{{ numberWithCommas(r.internationalClosingAmount) }}</td>
+        <td>{{ numberWithCommas(r.fourth) }}</td>
       </tr>
     </table>
 
@@ -63,9 +45,42 @@
 
 <script>
 export default {
-  props: ['repo'],
+  //   props: ['repo'],
   data() {
-    return {};
+    return {
+      repo: [
+        {
+          first: 'Реализация продукции и товаров',
+          second: '010',
+          third: '160,303,442',
+          fourth: '50,832,220'
+        },
+        {
+          first: 'Реализация продукции и товаров',
+          second: '010',
+          third: '160,303,442',
+          fourth: '50,832,220'
+        },
+        {
+          first: 'Реализация продукции и товаров',
+          second: '010',
+          third: '160,303,442',
+          fourth: '50,832,220'
+        },
+        {
+          first: 'Реализация продукции и товаров',
+          second: '010',
+          third: '160,303,442',
+          fourth: '50,832,220'
+        },
+        {
+          first: 'Реализация продукции и товаров',
+          second: '010',
+          third: '160,303,442',
+          fourth: '50,832,220'
+        }
+      ]
+    };
   },
   methods: {
     numberWithCommas(num) {
@@ -83,16 +98,16 @@ export default {
   border-top: 1px solid rgba(221, 221, 221, 1);
   overflow-y: scroll;
   overflow-x: hidden;
+  color: rgba(68, 68, 68, 1);
 }
 table {
   width: 94%;
   margin: 0 auto;
   border-collapse: collapse;
   text-align: left;
-  color: rgba(68, 68, 68, 1);
 }
 tr:not(:nth-child(1)) {
-  border-bottom: 1px solid rgba(170, 170, 170, 0.2);
+  border-bottom: 0.5px solid rgba(170, 170, 170, 0.2);
 }
 th {
   background: #fff;
@@ -127,14 +142,8 @@ td {
   font-size: 14px;
   padding: 16px 12px;
 }
-td:nth-child(1) {
-  max-width: 280px;
-}
-.greenish {
-  color: rgba(76, 175, 80, 1);
-}
-.redish {
-  color: rgba(204, 24, 24, 1);
+td:not(:nth-child(1)) {
+  text-align: end;
 }
 .no-report {
   position: relative;

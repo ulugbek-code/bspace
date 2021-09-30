@@ -13,9 +13,9 @@ export default {
 <style scoped>
 button {
   font-family: 'Poppins', sans-serif;
-  /* height: 26px; */
-  /* width: 105px; */
-  padding: 4px 9px;
+  height: 26px;
+  min-width: 80px;
+  padding: 0 6px;
   color: #fff;
   background: rgba(67, 97, 238, 1);
   border: 1px solid rgba(67, 97, 238, 1);

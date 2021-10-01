@@ -185,8 +185,10 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 150px;
-  height: 140px;
+  min-width: 20%;
+  max-width: 150px;
+  min-height: 16vh;
+  max-height: 140px;
   border-radius: 30px;
   background: #fff;
   transition: 0.4s all ease;

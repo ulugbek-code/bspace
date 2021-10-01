@@ -1,34 +1,37 @@
 <template>
   <div :class="[isNavOpened ? 'nav' : '']" class="box">
-    <create-balance-sheet
+    <!-- <create-balance-sheet
       @sendReport="gettingReport($event)"
-    ></create-balance-sheet>
-    <table-balance-sheet :repo="repo"></table-balance-sheet>
+    ></create-balance-sheet> -->
+    <create-reports
+      reportHeader="Balance Sheet"
+      reportUrl="GetAllBalanceSheets"
+      @sendReport="repo = $event"
+      @sendHeaderPeriod="headerPeriod = $event"
+    ></create-reports>
+    <table-balance-sheet :repo="repo" :per="headerPeriod"></table-balance-sheet>
   </div>
 </template>
 
 <script>
-import CreateBalanceSheet from '../components/balanceSheet/CreateBalanceSheet.vue';
+// import CreateBalanceSheet from '../components/balanceSheet/CreateBalanceSheet.vue';
+import CreateReports from '../components/UI/CreateReports.vue';
 import TableBalanceSheet from '../components/balanceSheet/TableBalanceSheet.vue';
 
 export default {
   components: {
-    CreateBalanceSheet,
+    CreateReports,
     TableBalanceSheet
   },
   data() {
     return {
-      repo: []
+      repo: [],
+      headerPeriod: {}
     };
   },
   computed: {
     isNavOpened() {
       return this.$store.getters.isNav;
-    }
-  },
-  methods: {
-    gettingReport(val) {
-      this.repo = val;
     }
   }
 };

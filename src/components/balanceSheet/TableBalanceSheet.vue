@@ -1,6 +1,6 @@
 <template>
   <div id="sheet-table-container">
-    <sheet-table :repo="repo"></sheet-table>
+    <sheet-table :repo="repo" :per="per"></sheet-table>
     <sheet-chart></sheet-chart>
   </div>
 </template>
@@ -10,7 +10,7 @@ import SheetTable from './SheetTable.vue';
 import SheetChart from './SheetChart.vue';
 
 export default {
-  props: ['repo'],
+  props: ['repo', 'per'],
   components: {
     SheetTable,
     SheetChart

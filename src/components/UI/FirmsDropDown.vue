@@ -35,7 +35,7 @@
   <!--  -->
   <div
     v-else-if="defaultVal"
-    :class="{ invalid: validity && !selected }"
+    :class="{ invalid: validity && !selected, withIndex: filtration }"
     class="custom-select"
     @blur="open = false"
   >
@@ -69,7 +69,15 @@
 </template>
 <script>
 export default {
-  props: ['options', 'validity', 'defaultVal', 'firm', 'update', 'isSub'],
+  props: [
+    'options',
+    'validity',
+    'defaultVal',
+    'firm',
+    'update',
+    'isSub',
+    'filtration'
+  ],
   data() {
     return {
       selected: '',
@@ -179,6 +187,26 @@ export default {
 }
 .custom-select.firm .items {
   background: rgb(243, 242, 242) !important;
+}
+/* with Index */
+.custom-select.withIndex {
+  width: 100%;
+  line-height: 26px;
+  background: #fff;
+  border-radius: 25px;
+  margin: 0px;
+}
+.custom-select.withIndex .selected {
+  padding-left: 1.4em;
+  color: rgb(126, 126, 126);
+  border: 1px solid rgba(221, 221, 221, 1);
+  font-size: 14px;
+}
+.custom-select.withIndex .selected.open {
+  background: #fff;
+}
+.withIndex .selected:after {
+  top: 12px;
 }
 
 .selectHide {

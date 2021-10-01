@@ -15,11 +15,13 @@
           <span class="badge">30</span>
         </th>
         <th>
-          На начало январь 2021<br />
+          На начало <span class="periods">{{ per.period }} {{ per.year }}</span
+          ><br />
           <span class="badge">40</span>
         </th>
         <th>
-          На конец январь 2021<br />
+          На конец <span class="periods">{{ per.period }} {{ per.year }} </span
+          ><br />
           <span class="badge">50</span>
         </th>
       </tr>
@@ -63,7 +65,7 @@
 
 <script>
 export default {
-  props: ['repo'],
+  props: ['repo', 'per'],
   data() {
     return {};
   },
@@ -99,8 +101,10 @@ th {
   position: sticky;
   top: 0%;
   z-index: 1;
+  vertical-align: initial;
   color: rgba(170, 170, 170, 1);
   padding: 3px 6px;
+  font-size: 1vw;
 }
 th::after {
   content: '';
@@ -119,7 +123,8 @@ th::after {
   background: rgba(67, 97, 238, 0.3);
   border-radius: 12px;
 }
-th .badge {
+th .badge,
+th .periods {
   color: rgba(67, 97, 238, 1);
 }
 td {

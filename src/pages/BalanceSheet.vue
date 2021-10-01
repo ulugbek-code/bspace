@@ -1,8 +1,5 @@
 <template>
   <div :class="[isNavOpened ? 'nav' : '']" class="box">
-    <!-- <create-balance-sheet
-      @sendReport="gettingReport($event)"
-    ></create-balance-sheet> -->
     <create-reports
       reportHeader="Balance Sheet"
       reportUrl="GetAllBalanceSheets"

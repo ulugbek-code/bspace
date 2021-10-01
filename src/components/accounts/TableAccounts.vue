@@ -154,6 +154,7 @@ export default {
     }
   },
   async created() {
+    this.$Progress.start();
     await this.$store.dispatch('account/getAccounts', {
       isSubAcc: false,
       firmId: localStorage.getItem('firmId')
@@ -166,6 +167,7 @@ export default {
     await this.$store.dispatch('account/getCategories');
     // await this.$store.dispatch('account/getIfrs');
     await this.$store.dispatch('account/getifrsTypes');
+    this.$Progress.finish();
 
     this.categoriesName = this.getCategoriesList.map(category => {
       return {

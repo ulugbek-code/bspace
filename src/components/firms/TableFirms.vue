@@ -190,8 +190,10 @@ export default {
         });
     }
   },
-  created() {
-    this.$store.dispatch('firm/getData');
+  async created() {
+    this.$Progress.start();
+    await this.$store.dispatch('firm/getData');
+    this.$Progress.finish();
   }
 };
 </script>

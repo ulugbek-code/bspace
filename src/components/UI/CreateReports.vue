@@ -1,5 +1,5 @@
 <template>
-  <div id="createBalanceSheet">
+  <div id="createReports">
     <div class="first-row">
       <h2>{{ reportHeader }}</h2>
       <div class="first-btn-group">
@@ -223,6 +223,7 @@ export default {
       console.log(this.choosenYear, this.choosenPeriod);
 
       if (this.choosenYear !== null && this.choosenPeriod !== null) {
+        this.$Progress.start();
         this.isGoing = true;
         axios
           .get(
@@ -241,9 +242,13 @@ export default {
             );
             headerPeriod[0].period = this.getPeriodName(headerPeriod[0].period);
             this.$emit('sendHeaderPeriod', headerPeriod[0]);
+            this.$Progress.finish();
             this.isGoing = false;
           })
-          .catch(err => console.log(err));
+          .catch(err => {
+            console.log(err);
+            this.$Progress.fail();
+          });
       } else {
         alert('no data choosen');
       }
@@ -282,7 +287,7 @@ hr {
   height: 1px;
   background: rgba(221, 221, 221, 1);
 }
-#createBalanceSheet {
+#createReports {
   width: 95%;
   margin: 1rem auto;
 }

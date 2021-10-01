@@ -1,4 +1,5 @@
 <template>
+  <vue-progress-bar></vue-progress-bar>
   <the-navigation v-if="isNavActive"></the-navigation>
   <main>
     <router-view></router-view>

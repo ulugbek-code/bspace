@@ -186,7 +186,7 @@
           <p>Corrections</p>
         </div>
       </router-link>
-      <div :style="{ top: offset + 'px' }" id="marker"></div>
+      <div :style="{ top: getOffset + 'px' }" id="marker"></div>
     </div>
     <div @click="logOut" class="log-out items">
       <svg
@@ -216,11 +216,14 @@
 export default {
   data() {
     return {
-      offset: 0,
+      // offset: 0,
       userInfo: {}
     };
   },
   computed: {
+    getOffset() {
+      return this.$store.getters.getOffset;
+    },
     isNavOpened() {
       return this.$store.state.isNavOpened;
     },
@@ -234,7 +237,7 @@ export default {
   },
   methods: {
     offseting(e) {
-      this.offset = e.target.offsetTop - 5;
+      this.$store.commit('offsetting', e);
     },
     toggleHamburgerMenu() {
       this.$store.commit('toggleNavBar');

@@ -12,17 +12,21 @@ const store = createStore({
   },
   plugins: [
     createPersistedState({
-      paths: ['isActive']
+      paths: ['isActive', 'offset']
     })
   ],
   state() {
     return {
       isActive: false,
       isNavOpened: false, // for hamburger menu
-      token: ''
+      token: '',
+      offset: 0
     };
   },
   getters: {
+    getOffset(state) {
+      return state.offset;
+    },
     isNav(state) {
       return state.isNavOpened;
     },
@@ -34,6 +38,9 @@ const store = createStore({
     }
   },
   mutations: {
+    offsetting(state, payload) {
+      state.offset = payload.target.offsetTop - 4;
+    },
     toggleNavBar(state) {
       state.isNavOpened = !state.isNavOpened;
     },

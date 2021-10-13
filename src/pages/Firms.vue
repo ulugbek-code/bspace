@@ -1,12 +1,14 @@
 <template>
+  <the-navigation></the-navigation>
   <div :class="[isNavOpened ? 'nav' : '']" class="box">
     <add-firm
       v-if="!forUpdate"
       :editedData="editedData"
       :isEdit="isEdit"
+      :deleted="deleted"
       @upping="upp($event)"
     ></add-firm>
-    <table-firms @editing="editData($event)"></table-firms>
+    <table-firms @editing="editData($event)" @deleted="dlte"></table-firms>
   </div>
 </template>
 
@@ -22,7 +24,8 @@ export default {
   data() {
     return {
       editedData: null,
-      isEdit: false
+      isEdit: false,
+      deleted: false
     };
   },
   computed: {
@@ -34,6 +37,9 @@ export default {
     }
   },
   methods: {
+    dlte() {
+      this.deleted = !this.deleted;
+    },
     editData(data) {
       this.editedData = data;
       this.isEdit = true;

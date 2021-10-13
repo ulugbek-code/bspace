@@ -83,7 +83,6 @@ export default {
           .then(res => {
             if (res.data.isValid === true) {
               this.$store.dispatch('signing', res);
-              console.log('sign in');
             } else {
               this.error = true;
               return;
@@ -101,9 +100,6 @@ export default {
         this.validity = true;
       }
     }
-  },
-  created() {
-    console.log(this.userName);
   }
 };
 </script>

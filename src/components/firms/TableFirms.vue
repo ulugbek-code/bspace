@@ -86,7 +86,7 @@
 import axios from 'axios';
 
 export default {
-  emits: ['editing'],
+  emits: ['editing', 'deleted'],
   data() {
     return {
       isSearchFocused: false,
@@ -161,9 +161,9 @@ export default {
           )
           .then(() => {
             this.$store.dispatch('firm/getData');
-            // setTimeout(this.$store.dispatch('firm/getData', true), 200);
             this.$store.commit('firm/toLoaderFalse');
             // this.getLoader = false;
+            this.$emit('deleted');
           })
           .catch(error => {
             this.$store.commit('firm/toLoaderFalse');

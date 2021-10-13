@@ -1,4 +1,5 @@
 <template>
+  <the-navigation></the-navigation>
   <div :class="[isNavOpened ? 'nav' : '']" class="box">
     <create-profit-loss></create-profit-loss>
     <table-profit-loss></table-profit-loss>

@@ -162,7 +162,12 @@
       {{ selected ? selected : defaultVal }}
     </div>
     <div class="items" :class="{ selectHide: !open }">
-      <div v-for="(option, i) of options" :key="i" @click="adding(option)">
+      <input v-model="query" type="text" placeholder="Search by name" />
+      <div
+        v-for="(option, i) of filteredCountries"
+        :key="i"
+        @click="adding(option)"
+      >
         {{ option }}
       </div>
     </div>
@@ -226,6 +231,11 @@ export default {
     };
   },
   computed: {
+    filteredCountries() {
+      return this.options.filter(option => {
+        return option.match(this.query);
+      });
+    },
     filteredOptions() {
       return this.options.filter(option => {
         return option.name.match(this.query) || option.code.match(this.query);
@@ -238,6 +248,9 @@ export default {
     }
   },
   methods: {
+    changeColor(e) {
+      console.log(e.target);
+    },
     toggleOpen() {
       this.open = !this.open;
       this.$emit('changeDD', true);
@@ -307,7 +320,7 @@ export default {
   background-color: transparent;
   border-radius: 25px;
   border: 1px solid rgba(67, 97, 238, 0.35);
-  color: rgba(69, 67, 67, 0.9);
+  color: rgba(69, 67, 67, 0.7);
   padding-left: 1em;
   cursor: pointer;
   user-select: none;

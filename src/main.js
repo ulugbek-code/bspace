@@ -3,6 +3,11 @@ import router from './router.js';
 import store from './store/index.js';
 import VueProgressBar from '@aacassandra/vue3-progressbar';
 import VueApexCharts from 'vue3-apexcharts';
+import TheNavigation from './components/nav/TheNavigation.vue';
+import FontAwesomeIcon from './fontawesome.js';
+import BaseButton from './components/UI/BaseButton.vue';
+
+import App from './App.vue';
 
 const options = {
   color: '#4361ee',
@@ -18,16 +23,12 @@ const options = {
   inverse: false
 };
 
-import FontAwesomeIcon from './fontawesome.js';
-import BaseButton from './components/UI/BaseButton.vue';
-
-import App from './App.vue';
-
 const app = createApp(App);
 app.use(router);
 app.use(store);
 app.use(VueProgressBar, options);
 app.use(VueApexCharts);
+app.component('the-navigation', TheNavigation);
 app.component('fa', FontAwesomeIcon);
 app.component('baseButton', BaseButton);
 

@@ -39,7 +39,11 @@ const store = createStore({
   },
   mutations: {
     offsetting(state, payload) {
+      // console.log(payload.target.offsetTop);
       state.offset = payload.target.offsetTop - 4;
+    },
+    refreshOffset(state) {
+      state.offset = -4;
     },
     toggleNavBar(state) {
       state.isNavOpened = !state.isNavOpened;
@@ -57,6 +61,9 @@ const store = createStore({
     },
     toggleActivity(state) {
       state.isActive = false;
+    },
+    makeActive(state) {
+      state.isActive = true;
     }
   },
   actions: {

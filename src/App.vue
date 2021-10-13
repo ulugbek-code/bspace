@@ -1,29 +1,26 @@
 <template>
   <vue-progress-bar></vue-progress-bar>
-  <the-navigation v-if="isNavActive"></the-navigation>
+  <!-- <the-navigation v-if="isNavActive"></the-navigation> -->
   <main>
+    <!-- <transition name="fade" mode="out-in"> -->
     <router-view></router-view>
+    <!-- </transition> -->
   </main>
 </template>
 
 <script>
-import TheNavigation from './components/nav/TheNavigation.vue';
-
 export default {
-  components: {
-    TheNavigation
-  },
   // data() {
   //   return {
   //     events: ['click', 'mousemove', 'mousedown', 'scroll', 'keypress'],
   //     // logoutTimer: null
   //   };
   // },
-  computed: {
-    isNavActive() {
-      return this.$store.state.isActive;
-    }
-  }
+  // computed: {
+  //   isNavActive() {
+  //     return this.$store.state.isActive;
+  //   }
+  // },
   // methods: {
   //   setTimers() {
   //     this.logoutTimer = setTimeout(this.logoutUser, 3000); //15*60*1000
@@ -37,7 +34,6 @@ export default {
   //   },
   //   resetTimers() {
   //     clearTimeout(this.logoutTimer);
-
   //     this.setTimers();
   //   }
   // },
@@ -46,17 +42,27 @@ export default {
   //   this.events.forEach(event => {
   //     window.addEventListener(event, this.resetTimers);
   //   });
-
   //   this.setTimers();
   //   // }
   // },
-  // unmounted() {
-  //   this.events.forEach(event => {
-  //     window.removeEventListener(event, this.resetTimers);
-  //   });
+  created() {
+    //  [App.vue specific] When App.vue is first loaded start the progress bar
+    this.$Progress.start();
+    //  hook the progress bar to start before we move router-view
+    this.$router.beforeEach((to, from, next) => {
+      //  does the page we want to go to have a meta.progress object
 
-  //   this.resetTimers();
-  // }
+      //  start the progress bar
+      this.$Progress.start();
+      //  continue to next page
+      next();
+    });
+    //  hook the progress bar to finish after we've finished moving router-view
+    this.$router.afterEach(() => {
+      //  finish the progress bar
+      this.$Progress.finish();
+    });
+  }
 };
 </script>
 
@@ -93,7 +99,7 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-.activet {
+/* .activet {
   margin-left: 400px;
-}
+} */
 </style>

@@ -1,4 +1,5 @@
 <template>
+  <the-navigation></the-navigation>
   <div :class="[isNavOpened ? 'nav' : '']" class="box">
     <h1>Financial</h1>
   </div>

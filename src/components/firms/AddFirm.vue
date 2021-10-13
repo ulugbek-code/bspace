@@ -142,7 +142,7 @@
         <div class="btn-add">
           <span v-if="isGoing">Loading...</span>
           <button @click.prevent="cancel">Cancel</button>
-          <button>Add</button>
+          <button type="submit" @click="addFirm">Add</button>
         </div>
       </div>
     </form>
@@ -150,6 +150,7 @@
   <update-firm
     v-else
     @updating="upp($event)"
+    @updateId="changeFirmId"
     :editedData="editedData"
     :firms="getFirms"
   ></update-firm>
@@ -161,7 +162,7 @@ import UpdateFirm from './UpdateFirm.vue';
 import FirmsDropDown from '../UI/FirmsDropDown.vue';
 
 export default {
-  props: ['editedData', 'isEdit'],
+  props: ['editedData', 'isEdit', 'deleted'],
   components: {
     'update-firm': UpdateFirm,
     'firms-drop-down': FirmsDropDown
@@ -192,6 +193,9 @@ export default {
     }
   },
   methods: {
+    changeFirmId() {
+      setTimeout(this.setupFirmId, 300);
+    },
     async setupFirmId() {
       await this.$store.dispatch('firm/getData', true);
       this.getFirms = this.getParentFirmId.map(firm => {
@@ -225,7 +229,8 @@ export default {
         this.inn.length !== 0 &&
         this.director.length !== 0
       ) {
-        this.isGoing = true;
+        // this.isGoing = true;
+        this.$Progress.start();
         await axios
           .post(
             'https://bspacedev.azurewebsites.net/api/Firms/Add',
@@ -251,24 +256,17 @@ export default {
             }
           )
           .catch(err => {
+            this.$Progress.fail();
             console.log(err);
           });
+        this.$Progress.finish();
         setTimeout(this.setupFirmId, 500); // from 1000 to 500
         await this.$store.dispatch('firm/getData');
         //this.$store.dispatch('firm/getData');
 
         // this.validity = 'success';
-        // (this.name = ''),
-        //   (this.year = ''),
-        //   (this.phone = ''),
-        //   (this.email = ''),
-        //   (this.address = ''),
-        //   (this.bankAccount = ''),
-        //   (this.bankName = ''),
-        //   (this.firmId = '');
-        // (this.inn = ''), (this.logo = null), (this.director = '');
         // this.isSubmitted = true;
-        this.isGoing = false;
+        // this.isGoing = false;
         this.cancel();
       } else {
         this.validity = 'error';
@@ -295,7 +293,6 @@ export default {
   },
   created() {
     this.setupFirmId();
-    // await this.$store.dispatch('firm/getData', true);
   },
   watch: {
     getFirms() {
@@ -305,18 +302,11 @@ export default {
           id: firm.id
         };
       });
+    },
+    deleted() {
+      this.changeFirmId();
     }
   }
-  // watch: {
-  //   isSubmitted() {
-  //     if (this.isSubmitted === true) {
-  //       // setTimeout(() => {
-  //         this.isSubmitted = false;
-  //         console.log('hello');
-  //       // }, 500);
-  //     }
-  //   }
-  // }
 };
 </script>
 

@@ -216,7 +216,6 @@
 export default {
   data() {
     return {
-      // offset: 0,
       userInfo: {}
     };
   },
@@ -264,6 +263,7 @@ export default {
   },
   mounted() {
     this.userInfo = JSON.parse(localStorage.getItem('userData'));
+    // console.log(this.getOffset);
   }
 };
 </script>

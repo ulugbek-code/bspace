@@ -165,8 +165,8 @@ export default {
         )
         .then(() => {
           // console.log(res.data.data)
-
           this.$store.dispatch('firm/getData');
+          this.$emit('updateId');
         })
         .catch(err => {
           console.log(err);

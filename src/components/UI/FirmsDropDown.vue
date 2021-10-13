@@ -115,7 +115,8 @@ export default {
   outline: none;
   font-size: 12px;
   line-height: 40px;
-  margin: 9.6px;
+  margin: 9.6px 0;
+  /* margin changed from 9.6 to 9.6 0 */
 }
 
 .custom-select .selected {
@@ -123,9 +124,10 @@ export default {
   border-radius: 25px;
   border: 1px solid rgba(67, 97, 238, 0.35);
   color: rgba(115, 112, 112, 0.8);
-  padding-left: 1em;
+  padding-left: 1.4em;
   cursor: pointer;
   user-select: none;
+  font-size: 13px;
 }
 
 .custom-select .selected.open,

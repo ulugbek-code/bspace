@@ -1,4 +1,5 @@
 <template>
+  <the-navigation></the-navigation>
   <div :class="[isNavOpened ? 'nav' : '']" class="box">
     <create-correction @sendCorr="getCorr($event)"></create-correction>
     <div class="header">

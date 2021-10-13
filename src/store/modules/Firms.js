@@ -1,5 +1,4 @@
-import axios from 'axios';
-import router from '../../router.js';
+import axios from '../../api';
 
 export default {
   namespaced: true,
@@ -15,7 +14,6 @@ export default {
     getTableData(state, payload) {
       // state.isLoading = true;         //dry principle
       state.lists = payload.data.data;
-      // console.log(state.lists)
     },
     getFirmsId(state, payload) {
       state.firmsData = payload.data.data;
@@ -30,36 +28,20 @@ export default {
   },
   actions: {
     async getData(context, isFirmsId) {
-      context.state.isLoading = true;
+      // context.state.isLoading = true;
       await axios
-        .get('https://bspacedev.azurewebsites.net/api/Firms/GetAll', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('mytoken')}`
+        .get('/Firms/GetAll')
+        .then(response => {
+          if (!isFirmsId) {
+            context.commit('getTableData', response);
+          } else {
+            context.commit('getFirmsId', response);
           }
+          // context.state.isLoading = false;
         })
-        .then(
-          response => {
-            if (!isFirmsId) {
-              context.commit('getTableData', response);
-            } else {
-              context.commit('getFirmsId', response);
-            }
-            context.state.isLoading = false;
-          },
-          e => {
-            if (e.response.status === 401) {
-              //|| e.response.status === 404
-              // console.log(context.rootState)
-              context.rootState.isActive = false;
-              // localStorage.removeItem('mytoken')
-              // localStorage.removeItem('firmId')
-              localStorage.clear();
-              context.state.isLoading = false;
-              router.push('/signIn');
-            }
-            context.state.error = 'Failed to fetch data';
-          }
-        );
+        .catch(() => {
+          context.state.error = 'Failed to fetch data';
+        });
     }
   },
   getters: {

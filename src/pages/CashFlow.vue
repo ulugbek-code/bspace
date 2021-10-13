@@ -1,4 +1,5 @@
 <template>
+  <the-navigation></the-navigation>
   <div :class="[isNavOpened ? 'nav' : '']" class="box">
     <create-cash-flow></create-cash-flow>
     <table-cash-flow></table-cash-flow>

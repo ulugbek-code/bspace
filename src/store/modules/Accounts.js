@@ -1,5 +1,4 @@
 import axios from 'axios';
-import router from '../../router.js';
 
 export default {
   namespaced: true,
@@ -75,29 +74,23 @@ export default {
             }
           }
         )
-        .then(
-          response => {
-            if (payload.isSubAcc) {
-              context.commit('getAccountsTable', response);
-            } else {
-              context.commit('getParentAccountsTable', response);
-            }
-            context.state.isLoading = false;
-          },
-          e => {
-            if (e.response.status === 401) {
-              // ||e.response.status === 404
-              context.rootState.isActive = false;
-              // localStorage.removeItem('mytoken')
-              // localStorage.removeItem('firmId')
-              localStorage.clear();
-              context.state.isLoading = false;
-              router.push('/signIn');
-              return;
-            }
-            context.state.error = 'Failed to fetch data';
+        .then(response => {
+          if (payload.isSubAcc) {
+            context.commit('getAccountsTable', response);
+            // console.log(response);
+          } else {
+            context.commit('getParentAccountsTable', response);
           }
-        );
+          context.state.isLoading = false;
+        })
+        .catch(e => {
+          if (e.response.status === 401) {
+            context.rootState.isActive = false;
+            context.state.isLoading = false;
+            return;
+          }
+          context.state.error = 'Failed to fetch data';
+        });
     },
     async getCategories(context) {
       await axios

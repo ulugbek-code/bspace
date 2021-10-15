@@ -1,6 +1,6 @@
 import axios from 'axios';
 import router from './router.js';
-import store from './store';
+// import store from './store';
 
 const customAxios = axios.create({
   baseURL: 'https://bspacedev.azurewebsites.net/api',

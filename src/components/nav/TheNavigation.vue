@@ -408,7 +408,7 @@ nav h1 {
   color: rgba(255, 185, 62, 1);
   font-weight: 300;
   cursor: pointer;
-  animation: coming 0.6s ease;
+  /* animation: coming 0.6s ease; */
 }
 .log-out .icons {
   stroke: rgba(255, 185, 62, 1);
@@ -431,12 +431,12 @@ a.router-link-active .icons {
   color: #fff;
   stroke: #fff;
 }
-@keyframes coming {
+/* @keyframes coming {
   0% {
     transform: translateX(-150%);
   }
   100% {
     transform: translateX(0);
   }
-}
+} */
 </style>

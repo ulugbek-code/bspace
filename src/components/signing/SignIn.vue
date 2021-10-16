@@ -28,7 +28,6 @@
       <div v-if="error" class="warning">
         User {{ userName }} with these credentials doesn't exist.
       </div>
-      <span v-if="isLoad && !error" id="load">&#8634;</span>
       <button class="btn">Sign In</button>
     </form>
     <!-- <p>Don't have an account yet? <router-link to="/signUp">Sign Up</router-link></p> -->
@@ -45,8 +44,7 @@ export default {
       userName: '',
       password: '',
       validity: false,
-      error: false,
-      isLoad: false
+      error: false
     };
   },
   computed: {
@@ -64,11 +62,10 @@ export default {
     toggleError() {
       this.validity = false;
       this.error = false;
-      this.isLoad = false;
     },
     async signIn() {
       if (this.userName !== '' && this.password !== '') {
-        this.isLoad = true;
+        this.$Progress.start();
         await axios
           .post(
             'https://bspacedev.azurewebsites.net/api/Users/Login',
@@ -84,19 +81,22 @@ export default {
             if (res.data.isValid === true) {
               this.$store.dispatch('signing', res);
             } else {
+              this.$Progress.finish();
               this.error = true;
               return;
             }
-            this.isLoad = false;
+            this.$Progress.finish();
           })
           .catch(err => {
             console.log('AXIOS ERROR: ', err);
+            this.$Progress.fail();
           });
 
         if (this.isActiveNav) {
           this.$router.push('/dashboard');
         }
       } else {
+        this.$Progress.finish();
         this.validity = true;
       }
     }

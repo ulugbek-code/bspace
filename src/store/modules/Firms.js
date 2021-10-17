@@ -1,4 +1,4 @@
-import axios from '../../api';
+import customAxios from '../../api.js';
 
 export default {
   namespaced: true,
@@ -29,7 +29,7 @@ export default {
   actions: {
     async getData(context, isFirmsId) {
       // context.state.isLoading = true;
-      await axios
+      await customAxios
         .get('/Firms/GetAll')
         .then(response => {
           if (!isFirmsId) {

@@ -1,7 +1,7 @@
 <template>
   <div class="sign-in">
     <div class="form-img">
-      <img src="../../assets/SignInHat.svg" alt="" />
+      <img src="../../assets/sign-in-top.jpg" alt="" />
     </div>
     <h3>Log in to your account</h3>
     <form @submit.prevent="signIn" class="form">
@@ -32,11 +32,14 @@
     </form>
     <!-- <p>Don't have an account yet? <router-link to="/signUp">Sign Up</router-link></p> -->
   </div>
-  <img class="back" src="../../assets/SignInBG.svg" alt="" />
+  <img class="back" src="../../assets/sign-in.jpg" alt="" />
 </template>
 
 <script>
 import axios from 'axios';
+// axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+// axios.defaults.headers.get['Accepts'] = 'application/json';
+// axios.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
 
 export default {
   data() {
@@ -68,7 +71,7 @@ export default {
         this.$Progress.start();
         await axios
           .post(
-            'https://bspacedev.azurewebsites.net/api/Users/Login',
+            'https://bspace.azurewebsites.net/api/Users/Login',
             {},
             {
               headers: {
@@ -130,6 +133,7 @@ export default {
   text-align: center;
   font-family: 'Poppins', 'sans-serif';
   margin: 0.9rem 0 0.6rem;
+  color: rgb(68, 68, 68);
 }
 .form {
   display: flex;
@@ -209,31 +213,29 @@ div.invalid small {
 }
 .input-container span {
   color: rgba(68, 68, 68, 0.6);
+  background: #fff;
   position: absolute;
-  top: 0;
-  left: 0;
-  padding-left: 28px;
-  padding-top: 20px;
+  top: 32%;
+  left: 8%;
+  /* padding-left: 28px;
+  padding-top: 20px; */
   font-size: 14px;
-  transition: 0.6s ease-in-out;
+  transition: 0.4s ease-in-out;
   pointer-events: none;
 }
 .form input:focus ~ span,
 .form input:valid ~ span {
-  transform: translate(-20%, -70%);
+  transform: translate(0%, -100%);
   font-size: 12px;
 }
 #load {
   position: absolute;
   bottom: 10%;
   left: 50%;
-  /* font-size: 30px; */
-  /* margin:-60px 0 0 -60px; */
   display: inline-block;
   -webkit-animation: spin 1s linear infinite;
   -moz-animation: spin 1s linear infinite;
   animation: spin 1s linear infinite;
-  /* background: #4361EE; */
 }
 @-moz-keyframes spin {
   100% {

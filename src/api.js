@@ -3,7 +3,7 @@ import router from './router.js';
 // import store from './store';
 
 const customAxios = axios.create({
-  baseURL: 'https://bspacedev.azurewebsites.net/api',
+  baseURL: 'https://bspace.azurewebsites.net/api',
   timeout: 12000,
   headers: { Authorization: `Bearer ${localStorage.getItem('mytoken')}` }
 });

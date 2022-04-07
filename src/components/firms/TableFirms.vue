@@ -150,15 +150,12 @@ export default {
       // this.getLoader = true;
       if (confirm('do you want to delete?')) {
         axios
-          .delete(
-            'https://bspacedev.azurewebsites.net/api/Firms/Delete/' + id,
-            {
-              headers: {
-                Accept: 'text/plain',
-                Authorization: `Bearer ${localStorage.getItem('mytoken')}`
-              }
+          .delete('https://bspace.azurewebsites.net/api/Firms/Delete/' + id, {
+            headers: {
+              Accept: 'text/plain',
+              Authorization: `Bearer ${localStorage.getItem('mytoken')}`
             }
-          )
+          })
           .then(() => {
             this.$store.dispatch('firm/getData');
             this.$store.commit('firm/toLoaderFalse');
@@ -174,7 +171,7 @@ export default {
     },
     async editItem(id) {
       await axios
-        .get('https://bspacedev.azurewebsites.net/api/Firms/GetById?id=' + id, {
+        .get('https://bspace.azurewebsites.net/api/Firms/GetById?id=' + id, {
           headers: {
             Accept: 'text/plain',
             Authorization: `Bearer ${localStorage.getItem('mytoken')}`

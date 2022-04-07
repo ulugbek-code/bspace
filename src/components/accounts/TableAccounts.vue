@@ -122,7 +122,7 @@ export default {
       if (confirm('do you want to delete?')) {
         axios
           .delete(
-            'https://bspacedev.azurewebsites.net/api/Accounts/Delete/' + id,
+            'https://bspace.azurewebsites.net/api/Accounts/Delete/' + id,
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem('mytoken')}`
@@ -142,7 +142,7 @@ export default {
     },
     async editItem(id) {
       await axios
-        .get('https://bspacedev.azurewebsites.net/api/Accounts/GetById/' + id, {
+        .get('https://bspace.azurewebsites.net/api/Accounts/GetById/' + id, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('mytoken')}`
           }

@@ -66,15 +66,12 @@ export default {
     },
     getCorrection(id) {
       axios
-        .get(
-          'https://bspacedev.azurewebsites.net/api/IfrsBalances/GetAll/' + id,
-          {
-            headers: {
-              Accept: 'text/plain',
-              Authorization: `Bearer ${localStorage.getItem('mytoken')}`
-            }
+        .get('https://bspace.azurewebsites.net/api/IfrsBalances/GetAll/' + id, {
+          headers: {
+            Accept: 'text/plain',
+            Authorization: `Bearer ${localStorage.getItem('mytoken')}`
           }
-        )
+        })
         .then(res => this.$emit('sendCorrection', res.data.data));
     },
     substringedDesc(val) {

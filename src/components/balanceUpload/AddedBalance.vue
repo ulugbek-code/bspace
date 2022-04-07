@@ -101,8 +101,7 @@ export default {
     getBalanceId(id) {
       axios
         .get(
-          'https://bspacedev.azurewebsites.net/api/BalanceFiles/GetById?id=' +
-            id,
+          'https://bspace.azurewebsites.net/api/BalanceFiles/GetById?id=' + id,
           {
             headers: {
               Accept: 'text/plain',
@@ -121,7 +120,7 @@ export default {
       if (confirm('do you want to delete?')) {
         axios
           .delete(
-            'https://bspacedev.azurewebsites.net/api/BalanceFiles/Delete/' + id,
+            'https://bspace.azurewebsites.net/api/BalanceFiles/Delete/' + id,
             {
               headers: {
                 Accept: 'text/plain',

@@ -227,7 +227,7 @@ export default {
         this.isGoing = true;
         axios
           .get(
-            `https://bspacedev.azurewebsites.net/api/Reports/${this.reportUrl}/${this.choosenPeriod}`,
+            `https://bspace.azurewebsites.net/api/Reports/${this.reportUrl}/${this.choosenPeriod}`,
             {
               headers: {
                 Accept: 'text/plain',
@@ -256,7 +256,7 @@ export default {
     getAllFilters() {
       axios
         .get(
-          'https://bspacedev.azurewebsites.net/api/Filters/GetAllPeriodFilters/' +
+          'https://bspace.azurewebsites.net/api/Filters/GetAllPeriodFilters/' +
             localStorage.getItem('firmId'),
           {
             headers: {

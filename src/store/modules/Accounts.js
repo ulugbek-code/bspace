@@ -64,7 +64,7 @@ export default {
       context.state.isLoading = true;
       await axios
         .get(
-          'https://bspacedev.azurewebsites.net/api/Accounts/GetAll/' +
+          'https://bspace.azurewebsites.net/api/Accounts/GetAll/' +
             payload.isSubAcc +
             '/' +
             payload.firmId,
@@ -94,7 +94,7 @@ export default {
     },
     async getCategories(context) {
       await axios
-        .get('https://bspacedev.azurewebsites.net/api/Categories/GetAll', {
+        .get('https://bspace.azurewebsites.net/api/Categories/GetAll', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('mytoken')}`
           }
@@ -110,7 +110,7 @@ export default {
     },
     async getIfrs(context) {
       await axios
-        .get('https://bspacedev.azurewebsites.net/api/IfrsCategories/GetAll', {
+        .get('https://bspace.azurewebsites.net/api/IfrsCategories/GetAll', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('mytoken')}`
           }
@@ -126,7 +126,7 @@ export default {
     },
     async getifrsTypes(context) {
       await axios
-        .get('https://bspacedev.azurewebsites.net/api/IfrsTypes/GetAll', {
+        .get('https://bspace.azurewebsites.net/api/IfrsTypes/GetAll', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('mytoken')}`
           }

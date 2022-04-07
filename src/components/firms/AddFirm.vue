@@ -233,7 +233,7 @@ export default {
         this.$Progress.start();
         await axios
           .post(
-            'https://bspacedev.azurewebsites.net/api/Firms/Add',
+            'https://bspace.azurewebsites.net/api/Firms/Add',
             {
               parentCompanyId: this.parentFirmId,
               name: this.name.trim(),

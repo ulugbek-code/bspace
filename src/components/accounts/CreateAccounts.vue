@@ -440,7 +440,7 @@ export default {
     addMany() {
       axios
         .post(
-          'https://bspacedev.azurewebsites.net/api/Accounts/AddMany',
+          'https://bspace.azurewebsites.net/api/Accounts/AddMany',
           {},
           {
             headers: {
@@ -462,7 +462,7 @@ export default {
         // console.log(this.ifrsData);
         axios
           .post(
-            'https://bspacedev.azurewebsites.net/api/IfrsCategories/Add',
+            'https://bspace.azurewebsites.net/api/IfrsCategories/Add',
             {
               name: this.ifrsData.ifrsName,
               types: this.ifrsData.ifrsTypes,
@@ -547,7 +547,7 @@ export default {
 
         axios
           .put(
-            'https://bspacedev.azurewebsites.net/api/Accounts/Update',
+            'https://bspace.azurewebsites.net/api/Accounts/Update',
             {
               id: this.editingData.id,
               firmId: this.editingData.firmId,
@@ -601,7 +601,7 @@ export default {
       ) {
         await axios
           .post(
-            'https://bspacedev.azurewebsites.net/api/Accounts/Add',
+            'https://bspace.azurewebsites.net/api/Accounts/Add',
             {
               firmId: this.getFirmId,
               name: this.accData.accountName,

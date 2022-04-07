@@ -144,7 +144,7 @@ export default {
         formData.append('File', this.balances.file);
         axios
           .post(
-            'https://bspacedev.azurewebsites.net/api/BalanceFiles/Add',
+            'https://bspace.azurewebsites.net/api/BalanceFiles/Add',
             formData,
             {
               headers: {

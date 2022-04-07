@@ -1,6 +1,5 @@
 <template>
-  <div id="not-found-box">
-    <h2>Whoops, that page is gone.</h2>
+  <div id="notFound">
     <h1>404</h1>
     <router-link to="/dashboard" @click="back"> to Dashboard</router-link>
   </div>
@@ -23,7 +22,7 @@ export default {
 };
 </script>
 <style scoped>
-#not-found-box {
+#notFound {
   width: 100%;
   height: 100vh;
   display: grid;
@@ -31,7 +30,7 @@ export default {
   text-align: center;
 }
 h2 {
-  color: rgb(78, 73, 73);
+  color: rgb(73, 73, 73);
 }
 h1 {
   font-size: 14rem;

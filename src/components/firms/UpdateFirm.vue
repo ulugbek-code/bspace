@@ -140,7 +140,7 @@ export default {
 
       axios
         .put(
-          'https://bspacedev.azurewebsites.net/api/Firms/Update',
+          'https://bspace.azurewebsites.net/api/Firms/Update',
           {
             id: this.id,
             parentCompanyId: this.editedData.parentCompanyId,

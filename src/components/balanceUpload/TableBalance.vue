@@ -84,8 +84,7 @@ export default {
     confirmBalance(id) {
       axios
         .put(
-          'https://bspacedev.azurewebsites.net/api/BalanceFiles/Confirm?id=' +
-            id,
+          'https://bspace.azurewebsites.net/api/BalanceFiles/Confirm?id=' + id,
           {},
           {
             headers: {
@@ -102,15 +101,12 @@ export default {
     balanceWithId(val) {
       this.showBalance = true;
       axios
-        .get(
-          'https://bspacedev.azurewebsites.net/api/Balances/GetAll/' + val.id,
-          {
-            headers: {
-              Accept: 'text/plain',
-              Authorization: `Bearer ${localStorage.getItem('mytoken')}`
-            }
+        .get('https://bspace.azurewebsites.net/api/Balances/GetAll/' + val.id, {
+          headers: {
+            Accept: 'text/plain',
+            Authorization: `Bearer ${localStorage.getItem('mytoken')}`
           }
-        )
+        })
         .then(res => {
           this.balances = res.data.data;
         });

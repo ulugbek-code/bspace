@@ -197,7 +197,7 @@ export default {
           role: this.positionId
         });
         await axios
-          .post('https://bspacedev.azurewebsites.net/api/Users/Register', {
+          .post('https://bspace.azurewebsites.net/api/Users/Register', {
             firmId: this.userData.firm,
             firstName: this.userData.firstName,
             lastName: this.userData.lastName,

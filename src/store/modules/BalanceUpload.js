@@ -27,7 +27,7 @@ export default {
       context.state.isLoading = true;
       await axios
         .get(
-          'https://bspacedev.azurewebsites.net/api/BalanceFiles/GetAll/' +
+          'https://bspace.azurewebsites.net/api/BalanceFiles/GetAll/' +
             localStorage.getItem('firmId'),
           {
             headers: {

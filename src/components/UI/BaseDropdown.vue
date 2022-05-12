@@ -231,11 +231,11 @@ export default {
     };
   },
   computed: {
-    filteredCountries() {
-      return this.options.filter(option => {
-        return option.match(this.query);
-      });
-    },
+    // filteredCountries() {
+    //   return this.options.filter(option => {
+    //     return option.match(this.query);
+    //   });
+    // },
     filteredOptions() {
       return this.options.filter(option => {
         return option.name.match(this.query) || option.code.match(this.query);

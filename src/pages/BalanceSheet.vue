@@ -1,4 +1,5 @@
 <template>
+  <the-navigation></the-navigation>
   <div :class="[isNavOpened ? 'nav' : '']" class="box">
     <create-reports
       reportHeader="Balance Sheet"
@@ -21,7 +22,50 @@ export default {
   },
   data() {
     return {
-      repo: [],
+      repo: [
+        {
+          name: 'Основные Ср-ва',
+          code: 124242,
+          note: '',
+          internationalOpeningAmount: 2131,
+          internationalClosingAmount: 14247534
+        },
+        {
+          name: 'Основные Ср-ва',
+          code: 3243,
+          note: '',
+          internationalOpeningAmount: 213471,
+          internationalClosingAmount: 14234
+        },
+        {
+          name: 'Основные Ср-ва',
+          code: 2534,
+          note: '',
+          internationalOpeningAmount: 2131,
+          internationalClosingAmount: 145475234
+        },
+        {
+          name: 'Основные Ср-ва',
+          code: 14324,
+          note: '',
+          internationalOpeningAmount: 2474,
+          internationalClosingAmount: 14234
+        },
+        {
+          name: 'Основные Ср-ва',
+          code: 4577,
+          note: '',
+          internationalOpeningAmount: 547567,
+          internationalClosingAmount: 14234
+        },
+        {
+          name: 'Основные Ср-ва',
+          code: 23545,
+          note: '',
+          internationalOpeningAmount: 2131,
+          internationalClosingAmount: 14234
+        }
+      ],
       headerPeriod: {}
     };
   },

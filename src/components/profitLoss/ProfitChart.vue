@@ -68,7 +68,7 @@ export default {
         },
         legend: {
           position: 'bottom',
-          offsetY: 10
+          offsetY: 11
         }
       },
       series: [
@@ -82,6 +82,9 @@ export default {
         }
       ]
     };
+  },
+  mounted() {
+    this.series[0].data[0] = 50;
   }
 };
 </script>

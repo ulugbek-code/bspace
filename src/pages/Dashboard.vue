@@ -36,7 +36,9 @@ export default {
   },
   data() {
     return {
-      user: {}
+      user: {
+        firstName: 'Abdulloh'
+      }
     };
   },
   computed: {
@@ -48,7 +50,7 @@ export default {
     if (!localStorage.getItem('mytoken')) {
       this.$router.push('signIn');
     }
-    this.user = JSON.parse(localStorage.getItem('userData'));
+    // this.user = JSON.parse(localStorage.getItem('userData'));
   }
 };
 </script>

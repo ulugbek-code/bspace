@@ -1,6 +1,6 @@
 <template>
   <nav :class="[isNavOpened ? 'openedSideBar' : '']">
-    <div
+    <!-- <div
       @click="toggleHamburgerMenu"
       :class="[isNavOpened ? 'open' : '']"
       class="hamburger-menu"
@@ -8,7 +8,7 @@
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </div> -->
     <router-link to="/dashboard"
       ><h1>{{ companyName }}</h1></router-link
     >
@@ -253,7 +253,7 @@ export default {
     },
     logOut() {
       if (confirm('Log out?')) {
-        localStorage.clear();
+        localStorage.removeItem('mytoken');
         this.$store.commit('toggleActivity');
         this.$router.push('/signIn');
       } else {
@@ -278,6 +278,9 @@ export default {
   transition: 0.5s;
   border-radius: 4px;
   /* padding-bottom: 5px; */
+}
+h1 {
+  margin-top: 2rem;
 }
 nav {
   height: 100%;

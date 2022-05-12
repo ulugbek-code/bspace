@@ -102,6 +102,44 @@ export default {
         'INN NUMBER',
         'LOGO',
         'DIRECTOR'
+      ],
+      contents: [
+        {
+          name: 'Firm1',
+          establishedYear: 1999,
+          telephone: '999891232',
+          mail: 'firm1@gmail.com',
+          address: 'Shaykhontohur tuman Oq-tepa kochasi',
+          bankAccount: '123',
+          bankName: 'Xalq banki',
+          innNumber: '12345',
+          logo: 'logoname',
+          director: 'Abdulaziz Salimmov'
+        },
+        {
+          name: 'Firm2',
+          establishedYear: 2001,
+          telephone: '99989126587',
+          mail: 'firm2@gmail.com',
+          address: 'Chilonzor tuman 17-kvartal',
+          bankAccount: '98734',
+          bankName: 'Infin banki',
+          innNumber: '0912345',
+          logo: 'logoname',
+          director: 'Shohruh Ganiev'
+        },
+        {
+          name: 'Firm3',
+          establishedYear: 2008,
+          telephone: '908763482',
+          mail: 'firm3@gmail.com',
+          address: 'Bodomzor 32-koca',
+          bankAccount: '87123',
+          bankName: 'Milliy banki',
+          innNumber: '432345',
+          logo: 'logoname',
+          director: 'Alisher Nomozov'
+        }
       ]
     };
   },
@@ -118,9 +156,9 @@ export default {
     getToken() {
       return localStorage.getItem('mytoken') || this.$store.state.token;
     },
-    contents() {
-      return this.$store.getters['firm/getLists'];
-    },
+    // contents() {
+    //   return this.$store.getters['firm/getLists'];
+    // },
     forUpdate() {
       return this.$store.getters['firm/updated'];
     },
@@ -186,12 +224,12 @@ export default {
           this.$emit('editing', res.data.data);
         });
     }
-  },
-  async created() {
-    this.$Progress.start();
-    await this.$store.dispatch('firm/getData');
-    this.$Progress.finish();
   }
+  // async created() {
+  //   this.$Progress.start();
+  //   await this.$store.dispatch('firm/getData');
+  //   this.$Progress.finish();
+  // }
 };
 </script>
 

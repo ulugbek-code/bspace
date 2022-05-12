@@ -49,15 +49,17 @@ const store = createStore({
       state.isNavOpened = !state.isNavOpened;
     },
     signIn(state, payload) {
-      localStorage.setItem('mytoken', payload.data.data.token);
-      localStorage.setItem('firmId', payload.data.data.userDetails.firmId);
-      localStorage.setItem(
-        'userData',
-        JSON.stringify(payload.data.data.userDetails)
-      );
+      localStorage.setItem('mytoken', payload);
+      // localStorage.setItem('mytoken', payload.data.data.token);
+      // localStorage.setItem('firmId', payload.data.data.userDetails.firmId);
+      // localStorage.setItem(
+      //   'userData',
+      //   JSON.stringify(payload.data.data.userDetails)
+      // );
 
       state.isActive = true;
-      state.token = payload.data.data.token;
+      state.token = payload;
+      // state.token = payload.data.data.token;
     },
     toggleActivity(state) {
       state.isActive = false;

@@ -1,16 +1,16 @@
 <template>
   <div id="added-balance">
     <h3>Balance List</h3>
-    <div v-if="loading" id="loader">
+    <!-- <div v-if="loading" id="loader">
       <img src="../../assets/loader.gif" alt="" />
-    </div>
-    <div v-else-if="!loading && errors">
+    </div> -->
+    <!-- <div v-else-if="!loading && errors">
       NO CONNECTION
-    </div>
-    <div v-else-if="!loading && (!balances || balances.length === 0)">
+    </div> -->
+    <!-- <div v-else-if="!loading && (!balances || balances.length === 0)">
       No stored data yet
-    </div>
-    <div v-else class="table-container">
+    </div> -->
+    <div class="table-container">
       <table v-if="balances.length > 0">
         <tr>
           <th v-for="title in titles" :key="title">
@@ -29,7 +29,7 @@
             {{ balance.year }}
           </td>
           <td>
-            {{ getPeriodName(balance.period) }}
+            {{ balance.period }}
             <!-- {{ typeof +balance.period }} -->
             <!-- {{ getPeriodName(+balance.period) }} -->
           </td>
@@ -77,13 +77,39 @@ export default {
         'November',
         'December'
       ],
-      balance: {}
+      balance: {},
+      balances: [
+        {
+          year: '2020',
+          period: 'June',
+          description: 'OCB of shown period lorem ipsum...',
+          isConfirmed: true
+        },
+        {
+          year: '2019',
+          period: 'March',
+          description: 'OCB of shown period lorem ipsum...',
+          isConfirmed: false
+        },
+        {
+          year: '2022',
+          period: 'May',
+          description: 'OCB of shown period lorem ipsum...',
+          isConfirmed: true
+        },
+        {
+          year: '2018',
+          period: 'September',
+          description: 'OCB of shown period lorem ipsum...',
+          isConfirmed: true
+        }
+      ]
     };
   },
   computed: {
-    balances() {
-      return this.$store.getters['balance/getBalanceList'];
-    },
+    // balances() {
+    //   return this.$store.getters['balance/getBalanceList'];
+    // },
     errors() {
       return this.$store.getters['balance/getError'];
     },

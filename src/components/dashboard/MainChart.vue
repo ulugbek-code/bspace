@@ -51,6 +51,28 @@
         </svg>
         Profit & Loss
       </router-link>
+      <router-link class="box" to="/cashFlow">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-cash"
+          width="34"
+          height="34"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#2c3e50"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <rect x="7" y="9" width="14" height="10" rx="2" />
+          <circle cx="14" cy="14" r="2" />
+          <path
+            d="M17 9v-2a2 2 0 0 0 -2 -2h-10a2 2 0 0 0 -2 2v6a2 2 0 0 0 2 2h2"
+          />
+        </svg>
+        Cash Flow</router-link
+      >
       <router-link class="box" to="/changesEquity">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -74,28 +96,6 @@
           <polyline points="16 14 16 16 14 16" />
         </svg>
         Changes on Equity</router-link
-      >
-      <router-link class="box" to="/cashFlow">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="icon icon-tabler icon-tabler-cash"
-          width="34"
-          height="34"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="#2c3e50"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <rect x="7" y="9" width="14" height="10" rx="2" />
-          <circle cx="14" cy="14" r="2" />
-          <path
-            d="M17 9v-2a2 2 0 0 0 -2 -2h-10a2 2 0 0 0 -2 2v6a2 2 0 0 0 2 2h2"
-          />
-        </svg>
-        Cash Flow</router-link
       >
     </div>
   </div>
@@ -146,7 +146,7 @@ export default {
       seriesA: [
         {
           name: 'series1',
-          data: [31, 40, 28, 51, 42, 109, 100]
+          data: [30, 40, 28, 51, 42, 109, 100]
         },
         {
           name: 'series2',
@@ -154,6 +154,9 @@ export default {
         }
       ]
     };
+  },
+  mounted() {
+    this.seriesA[0].data[0] = 31;
   }
 };
 </script>

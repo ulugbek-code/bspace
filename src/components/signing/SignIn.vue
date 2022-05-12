@@ -36,10 +36,7 @@
 </template>
 
 <script>
-import axios from 'axios';
-// axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-// axios.defaults.headers.get['Accepts'] = 'application/json';
-// axios.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+// import axios from 'axios';
 
 export default {
   data() {
@@ -69,31 +66,33 @@ export default {
     async signIn() {
       if (this.userName !== '' && this.password !== '') {
         this.$Progress.start();
-        await axios
-          .post(
-            'https://bspace.azurewebsites.net/api/Users/Login',
-            {},
-            {
-              headers: {
-                login: this.userName,
-                password: this.password
-              }
-            }
-          )
-          .then(res => {
-            if (res.data.isValid === true) {
-              this.$store.dispatch('signing', res);
-            } else {
-              this.$Progress.finish();
-              this.error = true;
-              return;
-            }
-            this.$Progress.finish();
-          })
-          .catch(err => {
-            console.log('AXIOS ERROR: ', err);
-            this.$Progress.fail();
-          });
+        this.$store.dispatch('signing', this.userName);
+        // await axios
+        //   .post(
+        //     'https://127.0.0.1:5001',
+        //     {},
+        //     {
+        //       headers: {
+        //         login: this.userName,
+        //         password: this.password
+        //       }
+        //     }
+        //   )
+        //   .then(res => {
+        //     if (res.data.isValid === true) {
+        //       this.$store.dispatch('signing', res);
+        //     } else {
+        //       this.$Progress.finish();
+        //       this.error = true;
+        //       return;
+        //     }
+        //     this.$Progress.finish();
+        //   }
+        //   )
+        //   .catch(err => {
+        //     console.log('AXIOS ERROR: ', err);
+        //     this.$Progress.fail();
+        //   });
 
         if (this.isActiveNav) {
           this.$router.push('/dashboard');

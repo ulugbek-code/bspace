@@ -58,21 +58,53 @@
 
 <script>
 export default {
-  props: ['corr'],
+  // props: ['corr'],
   data() {
     return {
-      tables: [
+      corr: [
         {
           code: 12,
           name: 'Законсервированные осн. ср-ва',
-          openCorr: 1313.1,
-          openIFRS: 1313133133,
-          periodCorr: 11313133133,
-          periodIFRS: 1313331313,
-          closingCorr: 1313113313,
-          closingIFRS: 1323232132,
-          endCode: 12,
-          endIFRS: 'Осн. Ср-ва'
+          correctionOpeningAmount: '2,655,334,031',
+          initialOpeningAmount: '0',
+          initialPeriodAmount: '0',
+          correctionPeriodAmount: '13,134,324',
+          correctionClosingAmount: '13,323,433',
+          initialClosingAmount: '12,232',
+          endCode: 12
+        },
+        {
+          code: 24,
+          name: 'Благоустройство Земли',
+          correctionOpeningAmount: '2,655,334,031',
+          initialOpeningAmount: '0',
+          initialPeriodAmount: '0',
+          correctionPeriodAmount: '13,134,324',
+          correctionClosingAmount: '13,323,433',
+          initialClosingAmount: '24,232',
+          endCode: 24
+        },
+        {
+          code: 45,
+          name: 'Счета Учета основных ср-в',
+          correctionOpeningAmount: '2,655,334,031',
+          initialOpeningAmount: '0',
+          initialPeriodAmount: '0',
+          correctionPeriodAmount: '13,134,324',
+          correctionClosingAmount: '13,323,433',
+          initialClosingAmount: '45,232',
+          endCode: 45
+        },
+        {
+          code: 76,
+          name: 'Обесценение осн. ср-в',
+          correctionOpeningAmount: '2,655,334,031',
+          initialOpeningAmount: '0',
+          initialPeriodAmount: '0',
+          correctionPeriodAmount: '13,134,324',
+          correctionClosingAmount: '13,323,433',
+          initialClosingAmount: '76,232',
+          endCode: 76
         }
       ]
     };

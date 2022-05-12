@@ -1,15 +1,15 @@
 <template>
-  <div v-if="!errorList && !balanceWithId.id" id="no-balance">
+  <!-- <div v-if="!errorList && !balanceWithId.id" id="no-balance">
     <img src="../../assets/noBalance.svg" alt="" />
     <h3>No Balance choosen yet</h3>
-  </div>
-  <div v-else-if="errorList && !showBalance" id="balance-error">
-    <!-- if statement changed from v-if:errorList -->
+  </div> -->
+  <!-- <div v-else-if="errorList && !showBalance" id="balance-error">
+    if statement changed from v-if:errorList
     <div v-for="error in errorList" :key="error" class="error-div">
       {{ error }}
     </div>
-  </div>
-  <div v-else id="container-table-balance">
+  </div> -->
+  <div id="container-table-balance">
     <div class="header">
       <h2>
         Сальдо за Период <span>{{ balanceWithId.year }}</span>
@@ -66,7 +66,44 @@ export default {
   props: ['errorList', 'balanceWithId'],
   data() {
     return {
-      balances: [],
+      balances: [
+        {
+          name: 'Счета учета основных средств',
+          openingStockDebit: '106,016,502,733.3',
+          openingStockCredit: '38,288,538,111.01',
+          periodDebit: '7,274,181,945.27',
+          periodCredit: '739,138,897.74',
+          closingStockDebit: '394,484,157.44',
+          closingStockCredit: '43,705,268,621.25'
+        },
+        {
+          name: 'Сырье и материалы',
+          openingStockDebit: '106,016,502,733.3',
+          openingStockCredit: '',
+          periodDebit: '7,274,181,945.27',
+          periodCredit: '739,138,897.74',
+          closingStockDebit: '394,484,157.44',
+          closingStockCredit: '43,705,268,621.25'
+        },
+        {
+          name: 'Сооружения',
+          openingStockDebit: '106,016,502,733.3',
+          openingStockCredit: '38,288,538,111.01',
+          periodDebit: '',
+          periodCredit: '739,138,897.74',
+          closingStockDebit: '394,484,157.44',
+          closingStockCredit: '43,705,268,621.25'
+        },
+        {
+          name: 'Оборудование к установке - импортное',
+          openingStockDebit: '106,016,502,733.3',
+          openingStockCredit: '38,288,538,111.01',
+          periodDebit: '7,274,181,945.27',
+          periodCredit: '739,138,897.74',
+          closingStockDebit: '394,484,157.44',
+          closingStockCredit: '43,705,268,621.25'
+        }
+      ],
       showBalance: false
     };
   },
@@ -96,25 +133,25 @@ export default {
         .then(() => this.$store.dispatch('balance/getAllBalances'))
         .catch(err => console.log(err));
     }
-  },
-  watch: {
-    balanceWithId(val) {
-      this.showBalance = true;
-      axios
-        .get('https://bspace.azurewebsites.net/api/Balances/GetAll/' + val.id, {
-          headers: {
-            Accept: 'text/plain',
-            Authorization: `Bearer ${localStorage.getItem('mytoken')}`
-          }
-        })
-        .then(res => {
-          this.balances = res.data.data;
-        });
-    },
-    errorList() {
-      this.showBalance = false;
-    }
   }
+  // watch: {
+  //   balanceWithId(val) {
+  //     this.showBalance = true;
+  //     axios
+  //       .get('https://bspace.azurewebsites.net/api/Balances/GetAll/' + val.id, {
+  //         headers: {
+  //           Accept: 'text/plain',
+  //           Authorization: `Bearer ${localStorage.getItem('mytoken')}`
+  //         }
+  //       })
+  //       .then(res => {
+  //         this.balances = res.data.data;
+  //       });
+  //   },
+  //   errorList() {
+  //     this.showBalance = false;
+  //   }
+  // }
 };
 </script>
 

@@ -47,18 +47,35 @@ export default {
         {
           year: 1199,
           period: 'March',
-          desc: 'lalda adakj da sda adsd dsad',
+          desc: 'OCB of shown period lorem ipsum...',
           status: 'Accepted'
+        }
+      ],
+      acceptedBalances: [
+        {
+          year: 2019,
+          period: 'March',
+          description: 'OCB of shown period lorem ipsum...'
+        },
+        {
+          year: 2020,
+          period: 'May',
+          description: 'OCB of shown period lorem ipsum...'
+        },
+        {
+          year: 2021,
+          period: 'April',
+          description: 'OCB of shown period lorem ipsum...'
         }
       ]
     };
   },
   computed: {
-    acceptedBalances() {
-      return this.$store.getters['balance/getBalanceList'].filter(
-        a => a.isConfirmed === true
-      );
-    }
+    // acceptedBalances() {
+    //   return this.$store.getters['balance/getBalanceList'].filter(
+    //     a => a.isConfirmed === true
+    //   );
+    // }
   },
   methods: {
     makeActive(i) {

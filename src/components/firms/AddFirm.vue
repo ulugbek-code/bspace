@@ -55,7 +55,7 @@
           <label>Parent Firm</label>
           <firms-drop-down
             @click="toggleValidity"
-            :options="getFirms"
+            :options="firms"
             @sendId="getFirmId($event)"
             firm="true"
             :isSub="isSub"
@@ -169,6 +169,7 @@ export default {
   },
   data() {
     return {
+      firms: [{ name: 'firm1' }, { name: 'firm2' }, { name: 'firm3' }],
       getFirms: [],
       isGoing: false,
       isSub: false,

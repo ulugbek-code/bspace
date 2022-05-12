@@ -50,7 +50,7 @@ export default {
           fontFamily: 'Poppins, sans-serif'
         },
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+          categories: [1990, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
         }
       },
       series: [
@@ -61,6 +61,11 @@ export default {
       ],
       seriesA: [44, 55]
     };
+  },
+  mounted() {
+    this.series[0].data[0] = 35;
+    this.seriesA[0] = 41;
+    this.options.xaxis.categories[0] = 1991;
   }
 };
 </script>

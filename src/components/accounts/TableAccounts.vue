@@ -1,14 +1,14 @@
 <template>
   <div class="container">
-    <div v-if="getLoader" id="loader">
+    <!-- <div v-if="getLoader" id="loader">
       <img src="../../assets/loader.gif" alt="" />
-    </div>
-    <div v-else-if="!getLoader && getError">{{ getError }}</div>
-    <div v-else-if="!getLoader && !getAccountsList">
-      <!-- || getAccountsList.length === 0 -->
+    </div> -->
+    <!-- <div v-else-if="!getLoader && getError">{{ getError }}</div> -->
+    <!-- <div v-else-if="!getLoader && !getAccountsList">
+       || getAccountsList.length === 0 
       No stored accounts yet
-    </div>
-    <table v-else>
+    </div> -->
+    <table>
       <tr>
         <th v-for="title in titles" :key="title">
           <h3>{{ title }}</h3>
@@ -77,6 +77,35 @@ export default {
         'IFRS KMPG',
         'TYPES'
       ],
+      getAccountsList: [
+        {
+          code: 1.01,
+          name: 'Благоустройство Земли',
+          isActive: 'Active',
+          categories: [{ name: 'Основные Ср-ва' }],
+          ifrsCategories: [
+            { code: '1010', name: 'Основные Ср-ва', types: ['Asset'] }
+          ]
+        },
+        {
+          code: 2.2,
+          name: 'Износ Благоустройства Земли',
+          isActive: false,
+          categories: [{ name: 'HMA' }],
+          ifrsCategories: [
+            { code: '1020', name: 'Ценные Бумаги', types: ['Asset'] }
+          ]
+        },
+        {
+          code: 1.01,
+          name: 'Благоустройство Земли',
+          isActive: 'Active',
+          categories: [{ name: 'Основные Ср-ва' }],
+          ifrsCategories: [
+            { code: '1011', name: 'HMA', types: ['Asset', 'Non-current'] }
+          ]
+        }
+      ],
       categoriesName: [],
       // ifrsCategories: [],
       ifrsTypes: [],
@@ -95,9 +124,9 @@ export default {
         );
       });
     },
-    getAccountsList() {
-      return this.$store.getters['account/getAccountList'];
-    },
+    // getAccountsList() {
+    //   return this.$store.getters['account/getAccountList'];
+    // },
     getParentAccountsList() {
       return this.$store.getters['account/getParentAccountsList'];
     },
@@ -152,42 +181,42 @@ export default {
           this.$emit('editAccounts', res.data.data);
         });
     }
-  },
-  async created() {
-    this.$Progress.start();
-    await this.$store.dispatch('account/getAccounts', {
-      isSubAcc: false,
-      firmId: localStorage.getItem('firmId')
-    });
-    await this.$store.dispatch('account/getAccounts', {
-      isSubAcc: true,
-      firmId: localStorage.getItem('firmId')
-    });
-
-    await this.$store.dispatch('account/getCategories');
-    // await this.$store.dispatch('account/getIfrs');
-    await this.$store.dispatch('account/getifrsTypes');
-    this.$Progress.finish();
-
-    this.categoriesName = this.getCategoriesList.map(category => {
-      return {
-        name: category.name,
-        id: category.id
-      };
-    });
-    // this.ifrsCategories = this.getIfrsCategoriesList.map(i => {
-    //   return {
-    //     id: i.id,
-    //     name: i.name,
-    //     code: i.code
-    //   };
-    // });
-
-    // this.$emit('ifrs', this.ifrsCategories);
-    this.$emit('category', this.categoriesName);
-    this.$emit('ifrsTypes', this.getifrsTypes);
-    this.$emit('parentAccounts', this.getParentAccountsList);
   }
+  // async created() {
+  //   this.$Progress.start();
+  //   await this.$store.dispatch('account/getAccounts', {
+  //     isSubAcc: false,
+  //     firmId: localStorage.getItem('firmId')
+  //   });
+  //   await this.$store.dispatch('account/getAccounts', {
+  //     isSubAcc: true,
+  //     firmId: localStorage.getItem('firmId')
+  //   });
+
+  //   await this.$store.dispatch('account/getCategories');
+  //   // await this.$store.dispatch('account/getIfrs');
+  //   await this.$store.dispatch('account/getifrsTypes');
+  //   this.$Progress.finish();
+
+  //   this.categoriesName = this.getCategoriesList.map(category => {
+  //     return {
+  //       name: category.name,
+  //       id: category.id
+  //     };
+  //   });
+  // this.ifrsCategories = this.getIfrsCategoriesList.map(i => {
+  //   return {
+  //     id: i.id,
+  //     name: i.name,
+  //     code: i.code
+  //   };
+  // });
+
+  // this.$emit('ifrs', this.ifrsCategories);
+  //   this.$emit('category', this.categoriesName);
+  //   this.$emit('ifrsTypes', this.getifrsTypes);
+  //   this.$emit('parentAccounts', this.getParentAccountsList);
+  // }
   // watch: {
   //   getIfrsCategoriesList(val) {
   //     console.log(val);

@@ -35,7 +35,7 @@
         </td>
         <td>{{ r.note ? r.note : 'No note' }}</td>
         <td>
-          {{ numberWithCommas(r.internationalOpeningAmount) }}
+          {{ r.internationalOpeningAmount }}
           <fa
             :class="
               r.internationalOpeningAmount < r.internationalClosingAmount
@@ -53,7 +53,7 @@
             ]"
           />
         </td>
-        <td>{{ numberWithCommas(r.internationalClosingAmount) }}</td>
+        <td>{{ r.internationalClosingAmount }}</td>
       </tr>
     </table>
 

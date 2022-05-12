@@ -154,10 +154,10 @@ export default {
         }
       ]
     };
-  },
-  mounted() {
-    this.seriesA[0].data[0] = 31;
   }
+  // mounted() {
+  //   this.seriesA[0].data[0] = 31;
+  // }
 };
 </script>
 

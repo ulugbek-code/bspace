@@ -82,10 +82,10 @@ export default {
         }
       ]
     };
-  },
-  mounted() {
-    this.series[0].data[0] = 50;
   }
+  // mounted() {
+  //   this.series[0].data[0] = 50;
+  // }
 };
 </script>
 

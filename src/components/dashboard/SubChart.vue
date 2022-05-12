@@ -60,11 +60,11 @@ export default {
       ],
       seriesA: [44, 55]
     };
-  },
-  mounted() {
-    this.series[0].data[0] = 41;
-    this.seriesA[0] = 41;
   }
+  // mounted() {
+  //   this.series[0].data[0] = 41;
+  //   this.seriesA[0] = 41;
+  // }
 };
 </script>
 

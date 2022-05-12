@@ -61,12 +61,12 @@ export default {
       ],
       seriesA: [44, 55]
     };
-  },
-  mounted() {
-    this.series[0].data[0] = 35;
-    this.seriesA[0] = 41;
-    this.options.xaxis.categories[0] = 1991;
   }
+  // mounted() {
+  //   this.series[0].data[0] = 35;
+  //   this.seriesA[0] = 41;
+  //   this.options.xaxis.categories[0] = 1991;
+  // }
 };
 </script>
 

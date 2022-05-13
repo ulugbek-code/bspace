@@ -1,5 +1,6 @@
 <template>
-  <nav :class="[isNavOpened ? 'openedSideBar' : '']">
+  <nav>
+    <!-- :class="[isNavOpened ? 'openedSideBar' : '']" -->
     <!-- <div
       @click="toggleHamburgerMenu"
       :class="[isNavOpened ? 'open' : '']"
@@ -224,7 +225,7 @@ export default {
       return this.$store.getters.getOffset;
     },
     isNavOpened() {
-      return this.$store.state.isNavOpened;
+      return this.$store.state.token;
     },
     companyName() {
       if (!this.isNavOpened) {
